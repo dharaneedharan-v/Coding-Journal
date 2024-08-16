@@ -311,3 +311,20 @@ class Solution:
 
         return True
 ```
+
+
+
+### [624. Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/)
+```python 
+
+  
+Code
+
+Testcase
+
+Testcase
+
+Test Result
+
+[624. Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/)
+```
