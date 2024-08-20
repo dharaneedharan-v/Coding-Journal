@@ -381,3 +381,32 @@ class Solution:
 
         return ans 
 ```
+
+
+### [1140. Stone Game II](https://leetcode.com/problems/stone-game-ii/)
+
+
+
+```python 
+class Solution:
+
+    @staticmethod
+
+    def _suffix_sum(piles: List[int]) -> List[int]:
+
+        suffix_sum = [0]
+
+  
+
+        for pile in reversed(piles):
+
+            suffix_sum.append(suffix_sum[-1] + pile)
+
+  
+
+        suffix_sum.reverse()
+
+  
+
+        return suffix_sum
+```
