@@ -440,3 +440,19 @@ class Solution:
         return dp[0][n-1]
 ```
 
+### [476. Number Complement](https://leetcode.com/problems/number-complement/)
+
+```python 
+
+class Solution:
+
+    def findComplement(self, num: int) -> int:
+
+        a  = bin(num)[2:]
+
+        dd = ''.join(['0' if i == '1' else '1' for i in a])
+
+        dk = int(dd,2)
+
+        return (dk)
+```
