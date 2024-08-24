@@ -485,3 +485,35 @@ class Solution:
 
         return '%d/%d' % (A, B)
 ```
+### [564. Find the Closest Palindrome](https://leetcode.com/problems/find-the-closest-palindrome/)
+
+```python 
+
+class Solution:
+
+    def nearestPalindromic(self, n: str) -> str:
+
+        l = len(n)
+
+        p, n = int(n[:(l+1)//2]), int(n)
+
+        candidates = {
+
+            10**(l-1) - 1,  # Largest palindrome with one less digit
+
+            10**l + 1       # Smallest palindrome with one more digit
+
+        }
+
+        for q in (-1, 0, 1):
+
+            t = str(p + q)
+
+            palindrome = int(t + t[-1-l%2::-1])  # Mirror the first half to create a palindrome
+
+            candidates.add(palindrome)
+
+        candidates.discard(n)
+
+        return str(min(candidates, key=lambda v: (abs(v - n), v)))
+```
