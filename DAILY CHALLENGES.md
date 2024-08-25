@@ -517,3 +517,10 @@ class Solution:
 
         return str(min(candidates, key=lambda v: (abs(v - n), v)))
 ```
+### [145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
+
+```python
+class Solution:
+
+    def postorderTraversal(self, r: Optional[TreeNode]) -> List[int]:return (f:=lambda n:n and f(n.left)+f(n.right)+[n.val] or [])(r)
+```
