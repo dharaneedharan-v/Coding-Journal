@@ -524,3 +524,13 @@ class Solution:
 
     def postorderTraversal(self, r: Optional[TreeNode]) -> List[int]:return (f:=lambda n:n and f(n.left)+f(n.right)+[n.val] or [])(r)
 ```
+
+### [590. N-ary Tree Postorder Traversal](https://leetcode.com/problems/n-ary-tree-postorder-traversal/)
+
+```python 
+class Solution:
+
+    def postorder(self, r: 'Node') -> List[int]:
+
+        return (f:=lambda n,q=[]:n and [*map(f,n.children),q.append(n.val)] and q)(r)
+```
