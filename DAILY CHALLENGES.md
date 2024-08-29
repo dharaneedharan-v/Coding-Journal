@@ -625,3 +625,19 @@ class Solution:
         return c
 ```
 
+### [947. Most Stones Removed with Same Row or Column](https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/)
+
+
+ ```python
+
+class Solution:
+    def removeStones(self, points):
+        uf = {}
+        def find(x):
+            if x != uf.setdefault(x, x):
+                uf[x] = find(uf[x])
+            return uf[x]
+        for i, j in points:
+            uf[find(i)] = find(~j)
+        return len(points) - len({find(x) for x in uf})
+```
