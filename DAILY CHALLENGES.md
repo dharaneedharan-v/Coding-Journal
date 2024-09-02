@@ -819,3 +819,22 @@ class Solution:
 
         return (res)
 ```
+
+### [1894. Find the Student that Will Replace the Chalk](https://leetcode.com/problems/find-the-student-that-will-replace-the-chalk/)
+
+
+```python
+class Solution:
+    def chalkReplacer(self, chalk, k):
+        n = len(chalk)
+        total_chalk = sum(chalk)
+        k %= total_chalk
+        
+        for i in range(n):
+            if k < chalk[i]:
+                return i
+            k -= chalk[i]
+        
+        return 0
+```
+
