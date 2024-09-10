@@ -1030,3 +1030,32 @@ class Solution:
             return dfs(head, root) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
             
 ```
+
+### [2807. Insert Greatest Common Divisors in Linked List](https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/)
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def insertGreatestCommonDivisors(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        node_dha = head
+
+        while node_dha.next != None:
+
+            node_dha.next , node_dha = ListNode(gcd(node_dha.val,node_dha.next.val),node_dha.next),node_dha.next
+
+        return head
+
+        # print(head)
+
+            # print(node_dha)
+```
