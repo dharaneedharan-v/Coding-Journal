@@ -1009,6 +1009,7 @@ class Solution:
         return res
 ```
 ### [1367. Linked List in Binary Tree](https://leetcode.com/problems/linked-list-in-binary-tree/)
+
 ```python 
 
 class Solution:
@@ -1032,6 +1033,7 @@ class Solution:
 ```
 
 ### [2807. Insert Greatest Common Divisors in Linked List](https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/)
+
 ```python 
 # Definition for singly-linked list.
 
@@ -1058,4 +1060,27 @@ class Solution:
         # print(head)
 
             # print(node_dha)
+```
+
+### [2220. Minimum Bit Flips to Convert Number](https://leetcode.com/problems/minimum-bit-flips-to-convert-number/)
+
+```python 
+
+class Solution:
+
+    def minBitFlips(self, start: int, goal: int) -> int:
+
+        count = 0
+
+        while start or goal :
+
+            if start&1 != goal&1 :
+
+                count = count +1
+
+            start = start>>1
+
+            goal = goal>>1
+
+        return (count)
 ```
