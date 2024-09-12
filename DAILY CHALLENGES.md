@@ -1084,3 +1084,41 @@ class Solution:
 
         return (count)
 ```
+
+### [1684. Count the Number of Consistent Strings](https://leetcode.com/problems/count-the-number-of-consistent-strings/)
+```python 
+class Solution:
+
+    def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
+
+        allowed = set(allowed)
+
+        count = 0
+
+        for i in words :
+
+            flag = 1
+
+            for char in i :
+
+                if char not in allowed :
+
+                    flag = 0
+
+                    break
+
+            if flag == 1:
+
+                count = count +1
+
+        return count
+
+#USING THE SUPPER SET
+
+
+class Solution:
+
+    def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
+
+        return sum(map({*allowed}.issuperset,words))
+```
