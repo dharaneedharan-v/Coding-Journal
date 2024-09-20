@@ -1194,3 +1194,23 @@ class Solution:
 
         return res
 ```
+
+### [214. Shortest Palindrome](https://leetcode.com/problems/shortest-palindrome/)
+
+```python 
+class Solution:
+
+    def shortestPalindrome(self, s: str) -> str:
+
+        length = len(s)
+
+        reverse = s[::-1]
+
+        for i in range(length):
+
+            if s[:length-i] == reverse[i:]:
+
+                return reverse[:i]+s
+
+        return ""
+```
