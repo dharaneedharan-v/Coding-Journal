@@ -1319,3 +1319,15 @@ class Solution:
             
         return dp(0)
 ```
+
+### [3043. Find the Length of the Longest Common Prefix](https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/)
+
+```python 
+class Solution:
+
+    def longestCommonPrefix(self, a: List[int], b: List[int]) -> int:
+
+        return max(map(len,(f:=lambda e:{str(v)[:i] for v in e for i in range(9)})(a)&f(b)))
+
+
+```
