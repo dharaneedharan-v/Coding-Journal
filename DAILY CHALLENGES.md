@@ -1331,3 +1331,78 @@ class Solution:
 
 
 ```
+
+### [2416. Sum of Prefix Scores of Strings](https://leetcode.com/problems/sum-of-prefix-scores-of-strings/)
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = {} 
+        self.counts = 0
+    
+    def insert(self, word):
+        curr = self
+        for c in word:
+            if c not in curr.children:
+                curr.children[c] = TrieNode()
+            curr = curr.children[c]
+            curr.counts += 1
+    
+    def search(self, word):
+        res = 0
+        curr = self
+        for c in word:
+            curr = curr.children[c]
+            res += curr.counts
+        return res
+
+class Solution:
+    def sumPrefixScores(self, words: List[str]) -> List[int]:
+        root = TrieNode()
+        for word in words:
+            root.insert(word) 
+        
+        res = []
+        for word in words:
+            res.append(root.search(word)) 
+        
+        return res
+```
+
+```python
+class Solution:
+
+    def sumPrefixScores(self, words: List[str]) -> List[int]:
+
+        prefix_map: Dict[str, int] = dict()
+
+        for word in words:
+
+            prefix = ""
+
+            for char in word:
+
+                prefix += char
+
+                freq = 1 if prefix not in prefix_map else prefix_map[prefix]+1
+
+                prefix_map[prefix] = freq
+
+        answer: List[int] = [0 for _ in range(len(words))]
+
+        for i in range(0, len(words)):
+
+            prefix = ""
+
+            freq = 0
+
+            for char in words[i]:
+
+                prefix += char
+
+                freq += prefix_map[prefix]
+
+            answer[i] = freq
+
+        return answer
+```
