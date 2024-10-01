@@ -1795,3 +1795,23 @@ class CustomStack:
 
             self.stack[i] += val
 ```
+
+###  [1497. Check If Array Pairs Are Divisible by k](https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/)
+
+```python 
+
+	class Solution:
+
+    def canArrange(self, a: List[int], k: int) -> bool:
+
+        a = sorted(v%k for v in a)
+
+        j = a.count(0)
+
+        if j%2:
+
+            return False
+
+        return all((p+q)%k==0 for p,q in zip(a[j:], a[::-1]))
+
+```
