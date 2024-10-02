@@ -1815,3 +1815,23 @@ class CustomStack:
         return all((p+q)%k==0 for p,q in zip(a[j:], a[::-1]))
 
 ```
+### [1331. Rank Transform of an Array](https://leetcode.com/problems/rank-transform-of-an-array/)
+
+```python
+
+class Solution:
+
+    def arrayRankTransform(self, arr: List[int]) -> List[int]:
+
+        dd= sorted(set(arr))        
+
+        dk = {rank:ind+1 for ind , rank in enumerate (dd)}
+
+        print (dk)
+
+        dm = [dk[i] for i in arr]
+
+        print(dm)
+
+        return dm
+```
