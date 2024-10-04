@@ -1864,3 +1864,28 @@ class Solution:
 
         return ret if ret < n else -1
 ```
+
+### [2491. Divide Players Into Teams of Equal Skill](https://leetcode.com/problems/divide-players-into-teams-of-equal-skill/)
+
+```python 
+class Solution:
+
+    def dividePlayers(self, skill: List[int]) -> int:
+
+        skill.sort()
+
+        total_skill = skill[0] + skill[-1]  #  sum for each pair
+
+        chemistry_sum = 0
+
+        # Step 2: Pair players using two pointers
+        for i in range(len(skill) // 2):
+            # Check if the sum of current pair matches the required total_skill
+            
+            if skill[i] + skill[-i - 1] != total_skill:
+                return -1  
+                
+            chemistry_sum += skill[i] * skill[-i - 1]
+            
+        return chemistry_sum  
+```
