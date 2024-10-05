@@ -1889,3 +1889,28 @@ class Solution:
             
         return chemistry_sum  
 ```
+
+### [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/)
+
+```python 
+class Solution:
+
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+
+        sorted_s1 = sorted(s1)
+
+        len_s1 = len(s1)
+
+        for i in range(len(s2) - len_s1 + 1):  # Ensure the loop doesn't go out of bounds
+
+            substring = s2[i:i + len_s1]
+
+            if sorted(substring) == sorted_s1:  
+
+                return True
+
+  
+
+        return False
+```
+
