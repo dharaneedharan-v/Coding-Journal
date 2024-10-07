@@ -1939,3 +1939,29 @@ class Solution:
 
         return not sentence1 or not sentence2
 ```
+
+### [2696. Minimum String Length After Removing Substrings](https://leetcode.com/problems/minimum-string-length-after-removing-substrings/)
+
+```python 
+class Solution:
+
+    def minLength(self, s: str) -> int:
+
+        while len(s):
+
+            org = s
+
+            if "AB" in s :
+
+                s = s.replace("AB","")
+
+            elif "CD" in  s :
+
+                s = s.replace("CD", "")
+
+            if org == s :
+
+                break
+
+        return len(s)
+```
