@@ -1965,3 +1965,33 @@ class Solution:
 
         return len(s)
 ```
+
+### [1963. Minimum Number of Swaps to Make the String Balanced](https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/)
+
+```python 
+class Solution:
+
+    def minSwaps(self, s: str) -> int:
+
+        size = 0
+
+        for i in range(len(s)) :
+
+            if s[i] == "[":
+
+                size = size+1
+
+            elif s[i] == "]":
+
+                if size > 0 :
+
+  
+
+                    size = size-1
+
+  
+
+        # print(size)
+
+        return (size +1 )//2
+```
