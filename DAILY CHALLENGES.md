@@ -1995,3 +1995,33 @@ class Solution:
 
         return (size +1 )//2
 ```
+
+### [921. Minimum Add to Make Parentheses Valid](https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/)
+
+```python 
+class Solution:
+
+    def minAddToMakeValid(self, s: str) -> int:
+
+        count  = 0
+
+        close  = 0
+
+        for i in s :
+
+            if i == '(':
+
+                count = count +1
+
+            else :
+
+                if count > 0 :
+
+                    count = count -1
+
+                else :
+
+                    close = close +1
+
+        return count + close
+```
