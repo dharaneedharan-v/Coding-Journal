@@ -2091,3 +2091,23 @@ class Solution:
 
         return 0
 ```
+
+### [2406. Divide Intervals Into Minimum Number of Groups](https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/)
+
+```python
+ class Solution:
+
+    def minGroups(self, intervals: List[List[int]]) -> int:
+
+        pq = []
+
+        for left, right in sorted(intervals):
+
+            if pq and pq[0] < left:
+
+                heappop(pq)
+
+            heappush(pq, right)
+
+        return len(pq)
+```
