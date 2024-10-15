@@ -2198,3 +2198,29 @@ class Solution:
 
         return score
 ```
+
+
+### [2938. Separate Black and White Balls](https://leetcode.com/problems/separate-black-and-white-balls/)
+
+```python 
+
+class Solution:
+
+    def minimumSteps(self, s: str) -> int:
+
+        swap = 0
+
+        count = 0
+
+        for i in s :
+
+            if i == '0':
+
+                swap = swap + count
+
+            else :
+
+                count = count +1
+
+        return swap
+```
