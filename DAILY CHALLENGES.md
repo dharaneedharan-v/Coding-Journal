@@ -2273,3 +2273,22 @@ class Solution:
 
         return ''.join(result)
 ```
+
+### [670. Maximum Swap](https://leetcode.com/problems/maximum-swap/)
+
+```python 
+
+class Solution:
+    def maximumSwap(self, num: int) -> int:
+        number = list(str(num))
+        sorted_number = sorted(number, reverse=True)
+        
+        for i in range(len(number)):
+            if sorted_number[i] > number[i]:
+                pos = ''.join(number).rfind(sorted_number[i])
+                number[i], number[pos] = number[pos], number[i]
+                return int(''.join(number))
+        
+        return num
+
+```
