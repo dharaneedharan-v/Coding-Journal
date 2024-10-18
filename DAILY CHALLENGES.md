@@ -2292,3 +2292,33 @@ class Solution:
         return num
 
 ```
+
+### [2044. Count Number of Maximum Bitwise-OR Subsets](https://leetcode.com/problems/count-number-of-maximum-bitwise-or-subsets/)
+
+```python 
+class Solution:
+
+    def countMaxOrSubsets(self, nums: List[int]) -> int:
+
+        max_or = 0
+
+        prev = Counter()
+
+        prev[0] = 1
+
+        for elem in nums:
+
+            max_or |= elem
+
+  
+
+            current = Counter()
+
+            for prev_or, cnt in prev.items():
+
+                current[prev_or | elem] += cnt
+
+            prev.update(current)
+
+        return prev[max_or]
+```
