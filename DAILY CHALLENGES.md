@@ -2322,3 +2322,20 @@ class Solution:
 
         return prev[max_or]
 ```
+
+### [1545. Find Kth Bit in Nth Binary String](https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/)
+
+```python 
+
+class Solution:
+
+    def findKthBit(self, n: int, k: int) -> str:
+
+        s = "0"
+
+        for i in range(n-1):
+
+            s  = s+"1" + s[::-1].replace("0","a").replace("1","0").replace("a","1")
+
+        return (s[k-1])
+```
