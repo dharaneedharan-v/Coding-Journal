@@ -2339,3 +2339,15 @@ class Solution:
 
         return (s[k-1])
 ```
+
+### [1106. Parsing A Boolean Expression](https://leetcode.com/problems/parsing-a-boolean-expression/)
+
+```python 
+
+class Solution:
+
+    def parseBoolExpr(self, S, t=True, f=False):
+
+        return eval(S.replace('!', 'not |').replace('&(', 'all([').replace('|(', 'any([').replace(')', '])'))
+       
+```
