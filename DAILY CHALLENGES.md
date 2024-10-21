@@ -2351,3 +2351,44 @@ class Solution:
         return eval(S.replace('!', 'not |').replace('&(', 'all([').replace('|(', 'any([').replace(')', '])'))
        
 ```
+
+
+### [1593. Split a String Into the Max Number of Unique Substrings](https://leetcode.com/problems/split-a-string-into-the-max-number-of-unique-substrings/)
+
+```python 
+class Solution:
+
+    def split(self, s: str, st: set) -> int:
+
+        if not s:
+
+            return len(st)  
+
+  
+
+        mx = len(st)
+
+        for i in range(1, len(s) + 1):
+
+            first = s[:i]  # Get the current prefix
+
+            if first not in st:  # If the prefix is unique
+
+                st.add(first)  # Insert it into the set
+
+                mx = max(mx, self.split(s[i:], st))  # Recurse on the remaining string
+
+                st.remove(first)  # Backtrack: remove the prefix from the set
+
+  
+
+        return mx  # Return the maximum number of unique substrings
+
+  
+
+    def maxUniqueSplit(self, s: str) -> int:
+
+        st = set()  
+
+        return self.split(s, st)
+```
