@@ -2392,3 +2392,32 @@ class Solution:
 
         return self.split(s, st)
 ```
+
+
+### [2583. Kth Largest Sum in a Binary Tree](https://leetcode.com/problems/kth-largest-sum-in-a-binary-tree/)
+
+
+```python 
+class Solution:
+
+    def kthLargestLevelSum(self, root: TreeNode, k: int) -> int:
+    
+        queue, ans = deque([root]), []
+        
+        while len(queue) > 0:
+        
+            count = 0
+            
+            for _ in range(len(queue)):
+            
+                node = queue.popleft()
+                if node.left : queue.append(node.left )
+
+                if node.right: queue.append(node.right)
+                
+                count+= node.val
+                
+            ans.append(count)
+            
+        return sorted(ans)[-k] if k <= len(ans) else -1
+```
