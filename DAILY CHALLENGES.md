@@ -2517,3 +2517,25 @@ class Solution:
         return checker(root1, root2)
 ```
 
+### [1233. Remove Sub-Folders from the Filesystem](https://leetcode.com/problems/remove-sub-folders-from-the-filesystem/)
+
+```python 
+
+class Solution:
+
+    def removeSubfolders(self, folder: List[str]) -> List[str]:
+
+        folder.sort()
+        # print(folder)
+
+        res = []
+
+        for i in folder:
+
+            # Add folder to res only if it's not a subfolder of the last added folder
+            if not res or not i.startswith(res[-1] + "/"):
+
+                res.append(i)
+
+        return res
+```
