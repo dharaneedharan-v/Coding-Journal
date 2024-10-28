@@ -2630,3 +2630,37 @@ class Solution:
 
         return [result_map[q] for q in queries]
 ```
+
+### [2501. Longest Square Streak in an Array](https://leetcode.com/problems/longest-square-streak-in-an-array/)
+
+```python 
+class Solution:
+
+    def longestSquareStreak(self, nums: List[int]) -> int:
+
+        dd = {}
+
+        res = -1
+
+        dk = sorted(nums)
+
+        for i in dk :
+
+            sqrt = isqrt(i)
+
+            # print(sqrt)
+
+            if sqrt * sqrt == i and sqrt in dd :
+
+                # print(sqrt)
+
+                dd[i]  = dd[sqrt] +1
+
+                res = max(dd[i],res )
+
+            else :
+
+                dd[i] = 1
+
+        return res
+```
