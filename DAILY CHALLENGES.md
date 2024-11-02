@@ -2718,3 +2718,24 @@ class Solution:
 
         return res
 ```
+
+### [2490. Circular Sentence](https://leetcode.com/problems/circular-sentence/)
+
+```python 
+
+class Solution:
+
+    def isCircularSentence(self, sentence: str) -> bool:
+
+        sent = sentence.split()
+
+        print(sent)
+
+        for i in range(len(sent)):
+
+            if sent[i-1][-1] != sent[i][0]:
+
+                return False
+
+        return True
+```
