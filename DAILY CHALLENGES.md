@@ -2739,3 +2739,26 @@ class Solution:
 
         return True
 ```
+
+### [1957. Delete Characters to Make Fancy String](https://leetcode.com/problems/delete-characters-to-make-fancy-string/)
+
+```python 
+
+class Solution:
+
+    def makeFancyString(self, s: str) -> str:
+
+        res = []
+
+        for i in s:
+
+            if len(res) >= 2 and res[-1] == i and res[-2] == i :
+
+                continue
+
+            res.append(i)
+
+        # print (res)
+
+        return "".join(res)
+```
