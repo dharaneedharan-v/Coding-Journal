@@ -2762,3 +2762,40 @@ class Solution:
 
         return "".join(res)
 ```
+
+
+### [3163. String Compression III](https://leetcode.com/problems/string-compression-iii/)
+
+```python 
+class Solution:
+
+    def compressedString(self, word: str) -> str:
+
+        start = word[0]
+
+        res = ''
+
+        count = 1
+
+        for i in range(1,len(word)):
+
+            if word[i] == start and count < 9 :
+
+                count = count +1
+
+            else :
+
+                res =res+str(count)+ start
+
+                start = word[i]
+
+                count = 1
+
+        res = res + str(count) + start
+
+        print(res)
+
+        return res
+        
+```
+
