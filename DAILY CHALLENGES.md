@@ -2880,3 +2880,14 @@ class Solution:
 
         return max_count
 ```
+
+### [1829. Maximum XOR for Each Query](https://leetcode.com/problems/maximum-xor-for-each-query/)
+
+
+```python 
+class Solution:
+
+    def getMaximumXor(self, a: List[int], q: int) -> List[int]:
+
+        return [2**q-1^x for x in accumulate(a,xor)][::-1]
+```
