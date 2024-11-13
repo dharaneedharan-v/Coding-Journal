@@ -2970,3 +2970,18 @@ class Solution:
 
         return [A[bisect.bisect(A, [q + 1]) - 1][1] for q in queries]
 ```
+
+
+### [2563. Count the Number of Fair Pairs](https://leetcode.com/problems/count-the-number-of-fair-pairs/)
+
+```python 
+class Solution:
+
+    def countFairPairs(self, nums: List[int], lower: int, upper: int) -> int:
+
+        f = lambda x: sum(bisect_right(nums, x - num, hi=i) for i, num in enumerate(nums))
+
+        nums.sort()
+
+        return f(upper) - f(lower - 1)
+```
