@@ -2985,3 +2985,27 @@ class Solution:
 
         return f(upper) - f(lower - 1)
 ```
+
+### [2064. Minimized Maximum of Products Distributed to Any Store](https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/)
+
+```python 
+class Solution:
+
+    def minimizedMaximum(self, n: int, quantities: List[int]) -> int:
+
+        l, r = 1, max(quantities)
+
+        while l < r:
+
+            tally, m = 0, (l+r)//2
+
+            for k in quantities:
+
+                tally+= (k-1)//m+1
+
+            if tally <= n:  r = m
+
+            else: l = m+1
+
+        return r
+```
