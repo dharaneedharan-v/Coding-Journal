@@ -3009,3 +3009,40 @@ class Solution:
 
         return r
 ```
+
+### [1574. Shortest Subarray to be Removed to Make Array Sorted](https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/)
+
+```python 
+
+class Solution:
+
+    def findLengthOfShortestSubarray(self, arr: List[int]) -> int:
+
+        n = len(arr)
+
+        i, j = 0, n-1
+
+  
+
+        while i < n-1 and arr[i+1] >= arr[i]: i+= 1
+
+        if i == n-1: return 0
+
+        while j > 0   and arr[j-1] <= arr[j]: j-= 1
+
+  
+
+        pref, suff, p, s = arr[:i+1], arr[j:], i+1, n-j
+
+        ans = min(n-p,n-s)
+
+        for i, num in enumerate(pref):
+
+            j = bisect_left(suff, num)
+
+            ans = min(ans,n-s-i+j-1)
+
+  
+
+        return ans
+```
