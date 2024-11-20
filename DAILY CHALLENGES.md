@@ -3207,3 +3207,38 @@ class Solution:
 
         return result
 ```
+
+
+### [2516. Take K of Each Character From Left and Right](https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/)
+
+```python 
+class Solution:
+
+    def takeCharacters(self, s: str, k: int) -> int:
+
+  
+
+        ctr, left, rght = [0, 0, 0], 0, 0
+
+        n = len(s)
+
+        s = list(map(lambda x: ord(x) - 97, s))
+
+        for ch in s: ctr[ch]+= 1
+
+        if min(ctr) < k: return -1
+
+  
+
+        for rght in range(n):
+
+            ctr[s[rght]] -= 1
+
+            if min(ctr) < k:
+
+                ctr[s[left]]+= 1
+
+                left+= 1  
+
+        return n - rght + left - 1
+```
