@@ -3350,3 +3350,13 @@ class Solution:
 
         return count
 ```
+
+### [1072. Flip Columns For Maximum Number of Equal Rows](https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/)
+
+```python 
+class Solution:
+
+    def maxEqualRowsAfterFlips(self, matrix: List[List[int]]) -> int:
+
+        return max(Counter(tuple(r if r[0] else (1 - i for i in r)) for r in matrix).values())
+```
