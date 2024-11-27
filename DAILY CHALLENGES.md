@@ -3360,3 +3360,66 @@ class Solution:
 
         return max(Counter(tuple(r if r[0] else (1 - i for i in r)) for r in matrix).values())
 ```
+
+
+### [1861. Rotating the Box](https://leetcode.com/problems/rotating-the-box/)
+
+```python 
+class Solution:
+
+    def rotateTheBox(self, box: List[List[str]]) -> List[List[str]]:
+
+        m, n = len(box), len(box[0])
+
+        for r in range(m):
+
+            target = n - 1
+
+            for c in range(n - 1, -1, -1):
+
+                if box[r][c] == '*':
+
+                    target = c - 1
+
+                elif box[r][c] == '#':
+
+                    if target != c:
+
+                        box[r][target] = box[r][c]
+
+                        box[r][c] = '.'
+
+                    target -= 1
+
+  
+
+        return [[box[r][c] for r in range(m - 1, -1, -1)] for c in range(n)]
+```
+
+### [3243. Shortest Distance After Road Addition Queries I](https://leetcode.com/problems/shortest-distance-after-road-addition-queries-i/)
+
+```python 
+class Solution:
+    def shortestDistanceAfterQueries(self, n, queries):
+        adj = [[i+1] for i in range(n-1)] + [[]]
+        d, ans = list(range(n)), []
+        for beg, end in queries:
+            adj[beg].append(end)
+            
+            if d[beg] + 1 < d[end]:
+                queue = deque([end])
+                d[end] = d[beg] + 1
+                
+                while queue:
+                    v = queue.popleft()
+                    
+                    for next_node in adj[v]:
+                        if d[v] + 1 < d[next_node]:
+                            d[next_node] = d[v] + 1
+                            queue.append(next_node)
+            
+            ans.append(d[-1])
+        
+        return ans
+
+```
