@@ -3485,3 +3485,22 @@ class Solution:
 
         return -1
 ```
+
+
+### [2825. Make String a Subsequence Using Cyclic Increments](https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/)
+
+```python 
+class Solution:
+
+    def canMakeSubsequence(self, s: str, t: str) -> bool:
+
+        i = 0
+
+        for c in s:
+
+            i += i<len(t) and (ord(t[i])-ord(c))%26<=1
+
+  
+
+        return i == len(t)
+```
