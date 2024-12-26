@@ -56,3 +56,23 @@ class Solution:
 
         return ans
 ```
+
+
+###   Find Nth Root Of M
+
+TC => O (LOG M)
+
+```python
+
+def NthRoot(n: int, m: int) -> int:
+
+    root = m**(1/n)
+
+    if round(root) **(n) ==m :
+
+        return int(round(root)) 
+
+    else :
+
+        return -1
+```
