@@ -76,3 +76,50 @@ def NthRoot(n: int, m: int) -> int:
 
         return -1
 ```
+
+
+
+### [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
+
+```PYTHON 
+class Solution:
+
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+
+        left = 1  # Minimum possible eating speed
+
+        right = max(piles)  # Maximum possible eating speed
+
+        def ischeck(piles, mid):
+
+            Sum = 0
+
+            for i in piles:
+
+                Sum += math.ceil(i / mid)  # Calculate hours required for each pile
+
+            return Sum
+
+  
+
+        ans = -1
+
+        while left <= right:
+
+            mid = left + (right - left) // 2
+
+            if ischeck(piles, mid) <= h:  # Check if current speed is valid
+
+                ans = mid  # Store the current valid speed
+
+                right = mid - 1  # Try smaller speeds
+
+            else:
+
+                left = mid + 1  # Try larger speeds
+
+        return ans
+       
+```
+
+
