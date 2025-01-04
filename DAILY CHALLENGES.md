@@ -3542,3 +3542,33 @@ class Solution:
 
         return prices
 ```
+
+
+### [2270. Number of Ways to Split Array](https://leetcode.com/problems/number-of-ways-to-split-array/)
+
+```python 
+
+class Solution:
+
+    def waysToSplitArray(self, nums: List[int]) -> int:
+
+        count = 0
+
+        dd = sum(nums)
+
+        leftSum = 0
+
+        rightSum = dd
+
+        for i in range(len(nums)-1):
+
+            leftSum +=nums[i]
+
+            rightSum -=nums[i]
+
+            if leftSum >= rightSum :
+
+                count +=1
+
+        return count
+```
