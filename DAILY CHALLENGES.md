@@ -3572,3 +3572,31 @@ class Solution:
 
         return count
 ```
+
+
+
+### [1930. Unique Length-3 Palindromic Subsequences](https://leetcode.com/problems/unique-length-3-palindromic-subsequences/)
+
+```python 
+class Solution:
+
+    def countPalindromicSubsequence(self, s: str) -> int:
+
+        ans = 0
+
+        dd = set(s)
+
+        for idx in dd :
+
+            i, j = s.index(idx), s.rindex(idx)
+
+            dk = set()
+
+            for k in range(i+1 , j):
+
+                dk.add(s[k])
+
+            ans = ans+len(dk)
+
+        return ans
+```
