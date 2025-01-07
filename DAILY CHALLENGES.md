@@ -3600,3 +3600,25 @@ class Solution:
 
         return ans
 ```
+
+
+### [1408. String Matching in an Array](https://leetcode.com/problems/string-matching-in-an-array/)
+
+```python 
+class Solution:
+
+    def stringMatching(self, words: List[str]) -> List[str]:
+
+        ans = set()
+
+        for x in words:
+
+            for y in words:
+
+                if x != y and x in y:
+
+                    ans.add(x)
+
+        return list(ans)
+```
+
