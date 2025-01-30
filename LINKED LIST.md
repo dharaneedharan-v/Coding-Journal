@@ -43,6 +43,35 @@ class Solution:
         return False 
 ```
 
+
+### Middle of a Linked List: 
+
+```python 
+
+class Solution:
+    #  Should return data of middle node. If linked list is empty, then  -1
+    def getMiddle(self, head):
+        
+        count = 0
+        check = 0 
+        temp = head
+        while temp:
+            count = count + 1 
+            temp = temp.next
+        print(count)
+        count = count //2 
+        print(count)
+        # Important or Hint :
+        # temp should be reassigned other wise it will point to the tail or none null
+        temp = head 
+        while temp :
+            if check == count:
+                return temp.data
+                # print(temp.data)
+            check =check + 1
+            temp = temp.next
+        
+```
 ### Delete in a Singly Linked List : 
 
 ```python 
@@ -86,7 +115,237 @@ class Solution:
 
 ```
 
-	
+### [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
+
+INTERVIEWER NOT LIKE THIS ANSWER : 
+
+```python # Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        temp = head
+
+        dd = []
+
+        while temp :
+
+            dd.append(temp.val)
+
+            temp = temp.next
+
+            # reinitialize the temp because it will point to null it traversed to last and  pointing to null value currently.
+
+        temp = head
+
+        while temp :
+
+            temp.val = dd.pop()
+
+            temp = temp.next
+
+        return head
+        
+```
+
+### [234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/) 
+
+INTERVIEWER NOT LIKE THIS ANSWER : 
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+
+        dd =[]
+
+        if not head :
+
+            return None
+
+        temp = head
+
+        while temp :
+
+            dd.append(temp.val)
+
+            print(temp.val)
+
+            temp = temp.next
+
+        return dd == dd[::-1]
+
+```
+
+### [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+
+INTERVIEWER NOT LIKE THIS ANSWER : 
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+
+        temp = head
+
+        dd =[]
+
+        count = 1
+
+        while temp :
+
+            count = count +1
+
+            dd.append(temp.val)
+
+            print(temp.val)
+
+            temp = temp.next
+
+        dd.pop(-(n))
+
+        if not dd :
+
+            return None
+
+        head = ListNode(dd[0])
+
+        temp = head
+
+        for i in range(1,len(dd)):
+
+            temp.next = ListNode(dd[i])
+
+            temp = temp.next
+
+        return head
+```
+
+### [92. Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/)
+
+INTERVIEWER NOT LIKE THIS ANSWER : 
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+
+        temp = head
+
+        dd = []
+
+        while temp :
+
+            dd.append(temp.val)
+
+            temp = temp.next
+
+        # print(dd)
+
+        if left <= right:
+
+            start = left - 1  
+
+            end = right - 1  
+
+            dd[:] = dd[:start] + dd[start:end+1][::-1] + dd[end+1:]
+
+            print(dd)
+
+        if not dd :
+
+            return None
+
+        head = ListNode(dd[0])
+
+        temp = head
+
+        for i in range(1,len(dd)):    
+
+            temp.next = ListNode(dd[i])        
+
+            temp = temp.next
+
+        return head
+```
+
+### [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
+
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, x):
+
+#         self.val = x
+
+#         self.next = None
+
+  
+
+class Solution:
+
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+
+        if not head  :
+
+            return False
+
+        fast = head
+
+        slow = head
+
+        # Instead of using the temp , use the fast, fast.next.next becomes  None so we get error
+
+        while fast and fast.next :
+
+            slow = slow.next
+
+            fast = fast.next.next
+
+            if (fast ==  slow ):
+
+                return True
+
+        return False
+```
 ## Double LinkedList
 
 ### Introduction to Doubly Linked List
@@ -176,4 +435,64 @@ class Solution:
  
             temp  = temp.prev
         return  last.prev
+```
+
+### [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+
+Not optimal solution 
+
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+
+        dd = []
+
+        temp1 = list1
+
+        temp2 = list2
+
+        while temp1 :
+
+            dd.append(temp1.val)
+
+            print(temp1.val)
+
+            temp1 = temp1.next
+
+  
+
+        while temp2 :
+
+            dd.append(temp2.val)
+
+            temp2 = temp2.next
+
+        dk = sorted(dd)
+
+        if not dk :
+
+            return None
+
+        head = ListNode(dk[0])
+
+        temp = head
+
+        for i in dk[1:]:
+
+            temp.next = ListNode(i)
+
+            temp = temp.next
+
+        return head
 ```
