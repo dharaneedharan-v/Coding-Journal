@@ -1,4 +1,49 @@
+Template for the BFS : 
 
+```python 
+
+if root == None :
+
+            return []
+
+        res = []
+
+        dd = deque([root])
+
+        idx = 0
+
+        while dd :
+
+            sub = []
+
+            for i in range(len(dd)):
+
+                dk = dd.popleft()
+
+                sub.append(dk.val)
+
+                if dk.left :
+
+                    dd.append(dk.left)
+
+                if dk.right:
+
+                    dd.append(dk.right)
+
+            #if idx % 2  ==1 :
+
+             #   res.append(list(reversed(sub)))
+
+            #else :
+
+            res.append(sub)
+
+            idx = idx +1
+
+        return res
+```
+
+-------------------------------------------------------------------------
 ### [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
 
 
@@ -427,4 +472,23 @@ class Solution:
                 floor_val  = root.data
                 root= root.right
         return floor_val 
+```
+
+
+### Array to BST
+
+```python 
+class Solution:
+    def sortedArrayToBST(self, arr):
+        # code here
+        def recur(nums,start,end):
+            if start > end :
+                return None 
+            mid = start+(end-start)//2
+            root = Node(arr[mid])
+            
+            root.left = recur(arr,start,mid-1)
+            root.right = recur(arr,mid+1,end)
+            return root
+        return recur(arr,0 , len(arr)-1)
 ```
