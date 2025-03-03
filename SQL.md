@@ -85,3 +85,41 @@ select  machine_id , round(
 
 group by machine_id;
 ```
+
+
+Using the  joins 
+
+```mysql 
+SELECT a.machine_id,
+
+       ROUND(AVG(b.timestamp - a.timestamp), 3) AS processing_time
+
+FROM activity a
+
+JOIN activity b
+
+ON a.process_id = b.process_id
+
+AND a.machine_id = b.machine_id  
+
+AND a.activity_type = 'start'
+
+AND b.activity_type = 'end'
+
+GROUP BY a.machine_id;
+
+```
+
+### [577. Employee Bonus](https://leetcode.com/problems/employee-bonus/)
+
+```mysql 
+# Write your MySQL query statement below
+
+select e.name , b.bonus from employee e   left join bonus b
+
+on e.empId = b.empId
+
+where  bonus < 1000  or bonus is null  ;
+
+
+```
