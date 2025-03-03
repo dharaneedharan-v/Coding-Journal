@@ -25,3 +25,63 @@ from  Employees
 left join EmployeeUNI on  Employees.id = EmployeeUNI.id ;
 ```
 
+
+### [197. Rising Temperature](https://leetcode.com/problems/rising-temperature/)
+
+Logic :  create a another table and start compare with that from the start 1 and 0 in the table 1 
+table 1     table 2 
+day 1        day 1 
+day 2        day 2 
+	*HINT* [table1.day 1 =>  table2.day2 ]
+	
+	
+
+```sql
+
+SELECT a.id
+
+FROM weather a
+
+JOIN weather b
+
+ON DATEDIFF(a.recordDate, b.recordDate) = 1 --
+
+WHERE a.temperature > b.temperature;
+```
+
+
+### [1581. Customer Who Visited but Did Not Make Any Transactions](https://leetcode.com/problems/customer-who-visited-but-did-not-make-any-transactions/)
+
+
+```Mysql
+  
+
+SELECT customer_id  , count(*) as count_no_trans -- Alias for the count does not need the customer_id again
+
+FROM Visits
+
+WHERE visit_id NOT IN (SELECT visit_id FROM Transactions)
+
+group by customer_id;
+
+```
+
+### [1661. Average Time of Process per Machine](https://leetcode.com/problems/average-time-of-process-per-machine/)
+
+```mysql
+# Write your MySQL query statement below
+
+select  machine_id , round(
+
+    avg(case when activity_type = "end" then timestamp else null end )   -
+
+    avg (case when activity_type = "start " then timestamp else null end ),
+
+    3)
+
+    as processing_time
+
+    from  Activity
+
+group by machine_id;
+```
