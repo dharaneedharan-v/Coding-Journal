@@ -123,3 +123,19 @@ where  bonus < 1000  or bonus is null  ;
 
 
 ```
+
+
+### [570. Managers with at Least 5 Direct Reports](https://leetcode.com/problems/managers-with-at-least-5-direct-reports/)
+
+```mysql 
+SELECT e1.name
+
+FROM employee e1
+
+JOIN employee e2 ON e1.id = e2.managerId
+
+GROUP BY e1.id
+
+HAVING COUNT(e2.id) >=5;
+```
+

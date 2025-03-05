@@ -534,3 +534,171 @@ class Solution:
 
         return head
 ```
+
+
+### [160. Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)
+
+BRUTE FORCE SPACE 
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, x):
+
+#         self.val = x
+
+#         self.next = None
+
+  
+
+class Solution:
+
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+
+        dd = {}
+
+        temp = headA
+
+        while temp :
+
+            if temp not in dd :
+
+                dd[temp] = 1
+
+            temp = temp.next
+
+        temp1 = headB
+
+        while temp1 :
+
+            if temp1 in dd :
+
+                return temp1
+
+            temp1 = temp1.next
+
+        return None
+```
+
+Using the Traversal Alone : For the O(1 ) space
+
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, x):
+
+#         self.val = x
+
+#         self.next = None
+
+  
+
+class Solution:
+
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+
+        # If either of the lists is empty, there is no intersection.
+
+        if headA is None or headB is None:
+
+            return None
+
+  
+
+        # Create two pointers, one for each linked list.
+
+        pointerA = headA
+
+        pointerB = headB
+
+  
+
+        # Traverse both lists until the two pointers meet.
+
+        while pointerA != pointerB:
+
+            # Move pointerA to the next node in list A.
+
+            # If it reaches the end, switch to the head of list B.
+
+            if pointerA is not None:
+
+                pointerA = pointerA.next
+
+            else:
+
+                pointerA = headB  # Switch to the other list
+
+  
+
+            # Move pointerB to the next node in list B.
+
+            # If it reaches the end, switch to the head of list A.
+
+            if pointerB is not None:
+
+                pointerB = pointerB.next
+
+            else:
+
+                pointerB = headA  # Switch to the other list
+
+  
+
+        # The loop ends when both pointers are equal (either at intersection or None).
+
+        return pointerA  # This is the intersection node or None if no intersection.
+```
+### [148. Sort List](https://leetcode.com/problems/sort-list/)
+
+SPACE => O(N) 
+To be optimized use the Merge sort for this ...!!!
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        dd = []
+
+        if not head :
+
+            return head
+
+        temp= head
+
+        while temp :
+
+            dd.append(temp.val)
+
+            temp = temp.next
+
+        # print(dd)
+
+        dd.sort()
+
+        # print(dd)
+
+        temp = head
+
+        while temp :
+
+            temp.val = dd.pop(0)
+
+            temp= temp.next
+
+        return head
+```
+
