@@ -328,3 +328,70 @@ class Solution:
 
         return res
 ```
+
+### [8. String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)
+
+
+```python 
+
+class Solution:
+
+    def myAtoi(self, s: str) -> int:
+
+        INT_MAX =2**31-1
+
+        INT_MIN = -2**31
+
+        dd = s.lstrip() #use the var and do the strip ()
+
+        Sign = False
+
+        if len(dd) == 0 :
+
+            return 0
+
+        if dd[0] in ["-","+"]:
+
+            if dd[0] =="-":
+
+                Sign = True
+
+                dd = dd[1:]
+
+            elif dd[0] == "+":
+
+                Sign = False
+
+                dd = dd[1:]
+
+        res = ""
+
+        for i in dd:
+
+            if not  i.isdigit():
+
+                break
+
+            res = res+ i
+
+        if len(res) == 0 :
+
+            return 0
+
+        num = int(res)
+
+        if Sign :
+
+            num = -num
+
+        if num >  INT_MAX :
+
+            num = INT_MAX
+
+        if num < INT_MIN:
+
+            num = INT_MIN
+
+        return num
+```
+

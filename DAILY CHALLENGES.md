@@ -3683,3 +3683,25 @@ class Solution:
         return res
 ```
 
+### [1780. Check if Number is a Sum of Powers of Three](https://leetcode.com/problems/check-if-number-is-a-sum-of-powers-of-three/)
+
+```python 
+
+class Solution:
+
+    def checkPowersOfThree(self, n: int) -> bool:
+
+        for i in range(14, -1, -1):
+
+            Pow = 3**i
+
+            if n - Pow >= 0:
+
+                n -= Pow
+
+                if n == 0:
+
+                    return True
+
+        return False
+```
