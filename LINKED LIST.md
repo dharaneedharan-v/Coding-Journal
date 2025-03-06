@@ -702,3 +702,220 @@ class Solution:
         return head
 ```
 
+### Sort a linked list of 0s, 1s and 2s
+
+
+Solved using the Another list and sorted and returned -----------> Time Limit Exceeded  
+
+Now , By Taking the count of the 0 1 and 2 and rewrite the data in the nodes 
+```python 
+class Solution:
+    #Function to sort a linked list of 0s, 1s and 2s.
+    def segregate(self, head):
+        if not head:
+            return None
+        dd = [0, 0 ,0]
+        temp = head
+        while temp :
+            dd[temp.data] += 1 
+            temp = temp.next 
+        # print(dd)
+        temp = head 
+        for i in range(len(dd)):
+            while dd[i] > 0 :
+                temp.data = i
+                temp  =temp.next 
+                dd[i] -= 1 
+        return head 
+```
+
+
+### Add 1 to a Linked List Number
+
+
+Not optimized one use the recursion to it in a optimized way 
+
+
+```python 
+
+class Solution:
+    def addOne(self,head):
+        dd  = []
+        if not head :
+            return None 
+        temp = head 
+        while temp :
+            dd.append(temp.data)
+            temp = temp.next 
+        # print(dd)
+        
+        def add(dd):
+            for i in range(len(dd)-1,-1,-1):
+                if dd[i] < 9  :
+                    dd[i] += 1 
+                    return dd
+                dd[i] =0 
+            return [1]+dd
+            
+        def create(dd):
+            head = Node(dd[0])
+            temp = head 
+            for i in range(1,len(dd)):
+                new = Node(dd[i])
+                temp.next = new 
+                temp = new  
+            return head
+        
+        Add = add(dd)
+        return create(Add)
+```
+
+### [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)
+
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+
+        if not head or k <= 1:
+
+            return head  # No change needed
+
+  
+
+        # Step 1: Convert Linked List to List
+
+        temp = head
+
+        dd = []
+
+        while temp:
+
+            dd.append(temp.val)
+
+            temp = temp.next
+
+        print("Original List:", dd)
+
+  
+
+        # Step 2: Reverse every k elements
+
+        def rev(dd, k):
+
+            dk = []
+
+            for i in range(0, len(dd), k):
+
+                chunk = dd[i:i+k]
+
+                if len(chunk) == k:  # Only reverse if a full k-group
+
+                    dk.extend(chunk[::-1])
+
+                else:
+
+                    dk.extend(chunk)  # Append remaining as is
+
+            return dk
+
+  
+
+        # Step 3: Reconstruct the Linked List
+
+        def create(dk, head):
+
+            temp = head
+
+            index = 0  # Use indexing instead of pop(0) for efficiency
+
+            while temp:
+
+                temp.val = dk[index]
+
+                temp = temp.next
+
+                index += 1
+
+            return head
+
+  
+
+        Rev = rev(dd, k)
+
+        print("Reversed List:", Rev)
+
+        return create(Rev, head)
+```
+
+
+
+
+### [61. Rotate List](https://leetcode.com/problems/rotate-list/)
+
+
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+
+        temp = head
+
+        dd= []
+
+        if not head :
+
+            return None
+
+        while temp :
+
+            dd.append(temp.val)
+
+            temp = temp.next
+
+        def rotate(dd, k):
+
+            if  k >= len(dd):
+
+                k = k%len(dd)
+
+            return dd[-k:]+ dd[:-k]
+
+        def create (dd):
+
+            temp = head
+
+            for i in dd :
+
+                temp.val = i
+
+                temp = temp.next
+
+            return head
+
+        Rot = rotate(dd,k)
+
+        Create = create(Rot)
+
+        return Create
+```
