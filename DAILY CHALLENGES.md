@@ -3624,3 +3624,62 @@ class Solution:
 
 
 
+### [2965. Find Missing and Repeated Values](https://leetcode.com/problems/find-missing-and-repeated-values/)
+
+
+```python 
+class Solution:
+
+    def findMissingAndRepeatedValues(self, grid: List[List[int]]) -> List[int]:
+
+        dd={}
+
+        row  = len(grid)
+
+        col = len(grid[0])
+
+        Total = [i for i in range(1,row* col+1) ]
+
+        for i in range(len(grid)):
+
+            for j in range(len(grid[0])):
+
+                dk = (grid[i][j])
+
+                if dk not in dd:
+
+                    dd[dk] = 1
+
+                else :
+
+                    dd[dk] +=1
+
+        print(dd)
+
+        res = []
+
+        for idx , val in dd.items():
+
+            if val >= 2 :
+
+                res.append(idx)
+
+        print(res)
+
+        idx = set(dd.keys())
+
+        print(idx)
+
+  
+
+        for i in (Total):
+
+            if  i  not in idx :
+
+                res.append(i)
+
+        print(res)
+
+        return res
+```
+
