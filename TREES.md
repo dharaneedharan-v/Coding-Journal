@@ -139,8 +139,62 @@ class Solution:
         self.preorderTraversal(root.right)
 
         return self.arr
+
+
 ```
 
+
+Using the iterative Solution : 
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+        res = []
+
+        if not root :
+
+            return []
+
+        stack = [root]
+
+        temp = root
+
+        # since it is a pre order so root , left , right
+
+        while stack :
+
+            node = stack.pop()
+
+            res.append(node.val)
+
+            # since we first take the right first and then only we go to the left
+
+            # this is due the LIFO of the stack behaviour
+
+            if node.right:
+
+                stack.append(node.right)
+
+            if node.left :
+
+                stack.append(node.left)
+
+        return res
+```
 
 ### [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 
@@ -177,7 +231,76 @@ class Solution:
 
         return self.arr
 ```
+![[Pasted image 20250314162512.png]]
+```python 
+# Definition for a binary tree node.
 
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+        if root == None :
+
+            return []
+
+        return  self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
+
+
+```
+
+Using the Iterative Solution : 
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+        stack = []
+
+        res = []
+
+        temp = root
+
+        while stack or temp :
+
+            if temp:
+
+                stack.append(temp)
+
+                temp = temp.left
+
+            else :
+
+                node = stack.pop()  # After that it is taking the stack elements as a node and set as a right node and traversing to the right nodes 
+
+                res.append(node.val)
+
+                temp = node.right
+
+        return res
+```
 ### [145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 
 ```python 
@@ -214,9 +337,107 @@ class Solution:
         return self.arr
 ```
 
+
+Using the 2 stack : 
+
+```python 
+
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+        res  = []
+
+        if not root :
+
+            return []
+
+        stack = []
+
+        stack1 = [root]
+
+        while stack1 :
+
+            node = stack1.pop()
+
+            stack.append(node.val)
+
+            if node.left :
+
+                stack1.append(node.left)
+
+            if node.right :
+
+                stack1.append(node.right)
+
+        print(stack)
+
+        while stack:
+
+            res.append(stack.pop())
+
+        return res
+```
+
+
+Using the single stack : 
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+        if not root :
+
+            return []
+
+        stack = []
+
+        stack1 = [root]
+
+        while stack1 :
+
+            node = stack1.pop()
+
+            stack.append(node.val)
+
+            if node.left :
+
+                stack1.append(node.left)
+
+            if node.right :
+
+                stack1.append(node.right)
+
+        return stack[::-1]
+```
 ### [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 
-Using the recursion 
+BFS : 
 
 ```python 
 # Definition for a binary tree node.
@@ -235,88 +456,41 @@ class Solution:
 
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
 
+        if not root :
+
+            return []
+
+        height = collections.deque([root])  # 2  Faster when compared to the Stack
+
+        temp = root
+
         res = []
 
-        if root == None :
-
-            return res
-
-        dd = collections.deque()
-
-        dd.append(root)
-
-        # print(dd)
-
-        while dd :
+        while height :
 
             sub = []
 
-            for i in range(len(dd)):
+            Len= len(height)
 
-                Temp = dd.popleft()
+            for _ in range(Len):
 
-                sub.append(Temp.val)
+                node = height.popleft() ## FIFO property #1
 
-                if Temp.left:
+                sub.append(node.val)
 
-                    dd.append(Temp.left)
+                if node.left:
 
-                if Temp.right:
+                    height.append(node.left)
 
-                    dd.append(Temp.right)
+                if node.right:
 
-            res.append(sub)
+                    height.append(node.right)
 
-        return res
-```
-Using the stack 
-```python 
-# Definition for a binary tree node.
-
-# class TreeNode:
-
-#     def __init__(self, val=0, left=None, right=None):
-
-#         self.val = val
-
-#         self.left = left
-
-#         self.right = right
-
-class Solution:
-
-    def __init__(self):
-
-        self.arr= []
-
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-
-        res = []
-
-        temp = []
-
-        temp.append(root)
-
-        if root == None :
-
-            return res
-
-        while temp:
-
-            curr = temp.pop()
-
-            res.append(curr.val)        
-
-            if curr.right:
-
-                temp.append(curr.right)
-
-            if curr.left:
-
-                temp.append(curr.left)
+            res.append(sub) #3
 
         return res
 ```
+
 
 ### [700. Search in a Binary Search Tree](https://leetcode.com/problems/search-in-a-binary-search-tree/)
 
