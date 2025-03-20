@@ -75,6 +75,61 @@ class Solution:
         return max(left,right)+1
 ```
 
+Using the BFS  : 
+
+```python 
+
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+
+        if not root :
+
+            return 0
+
+        temp = root
+
+        res = []
+
+        stack = deque([root])
+
+        while stack :
+
+            sub = []
+
+            for i in range(len(stack)):
+
+                node = stack.popleft()
+
+                sub.append(node.val)
+
+                if node.left :
+
+                    stack.append(node.left)
+
+                if node.right:
+
+                    stack.append(node.right)
+
+            res.append(sub)
+
+        print(res)
+
+        return len(res)
+```
+
 ### [100. Same Tree](https://leetcode.com/problems/same-tree/)
 
 ```python 
@@ -105,6 +160,70 @@ class Solution:
         return self.isSameTree(p.left,q.left)and self.isSameTree(p.right,q.right)
 ```
 
+Using the BFS :
+
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+
+        if not  p and not q :
+
+            return True
+
+        if not p or not q :
+
+            return False
+
+        if p.val != q.val :
+
+            return False
+
+        res = []
+
+        stack = deque([p.left,q.left,p.right,q.right])
+
+        while stack :
+
+            node = stack.popleft()
+
+            node1 = stack.popleft()
+
+            if not node and not node1 :
+
+                continue
+
+            if not node or not node1:
+
+                return False
+
+            if node.val != node1.val :
+
+                return False
+
+            stack.append(node.left)
+
+            stack.append(node1.left)
+
+            stack.append(node.right)
+
+            stack.append(node1.right)
+
+        return True
+```
 ### [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
 
 ```python 
@@ -491,7 +610,61 @@ class Solution:
         return res
 ```
 
+### [222. Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/)
 
+Using the BFS
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def countNodes(self, root: Optional[TreeNode]) -> int:
+
+        if not root  :
+
+            return 0
+
+        res = []
+
+        count = 0
+
+        stack = deque([root])
+
+        while stack :
+
+            sub  = []
+
+            for i in range(len(stack)):
+
+                node = stack.popleft()
+
+                count  = count + 1
+
+                sub.append(node.val)
+
+                if node.left:
+
+                    stack.append(node.left)
+
+                if node.right:
+
+                    stack.append(node.right)
+
+            res.append(sub)
+
+        return count
+```
 ### [700. Search in a Binary Search Tree](https://leetcode.com/problems/search-in-a-binary-search-tree/)
 
 Using the iterative method 
@@ -665,4 +838,245 @@ class Solution:
             root.right = recur(arr,mid+1,end)
             return root
         return recur(arr,0 , len(arr)-1)
+```
+
+
+
+### BFS : 
+
+### [107. Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/) 
+
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+
+        def BFS (root):
+
+            res = []
+
+            if not root :
+
+                return []
+
+            stack  = deque ([root])
+
+  
+
+            while stack :
+
+                sub = []
+
+                for i in range(len(stack)):
+
+                    node = stack.popleft()
+
+                    sub.append(node.val)
+
+                    if node.left :
+
+                        stack.append(node.left)
+
+                    if node.right:
+
+                        stack.append(node.right)
+
+                res.append(sub)
+
+            return res
+
+        return list(reversed(BFS(root))) # use the list for unpacking the ojects
+```
+
+
+### [111. Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+
+        stack  = deque ([root])
+
+        idx = 0
+
+        while stack :
+
+            for i in range(len(stack)):
+
+                node = stack.popleft()
+
+                if not node.right and not node.left : # in the question A leaf node without no childern # core part of the question 
+
+                    return  idx + 1
+
+                if node.left :
+
+                    stack.append(node.left)
+
+                if node.right:
+
+                    stack.append(node.right)
+
+            idx += 1
+
+        return idx
+```
+
+### [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+
+        if not root :
+
+            return []
+
+        def BFS (root):
+
+            if not root :
+
+                return []
+
+            res = []
+
+            stack = deque([root])
+
+            while stack :
+
+                sub = []
+
+                for i in range(len(stack)):
+
+                    node   = stack.popleft()
+
+                    sub.append(node.val)
+
+                    if node.left:
+
+                        stack.append(node.left)
+
+                    if node.right:
+
+                        stack.append(node.right)
+
+                res.append(sub)
+
+            return res
+
+        dd = list(BFS(root))
+
+        dk = []
+
+        for i in range(len(dd)):
+
+            dk.append((dd[i][-1]))
+
+        return dk
+```
+
+### [637. Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/)
+
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+
+        if not root :
+
+            return 0
+
+        def BFS (root)->list:
+
+            if not root :
+
+                return 0
+
+            stack  = deque([root])
+
+            res = []
+
+            while stack :
+
+                # sub = []
+
+                Sum = 0
+
+                Count = 0
+
+                for i in range(len(stack)):
+
+                    node = stack.popleft()
+
+                    Sum = Sum + node.val
+
+                    Count += 1
+
+                    if node.left :
+
+                        stack.append(node.left)
+
+                    if node.right:
+
+                        stack.append(node.right)
+
+                res.append(Sum/Count)
+
+            print(res)
+
+            return res
+
+        return BFS(root)
 ```
