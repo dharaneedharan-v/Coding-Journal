@@ -1080,3 +1080,171 @@ class Solution:
 
         return BFS(root)
 ```
+
+
+### [116. Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
+
+
+```python 
+"""
+
+# Definition for a Node.
+
+class Node:
+
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+
+        self.val = val
+
+        self.left = left
+
+        self.right = right
+
+        self.next = next
+
+"""
+
+  
+
+class Solution:
+
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+
+        def BFS(root):
+
+            if not root :
+
+                return None
+
+            res = []
+
+            stack = deque([root])
+
+            while stack:
+	            # Level = len(stack)-1
+				 #Populate the next pointer
+                for i in range(len(stack)-1):
+
+                    stack[i].next = stack[i+1]
+                 # Iterate through q -- Add all children
+
+                for i in range(len(stack)):
+
+                    node = stack.popleft()
+
+                    # if Level -1 > i :
+
+                    #     node.next = stack[0]
+
+                    if node.left :
+
+                        stack.append(node.left)
+
+                    if node.right:
+
+                        stack.append(node.right)
+
+            return root
+
+        return BFS(root)
+```
+
+or 
+```python 
+  
+
+class Solution:
+
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+
+        if not root :
+
+            return None
+
+        def BFS(root):
+
+            if not root:
+
+                return None
+
+            res = []  
+
+            stack = deque([root])
+
+            while stack:
+
+                sub = []
+
+                for i in range(len(stack)):
+
+                    node = stack.popleft()
+
+                    sub.append(node)
+
+                    if node.left:
+
+                        stack.append(node.left)
+
+                    if node.right:
+
+                        stack.append(node.right)
+
+                for i in range(len(sub)-1):
+
+                    sub[i].next = sub[i+1]
+
+            return root
+
+        return BFS(root)
+```
+### [117. Populating Next Right Pointers in Each Node II](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/) 
+
+```python 
+class Solution:
+
+    def connect(self, root: "Optional[Node]") -> "Optional[Node]":
+
+        if not root:
+
+            return None
+
+  
+
+        def BFS(root):
+
+            if not root:
+
+                return None
+
+            res = []
+
+            stack = deque([root])
+
+            while stack:
+
+                level = len(stack) - 1
+
+                for i in range(len(stack)):
+
+                    node = stack.popleft()
+
+                    if node.left:
+
+                        stack.append(node.left)
+
+                    if node.right:
+
+                        stack.append(node.right)
+
+                    if level > i:
+
+                        node.next = stack[0]
+
+            return root
+
+  
+
+        return BFS(root)
+```
+
+
