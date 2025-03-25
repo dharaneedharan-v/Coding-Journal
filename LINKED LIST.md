@@ -919,3 +919,64 @@ class Solution:
 
         return Create
 ```
+
+
+### [23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+
+
+Brute Force : 
+
+```python 
+# Definition for singly-linked list.
+
+# class ListNode:
+
+#     def __init__(self, val=0, next=None):
+
+#         self.val = val
+
+#         self.next = next
+
+class Solution:
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+
+        lenght = len(lists)
+
+        if lists is None :
+
+            return []
+
+        dd = []
+
+        for i in range(lenght):
+
+            temp = lists[i]
+
+            while temp :
+
+                dd.append(temp.val)
+
+                temp = temp.next        
+
+        Sort = sorted (dd)
+
+        if Sort is None or len(Sort) == 0 : 
+
+            return None
+
+        head = ListNode(Sort[0])
+
+        temp = head  # intialize the temp for the traversal 
+
+        for i in range(1,len(Sort)):
+
+            Node = ListNode(Sort[i])
+
+            temp.next = Node
+
+            temp = temp.next
+
+        return head
+```
+

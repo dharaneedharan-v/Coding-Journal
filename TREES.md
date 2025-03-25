@@ -1248,3 +1248,228 @@ class Solution:
 ```
 
 
+### Bottom View of Binary Tree
+
+```python 
+class Solution:
+    def bottomView(self, root):
+        if not root :
+            return  0 
+        def BFS(root):
+            if not root :
+                return 0 
+            dd = {}
+            stack = deque([ (root,0) ]) #### 
+            while stack :
+                for i in range(len(stack)):
+                    node , col = stack.popleft()
+                    if col not in dd :
+                        dd[col] = node.data
+                    else :
+                        dd[col] = node.data
+                    if node.left:
+                        stack.append((node.left, col -1))
+                    if node.right:
+                        stack.append((node.right , col +1 )) # append single arg 
+            # print(dd)
+            return dd 
+        dk = BFS(root)
+        return [dk[i] for i in sorted(dk.keys())]
+```
+
+
+### Top View of Binary Tree
+
+```python 
+
+# Tree Node
+# class Node:
+#     def __init__(self, val):
+#         self.right = None
+#         self.data = val
+#         self.left = None
+
+class Solution:
+    def topView(self,root):
+        # code here
+        def BFS (root):
+            if not root :
+                return 0 
+            stack = deque([(root, 0)])
+            dd ={}
+            while stack :
+                for i in range(len(stack)):
+                    node, col = stack.popleft()
+                    if col not in dd :
+                        dd[col] = node.data
+                    if node.left :
+                        stack.append((node.left, col -1 ))
+                    if node.right:
+                        stack.append((node.right,col +1 ))
+            # print(dd)
+            return dd 
+        dk = BFS(root)
+        return [dk[i] for i in sorted(dk.keys())]
+```
+
+
+### Left View of Binary Tree 
+
+```python 
+class Solution:
+    
+    def LeftView(self, root):
+        def BFS(root):
+            if not root :
+                return []
+            res = []
+            stack  = deque([root])
+            while stack :
+                sub = []
+                for i in range(len(stack)):
+                    node = stack.popleft()
+                    sub.append(node.data)
+                    if node.left:
+                        stack.append(node.left)
+                    if node.right:
+                        stack.append(node.right)
+                res.append(sub)
+            return res
+        dd = BFS(root)
+        return [dd[i][0] for i in range(len(dd))]
+```
+
+
+
+### [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+
+        if not root :
+
+            return False
+
+        def BFS (root):
+
+            if not root :
+
+                return []
+
+            stack = deque([(root.left, root.right)]) # Important Next to the root conditions
+
+            res =[]
+
+            while stack :
+
+                for i in range(len(stack)):
+
+                    node_left, node_right = stack.popleft()
+
+                    if not node_left and not node_right:
+
+                        continue  # Both are None, symmetry holds
+
+                    if not node_left or   not node_right or node_left.val != node_right.val :
+
+                        return False #asymetric found 
+
+                     # Push child nodes in mirrored order
+	                stack.append((node_left.left, node_right.right))
+	                stack.append((node_left.right, node_right.left)) 
+
+            return True
+
+        return BFS(root)
+```
+
+
+
+
+### Tree Boundary Traversal
+
+
+```python 
+
+'''
+class Node:
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+
+
+class Solution:
+    def boundaryTraversal(self, root):
+        # Code here
+        if root is None:
+            return []
+        result = []
+        
+        def left(root):
+            curr = root.left
+            while curr:
+                if curr.left is None and curr.right is None:
+                    break
+                result.append(curr.data)
+                
+                if curr.left:
+                    curr = curr.left
+                else:
+                    curr = curr.right
+                    
+        def right(root):
+            stack = []
+            curr = root.right
+            while curr:
+                if curr.left is None and curr.right is None:
+                    break    
+                stack.append(curr.data)
+
+                if curr.right:
+                    curr = curr.right
+                else:
+                    curr = curr.left
+            #  reverse the elements       
+            while stack:
+                value = stack.pop()
+                result.append(value)
+        #   Inorder      
+        def leaf_nodes(root):
+            
+            if root is None:
+                return
+            
+            if root.left is None and root.right is None:
+                result.append(root.data)
+                return
+            
+            if root.left:
+                leaf_nodes(root.left)
+            if root.right:
+                leaf_nodes(root.right)
+                
+        if root.left or root.right:
+            result.append(root.data)
+
+        left(root)
+        leaf_nodes(root)
+        right(root)
+        
+        return result
+```

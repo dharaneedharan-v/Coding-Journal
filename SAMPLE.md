@@ -395,3 +395,32 @@ class Solution:
         return num
 ```
 
+### [373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/)
+
+
+Brute Force : 
+
+TC - > (O(K² + K log K))
+
+Throws the Memory Limit Exceeded 
+
+```python 
+class Solution:
+
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+
+        dd = []
+
+        for i in range(len(nums1)):
+
+            for j in range(len(nums2)):
+
+                dk  = [nums1[i],nums2[j] ]
+
+                dd.append((dk))
+
+        Sort = sorted(dd  , key = lambda  x : x[0] + x[1] )
+
+        return Sort[:k]
+```
+
