@@ -394,7 +394,7 @@ class Solution:
 
         return num
 ```
-
+===============================
 ### [373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/)
 
 
@@ -422,5 +422,175 @@ class Solution:
         Sort = sorted(dd  , key = lambda  x : x[0] + x[1] )
 
         return Sort[:k]
+```
+
+### [378. Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
+
+	TC -> O(N^2 NlogN)
+
+```python 
+class Solution:
+
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+
+        dd = []
+
+        for i in range(len(matrix)):
+
+            for j in range(len(matrix[0])):
+
+                dd.append(matrix[i][j])
+
+        dk = sorted(dd)
+
+        return dk[k-1]
+```
+
+
+### [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
+
+TC  -> O(N LogN )
+
+
+```python 
+class Solution:
+
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+
+        dd = {}
+
+        for i in range(len(nums)):
+
+            if nums[i] not in dd :
+
+                dd[nums[i]] = 1
+
+            else :
+
+                dd[nums[i]] += 1
+
+        dk  = sorted(dd.items() , key = lambda x : x [1] , reverse = True)
+
+        count =  0
+
+        res = []
+
+        for i in range(len(dk)):
+
+            count += 1
+
+            if count == k+1 :
+
+                break
+
+            res.append(dk[i][0])
+
+        return res
+```
+
+Using the Heap : 
+
+TC -> O(N log K )
+
+```python 
+class Solution:
+
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+
+        heap = []
+
+        dd = {}
+
+        for i in range(len(nums)):
+
+            if nums[i] not in dd :
+
+                dd[nums[i]] = 1
+
+            else :
+
+                dd[nums[i]] += 1
+
+        for  idx, val in dd.items():
+
+            heapq.heappush(heap,(val*-1,idx))
+
+        # print(heap)
+
+        ans =[]
+
+        for i in range(k):
+
+            idx, val = heapq.heappop(heap)
+
+            # print(idx,val)
+
+            ans.append(val)
+
+        return ans
+```
+### [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+
+
+USING THE HEAP FOR THE O( N LOG K )  BETTER THAN THE SORTING O( N LOG N ): 
+
+TC -> O( N LOG K )
+```PYTHON 
+class Solution:
+
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+
+        heap = []
+
+        for i in (nums):
+
+            heapq.heappush(heap,i )
+
+            if len(heap)> k :
+
+                heapq.heappop(heap)
+
+        return heap[0]
+```
+
+
+### [451. Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
+
+```python 
+class Solution:
+
+    def frequencySort(self, s: str) -> str:
+
+        dd = {}
+
+        for i in range(len(s)):
+
+            if s[i] not in dd :
+
+                dd[s[i]] = 1
+
+            else :
+
+                dd[s[i]] +=1
+
+        # print(dd)
+
+        dk = sorted(dd.items(), key = lambda x :  x[1] ,reverse = True )
+
+        # print(dk)
+
+        res = ""
+
+        for i in range(len(dk)):
+
+            Ans = dk[i][0] * dk[i][1]
+
+            # print(res)
+
+            res += Ans
+
+        # print(res)
+
+        return res
 ```
 

@@ -263,7 +263,7 @@ class Solution:
 ```
 
 
-Using the iterative Solution : 
+Using the iterative  Solution : 
 
 ```python 
 # Definition for a binary tree node.
@@ -378,6 +378,10 @@ class Solution:
 ```
 
 Using the Iterative Solution : 
+Hint :  
+✔ **Go left until you can't**  
+✔ **Pop the last node and process it**  
+✔ **Move to the right subtree**
 
 ```python 
 # Definition for a binary tree node.
@@ -1473,3 +1477,166 @@ class Solution:
         
         return result
 ```
+
+
+### [230. Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+
+Using the BFS  : 
+
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+
+        def BFS (root):
+
+            if not root :
+
+                return []
+
+            dd = []
+
+            stack  = deque([root])
+
+            while stack :
+
+                for i in range(len(stack)):
+
+                    Node = stack.popleft()
+
+                    dd.append(Node.val)
+
+                    if Node.left :
+
+                        stack.append(Node.left)
+
+                    if Node.right:
+
+                        stack.append(Node.right)
+
+            print(dd)
+
+            return dd
+
+        dk = sorted(BFS(root))
+
+  
+
+        return dk[k-1]
+```
+
+
+Using the DFS  : 
+
+ It is not optimized , Stop the code when the k th element is found . Naturally it is in a sorted order only. Use the Normal inorder using the stack and in the iterative Approach.
+  
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+
+        def inorder(root):
+
+            if root  == None :
+
+                return []
+
+            return inorder(root.left) + [root.val] + inorder(root.right)
+
+        dk = inorder(root)
+
+        return (dk[k-1])
+```
+
+Optimized  : 
+✅ **Uses early exit (`O(k) time`)**
+
+```python 
+# Definition for a binary tree node.
+
+# class TreeNode:
+
+#     def __init__(self, val=0, left=None, right=None):
+
+#         self.val = val
+
+#         self.left = left
+
+#         self.right = right
+
+class Solution:
+
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+
+        if root is None :
+
+            return None
+
+        def inorder(root):
+
+            if root is None :
+
+                return []
+
+            # res = []
+
+            temp = root
+
+            stack = []
+
+            count = 0
+
+            while stack or temp:
+
+                if temp :
+
+                    stack.append(temp)
+
+                    temp = temp.left
+
+                else :
+
+                    Node = stack.pop()
+
+                    count +=1
+
+                    if count == k :
+
+                        return Node.val
+
+                    # res.append(Node.val)
+
+                    temp = Node.right # Not the Temp.right
+
+            # print(res)
+
+            return None
+
+        return inorder(root)
+```
+
