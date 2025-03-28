@@ -55,3 +55,45 @@ class Solution:
         return arr
 
 ```
+
+
+### 4.Rotate Array
+
+
+```python 
+#User function Template for python3
+
+class Solution:
+    #Function to rotate an array by d elements in counter-clockwise direction. 
+    def rotateArr(self, arr, k):
+        k %= len(arr)  
+        arr[:] = arr[k:] + arr[:k]  # Left rotation
+```
+
+
+###  5. Majority Element II 
+
+```python 
+class Solution:
+    # Function to find the majority elements in the array
+    def findMajority(self, arr):
+        #Your Code goes here.
+        dd = {}
+        lenght = len(arr)
+        for i in range(len(arr)):
+            if arr[i] not in dd :
+                dd[arr[i]] = 1
+            else :
+                dd[arr[i]] += 1
+        Max = lenght//3
+        count = 0
+        res = []
+        for idx , val  in (dd.items()):
+            if val > Max :
+                res.append(idx)
+                count = count+1 
+        if count >  0 :
+            return sorted(res) 
+        return []
+```
+
