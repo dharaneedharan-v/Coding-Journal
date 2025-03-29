@@ -97,3 +97,19 @@ class Solution:
         return []
 ```
 
+### Stock Buy and Sell – Multiple Transaction Allowed
+
+
+Read the question carefully and check the test case  
+Not the dp question 
+```python 
+
+class Solution:
+    def maximumProfit(self, prices) -> int:
+        # code here
+        Max = 0 
+        for  i in range(len(prices)-1):
+            if prices[i] < prices[i+1]:
+                Max += prices[i+1] - prices[i]
+        return Max 
+```
