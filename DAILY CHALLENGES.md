@@ -3847,3 +3847,33 @@ class Solution:
 
         return False
 ```
+
+
+### [3375. Minimum Operations to Make Array Values Equal to K](https://leetcode.com/problems/minimum-operations-to-make-array-values-equal-to-k/)
+
+
+```python 
+class Solution:
+
+    def minOperations(self, nums: List[int], k: int) -> int:
+
+        dd  = {}
+
+        for i in range(len(nums)):
+
+            if nums[i] < k :
+
+                return -1
+
+            elif nums[i] > k :
+
+                if nums[i] not in dd :
+
+                    dd[nums[i]] = 1
+
+                else :
+
+                    dd[nums[i]] += 1
+
+        return len(dd)
+```
