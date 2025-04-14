@@ -3909,3 +3909,33 @@ class Solution:
 
         return count
 ```
+
+### [1922. Count Good Numbers](https://leetcode.com/problems/count-good-numbers/)
+
+```python 
+class Solution:
+
+    MOD = 10**9+ 7
+
+    def Exponetial (self, x:int , n:int )->int:
+
+        res  =  1
+
+        while (n > 0 ):
+
+            if n & 1 :
+
+                res = res * x % self.MOD
+
+            x   =  x* x % self.MOD
+
+            # n = n // 2
+
+            n = n >> 1
+
+        return res % self.MOD
+
+    def countGoodNumbers(self, n: int) -> int:
+
+        return (self.Exponetial(4,n//2) * self.Exponetial(5,n-n//2 ) )%  self.MOD
+```

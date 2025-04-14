@@ -594,3 +594,33 @@ class Solution:
         return res
 ```
 
+
+### [50. Pow(x, n)](https://leetcode.com/problems/powx-n/)
+
+
+
+```python 
+class Solution:
+
+    def myPow(self, x: float, n: int) -> float:
+
+        res = 1
+
+        if n < 0 : # handle the edge case if the power is a negative
+
+            x   = 1/ x
+
+            n = -n
+
+        while (n > 0 ):
+
+            if n % 2 == 1 :
+
+                res = res * x
+
+            x = x * x
+
+            n = n // 2  # base increse and the exponotial decreses 
+
+        return res
+```
