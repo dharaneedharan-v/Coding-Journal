@@ -3877,3 +3877,35 @@ class Solution:
 
         return len(dd)
 ```
+
+
+### [1534. Count Good Triplets](https://leetcode.com/problems/count-good-triplets/)
+
+
+```python 
+class Solution:
+
+    def countGoodTriplets(self, arr: List[int], a: int, b: int, c: int) -> int:
+
+        Len = len(arr)
+
+        count = 0
+
+        for  i in range((Len)-2):
+
+            for  j in range(i+1, Len-1):
+
+                for k in range(j+1 , Len):
+
+                    if (
+
+                        abs(arr[i]-arr[j]) <= a and
+
+                        abs(arr[j]-arr[k])<= b and
+
+                        abs(arr[k]-arr[i]) <= c
+
+                    ):count = count + 1
+
+        return count
+```
