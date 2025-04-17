@@ -3939,3 +3939,34 @@ class Solution:
 
         return (self.Exponetial(4,n//2) * self.Exponetial(5,n-n//2 ) )%  self.MOD
 ```
+
+
+
+### [2176. Count Equal and Divisible Pairs in an Array](https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/)
+
+
+```python 
+
+class Solution:
+
+    def countPairs(self, nums: List[int], k: int) -> int:
+
+        count = 0
+
+        for i in range(len(nums)):
+
+            for j in range(len(nums)):
+
+                if i == j :
+
+                    break
+
+                if nums[i] == nums[j]:
+
+                    if i*j  % k == 0 :
+
+                        count += 1
+
+        return count
+```
+
