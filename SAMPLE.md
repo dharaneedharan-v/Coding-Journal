@@ -624,3 +624,34 @@ class Solution:
 
         return res
 ```
+
+
+### [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+
+```python 
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if len(s) == 0 :return 0 
+        if len(s) == 1 :return 1 
+        NewString = ""
+        count = 0 
+        Ans = 0 
+        for i in range(len(s)):
+            if s[i] not in NewString :
+                count = count +  1 
+                NewString = NewString + s[i]
+            else :
+                if count > Ans :
+                    Ans = count 
+                count = 1 
+                index = NewString.index(s[i])
+                print("The idx:",index)
+                NewString = NewString[index+1:] + s[i]
+                print("The NewString :", NewString)
+                count = len(NewString)
+        if Ans < count :
+            Ans = count 
+        return Ans 
+
+```

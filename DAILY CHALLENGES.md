@@ -3997,3 +3997,59 @@ class Solution:
 ```
 
 
+### [2563. Count the Number of Fair Pairs](https://leetcode.com/problems/count-the-number-of-fair-pairs/)
+
+Brute Force : 
+
+```python 
+class Solution:
+
+    def countFairPairs(self, nums: List[int], lower: int, upper: int) -> int:
+
+        count = 0
+
+        for i in range(len(nums)):
+
+            for j in range(i+1, len(nums)):
+
+                if lower <= nums[i] + nums[j] <= upper:
+
+                    # print(i,j)
+
+                    count += 1
+
+        return count
+```
+
+
+
+### [781. Rabbits in Forest](https://leetcode.com/problems/rabbits-in-forest/)
+
+
+```python 
+class Solution:
+
+    def numRabbits(self, ans: List[int]) -> int:
+
+        dd = {}
+
+        for i in range(len(ans)):
+
+            if ans[i] not in dd :
+
+                dd[ans[i]] = 1
+
+            else :
+
+                dd[ans[i]] += 1
+
+        res  = 0
+
+        for idx , val in dd.items():
+
+            res = res+ (idx+ 1 ) * ceil(val/(idx+1 ))
+
+        print(res)
+
+        return res
+```
