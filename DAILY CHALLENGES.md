@@ -4054,7 +4054,7 @@ class Solution:
         return res
 ```
 
-
+-----------------digit Sum --------------------
 ### [1399. Count Largest Group](https://leetcode.com/problems/count-largest-group/)
 
 ```python 
@@ -4108,6 +4108,63 @@ class Solution:
 
         return count
         
+```
+
+
+### [2544. Alternating Digit Sum](https://leetcode.com/problems/alternating-digit-sum/)
+
+
+```python 
+class Solution:
+    def alternateDigitSum(self, n: int) -> int:
+        String = str(n)
+        Sum = 0 
+        for i in range(0,len(String)-1,2):
+            dk = (int(String[i])-int(String[i+1]))
+            Sum += dk 
+        return Sum  if len(String)  & 1 == 0  else  Sum + int(String[-1]) 
+
+
+```
+
+### [258. Add Digits](https://leetcode.com/problems/add-digits/)
+
+```python 
+class Solution:
+
+    def addDigits(self, num: int) -> int:
+
+        def isdigitSum (N :int) -> int :
+
+            Sum = 0
+
+            while N > 0 :
+
+                Mod = N % 10
+
+                Sum += Mod
+
+                N = N//10
+
+            return Sum
+
+        # String = str(num)
+
+        if num == 0 :
+
+            return 0
+
+        if num <= 9 :
+
+            return num
+
+        while (num > 9):
+
+            # print(isdigitSum(num))
+
+            num  =  isdigitSum(num)
+
+        return num
 ```
 
 
