@@ -44,5 +44,5 @@ class Solution:
 
                     return False
 #return True only the len of the stack is 0 
-        return len(dd) == 0
+        return len(dd) == 0  # The core part of the code is here only if the stack is not empty means return False of the similar brackets alone there. =============IMPORTANT===================
 ```

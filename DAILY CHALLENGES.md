@@ -4053,3 +4053,61 @@ class Solution:
 
         return res
 ```
+
+
+### [1399. Count Largest Group](https://leetcode.com/problems/count-largest-group/)
+
+```python 
+class Solution:
+
+    def countLargestGroup(self, n: int) -> int:
+
+        def isdigitSum(N):
+
+            Sum = 0
+
+            if N <9 :
+
+                return N
+
+            else :
+
+                while (N > 0):
+
+                    Mod = N % 10
+
+                    Sum = Sum + Mod
+
+                    N = N //10
+
+            return Sum
+
+        dd  = {}
+
+        for i in range(1,n+1):
+
+            DS = isdigitSum(i)
+
+            if DS not in  dd :
+
+                dd[DS] =1
+
+            else :
+
+                dd[DS] += 1
+
+        Max = max(dd.values())
+
+        count = 0
+
+        for idx , val in dd.items():
+
+            if val == Max :
+
+                count = count+1
+
+        return count
+        
+```
+
+
