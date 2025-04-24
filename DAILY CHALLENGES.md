@@ -4170,6 +4170,7 @@ class Solution:
 
 ### [3174. Clear Digits](https://leetcode.com/problems/clear-digits/)
 
+
 ```python 
 class Solution:
     def clearDigits(self, s: str) -> str:
@@ -4182,4 +4183,48 @@ class Solution:
                 stack.append(s[i])
         return "".join(stack)
 
+```
+
+
+### [2799. Count Complete Subarrays in an Array](https://leetcode.com/problems/count-complete-subarrays-in-an-array/)
+
+
+Brute Force : 
+
+
+```python 
+class Solution:
+    def countCompleteSubarrays(self, nums: List[int]) -> int:
+        dist = len(set(nums))
+        # print(dist)
+        res = []
+        count = 0 
+        for i in range(len(nums)):
+            for j in range(i+1 , len(nums)+1):
+                dk = (len(set(nums[i:j])))
+                if dk == dist :
+                    count  += 1
+        # print(count)
+        return count 
+```
+
+
+Optimized From N^3   to N ^2 : 
+
+```python 
+class Solution:
+    def countCompleteSubarrays(self, nums: List[int]) -> int:
+        dist = len(set(nums))
+        # print(dist)
+        count = 0 
+        for i in range(len(nums)):
+            Final  = set()
+            for j in range(i , len(nums)):
+                # dk = (len(set(nums[i:j]))) # instead of buliding the Every time Check from the set 
+                Final.add(nums[j])
+                if len(Final) == dist :
+                    count  += len(nums)-j 
+                    break
+        # print(count)
+        return count 
 ```
