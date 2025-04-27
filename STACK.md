@@ -46,3 +46,26 @@ class Solution:
 #return True only the len of the stack is 0 
         return len(dd) == 0  # The core part of the code is here only if the stack is not empty means return False of the similar brackets alone there. =============IMPORTANT===================
 ```
+
+
+### Monotonic Stack : 
+
+### [402. Remove K Digits](https://leetcode.com/problems/remove-k-digits/)
+
+```python 
+class Solution:
+    def removeKdigits(self, nums: str, k: int) -> str:
+        stack = []
+        for i in range(len(nums)) :
+            while  stack and k > 0 and stack[-1] > nums[i]:
+                stack.pop()
+                k = k-1
+            stack.append(nums[i])
+        print(stack)
+        if k > 0 :
+            stack =  stack[:-k]
+        return "".join(stack).lstrip("0") or "0"
+
+```
+
+

@@ -4228,3 +4228,46 @@ class Solution:
         # print(count)
         return count 
 ```
+
+### [3392. Count Subarrays of Length Three With a Condition](https://leetcode.com/problems/count-subarrays-of-length-three-with-a-condition/)
+
+Fixed Sliding Window Problem
+Brute Force : 
+
+```python 
+class Solution:
+    def countSubarrays(self, nums: List[int]) -> int:
+        count  = 0 
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)+1):
+                dk = (nums[i:j])
+                if len(dk ) == 3 :
+                    First = dk[0]
+                    Last = dk[-1]
+                    Second = dk[1]
+                    if Last + First == Second / 2 :
+                        List.append(dk)
+                        count = count +1 
+        return count 
+        
+
+
+```
+
+
+Optimized 
+
+```python 
+class Solution:
+    def countSubarrays(self, nums: List[int]) -> int:
+        k = 3 
+        n = len(nums)
+        count = 0 
+        for i in range(n-k+1 ):
+            First = nums[i]
+            Second = nums[i+1]
+            Third = nums[i+2]
+            if First + Third == Second / 2 :
+                count += 1 
+        return count 
+```
