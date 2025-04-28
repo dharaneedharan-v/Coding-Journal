@@ -4271,3 +4271,28 @@ class Solution:
                 count += 1 
         return count 
 ```
+
+
+### [2302. Count Subarrays With Score Less Than K](https://leetcode.com/problems/count-subarrays-with-score-less-than-k/)
+
+
+Brute Force Solution :  TLE 
+
+TC -> O(N^2) 
+
+```python 
+class Solution:
+    def countSubarrays(self, nums: List[int], k: int) -> int:
+        count = 0 
+        for  i in range(len(nums)):
+            ctn = 0
+            Sum = 0 
+            for j in range(i+1, len(nums)+1):
+                Sum = Sum + nums[j-1]
+                ctn +=  1
+                if ctn*Sum  < k :
+                    count += 1 
+        return count 
+
+```
+

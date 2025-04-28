@@ -144,3 +144,80 @@ class Solution:
 
         return False
 ```
+
+
+### [525. Contiguous Array](https://leetcode.com/problems/contiguous-array/)
+
+Brute Force :  
+TC-> O(N^2)
+
+```python 
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        N = len(nums)
+        Max = 0 
+        Ans = 0 
+        for i in range(N):
+            count1 , count0 = 0 ,0
+            for j in range(i+1,N+1):
+                if nums[j-1] == 1:
+                    count1 += 1 
+                elif nums[j-1] == 0  :
+                    count0 +=  1
+                if count1 == count0 :
+                    Ans = count1+count0
+            if Max < Ans :Max = Ans
+            
+        print(Max)
+        return Max 
+```
+
+Optimized : 
+TC - > O(N) and Space -> O(N)
+
+```python 
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        N = len(nums)
+        Max = 0 
+        for i in range(N):
+            if nums[i] == 0 :
+                nums[i] = -1
+        # print(nums)
+        Map ={}
+        Ans  = 0 
+        Sum = 0 
+        for i in range(N):
+            Sum += nums[i]
+            if Sum == 0 :
+                Ans = i+1
+            if Sum in Map :
+                length = i-Map[Sum]
+                Ans = max (length, Ans)
+            else :
+                Map[Sum] = i 
+        return Ans 
+
+```
+
+
+### [2845. Count of Interesting Subarrays](https://leetcode.com/problems/count-of-interesting-subarrays/)
+
+ Brute Force : TC -> O(N^2)
+ 
+```python 
+
+class Solution:
+    def countInterestingSubarrays(self, nums: List[int], modulo: int, k: int) -> int:
+        ctn = 0
+        for i in range(len(nums)):
+            count = 0
+            for j in range(i, len(nums)):
+                if nums[j] % modulo == k:
+                    count += 1
+                if count % modulo == k:
+                    ctn += 1
+        return ctn
+
+```
+
