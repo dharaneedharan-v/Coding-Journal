@@ -4296,3 +4296,21 @@ class Solution:
 
 ```
 
+
+### [2962. Count Subarrays Where Max Element Appears at Least K Times](https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/)
+Brute Force :  Time Limit Exceeded
+TC -> O(N^2)
+```python 
+class Solution:
+    def countSubarrays(self, nums: List[int], k: int):
+        count = 0 
+        Max = max(nums)
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)+1):
+                Sub = (nums[i:j])
+                Count = Sub.count(Max)
+                if Count >= k :
+                    count += 1
+        return count 
+```
+
