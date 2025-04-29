@@ -4314,3 +4314,15 @@ class Solution:
         return count 
 ```
 
+
+### [3396. Minimum Number of Operations to Make Elements in Array Distinct](https://leetcode.com/problems/minimum-number-of-operations-to-make-elements-in-array-distinct/)
+
+```python 
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        count = 0
+        while len(nums) != len(set(nums)):
+            count += 1
+            nums = nums[3:]  # remove first 3 elements
+        return count
+```
