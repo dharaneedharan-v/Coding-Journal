@@ -4342,4 +4342,33 @@ class Solution:
 ```
 
 
+### [2843. Count Symmetric Integers](https://leetcode.com/problems/count-symmetric-integers/)
+
+
+```python 
+
+class Solution:
+    def countSymmetricIntegers(self, low: int, high: int) -> int:
+        count = 0 
+        def check (N:int)-> bool :
+            Str = str(N)
+            Len = len(Str)
+            if Len % 2 == 1  :
+                return 0 
+            Half = Len// 2
+            SumFirst = sum([int(i) for i in Str[:Half]])
+            SumLast= sum ([ int(i) for i in  Str[Half:]])
+            # print(SumFirst, SumLast)
+            if SumFirst == SumLast : return 1
+            return 0 
+        # dd = []
+        for i in range(low , high+1):
+            if check(i) == 1 :
+                # dd.append(i)
+                count += 1
+        # print(dd)
+        return count 
+
+
+```
 

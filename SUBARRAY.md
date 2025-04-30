@@ -221,3 +221,41 @@ class Solution:
 
 ```
 
+# SUBSEQUENCE 
+
+
+### [334. Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/)
+
+
+
+Brute Force : 
+
+```python 
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        for i in range(len(nums)):
+            for j in range(i , len(nums)):
+                for k in range(j, len(nums)):
+                    if nums[i]<nums[j]<nums[k]:
+                        return True 
+        return False 
+
+```
+
+Optimized One : 
+
+```python 
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        First = math.inf
+        Second = math.inf
+                     # or  first, second = inf, inf
+        for i in range(len(nums)):
+            if nums[i] <= First:
+                First = nums[i]
+            elif nums[i] <= Second :
+                Second = nums[i]
+            else :
+                return True
+        return False 
+```
