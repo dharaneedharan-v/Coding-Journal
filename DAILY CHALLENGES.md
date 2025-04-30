@@ -4326,3 +4326,20 @@ class Solution:
             nums = nums[3:]  # remove first 3 elements
         return count
 ```
+
+
+### [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)
+
+```python 
+class Solution:
+    def findNumbers(self, nums: List[int]) -> int:
+        count = 0 
+        for i in range(len(nums)):
+            dk = (len(str(nums[i])))
+            if dk  & 1 == 0 :
+                count += 1
+        return count 
+```
+
+
+
