@@ -37,3 +37,46 @@ class Solution:
             a.value , b.value = (a.value ^ b.value ) , (a.value & b.value ) << 1 
         return a.value  
 ```
+
+
+
+### [29. Divide Two Integers](https://leetcode.com/problems/divide-two-integers/)
+
+
+ Core logic is Subtract the  dividend = dividend - divisor  
+
+If the value is greater , we go for the concept of doubling the  divisor.. 
+
+Need to handle the Negative Values also , only the positive value only go to the  loop . If not 
+infinite loop .
+
+Sign is important for this ... 
+
+Use the XOR or Not operator ...
+
+```python 
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        Neg  = (dividend < 0 ) != (divisor < 0 ) 
+        count = 0 
+        if divisor ==  0 or dividend == 0 :return count 
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+
+        while (dividend >= divisor):
+            Temp  = divisor 
+            Mul = 1
+            while (Temp + Temp <= dividend):
+                Temp   = Temp + Temp 
+                Mul = Mul + Mul 
+            
+            dividend = dividend - Temp 
+            count = count + Mul 
+        if Neg :
+            count = - count # _- Negative Sign count 
+            return count 
+		# clamping the Value to avoid the Overflow  
+        return min(max(count,-2**31), 2 ** 31 -1 )
+
+        
+```

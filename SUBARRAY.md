@@ -1,4 +1,8 @@
-# HINT : 
+# *definition* : 
+
+## *A **subarray** is a **contiguous** part of an array.*
+
+# *HINT :* 
 
 ## *To iterate in O(N) ==> Use the hash Map or the Prefixsum to Eliminate the N^ 2 or N ^ 3*
 
@@ -6,12 +10,13 @@
 
 ## *You can  also use the Set to eliminate the Time Complexity also Depends on the problems also....*
 
-=========================================================
-
-### [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)
+*================================================================*
 
 
-Time Limit Exceeded  : 
+### *[560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)*
+
+
+*Time Limit Exceeded  :* 
 
 
 ```python 
@@ -38,7 +43,7 @@ class Solution:
 
 
 
-TC -> O(N) and SC - > O(N)
+*TC -> O(N) and SC - > O(N)*
 
 ```python 
 class Solution:
@@ -57,9 +62,9 @@ class Solution:
 ```
 
 
-### [523. Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/)
+### *[523. Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/)*
 
-Time Limit Exceeded  : 
+*Time Limit Exceeded  :* 
 
 ```python 
 class Solution:
@@ -84,7 +89,7 @@ class Solution:
 ```
 
 
-TC -> O(N), SC -> O(N)
+*TC -> O(N), SC -> O(N)*
 
 ```python 
 class Solution:
@@ -146,10 +151,10 @@ class Solution:
 ```
 
 
-### [525. Contiguous Array](https://leetcode.com/problems/contiguous-array/)
+### *[525. Contiguous Array](https://leetcode.com/problems/contiguous-array/)*
 
-Brute Force :  
-TC-> O(N^2)
+*Brute Force :*  
+*TC-> O(N^2)*
 
 ```python 
 class Solution:
@@ -172,8 +177,8 @@ class Solution:
         return Max 
 ```
 
-Optimized : 
-TC - > O(N) and Space -> O(N)
+*Optimized :* 
+*TC - > O(N) and Space -> O(N)*
 
 ```python 
 class Solution:
@@ -201,9 +206,9 @@ class Solution:
 ```
 
 
-### [2845. Count of Interesting Subarrays](https://leetcode.com/problems/count-of-interesting-subarrays/)
+### *[2845. Count of Interesting Subarrays](https://leetcode.com/problems/count-of-interesting-subarrays/)*
 
- Brute Force : TC -> O(N^2)
+ *Brute Force : TC -> O(N^2)*
  
 ```python 
 
@@ -221,14 +226,14 @@ class Solution:
 
 ```
 
-# SUBSEQUENCE 
+# *SUBSEQUENCE* 
 
 
-### [334. Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/)
+### *[334. Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/)*
 
 
 
-Brute Force : 
+*Brute Force :* 
 
 ```python 
 class Solution:
@@ -242,7 +247,7 @@ class Solution:
 
 ```
 
-Optimized One : 
+*Optimized One :* 
 
 ```python 
 class Solution:
@@ -258,4 +263,23 @@ class Solution:
             else :
                 return True
         return False 
+```
+
+
+### [2444. Count Subarrays With Fixed Bounds](https://leetcode.com/problems/count-subarrays-with-fixed-bounds/)
+
+ Brute Force : 
+ 
+```python 
+class Solution:
+    def countSubarrays(self, nums: List[int], minK: int, maxK: int) -> int:
+        count = 0 
+        for i in range(len(nums)):
+            for j in range(i+1 , len(nums)+1):
+                dk = nums[i:j]
+                Min = min(dk)
+                Max = max(dk)
+                if Max == maxK and  Min == minK:
+                    count += 1 
+        return count 
 ```
