@@ -655,3 +655,72 @@ class Solution:
         return Ans 
 
 ```
+
+
+MATH :
+### Prime Factors
+
+```python 
+import math
+class Solution:
+	def AllPrimeFactors(self, N):
+		# Code here
+		def isPrime(N :int)->bool :
+		    if N <= 1 :return 0 ### not zero 
+		    for i in range(2, int(math.sqrt(N))+1):
+		        if N % i == 0 :
+		            return False 
+		    return True
+		if isPrime(N):return [N] ## if the input is a prime number 
+		dd =  []
+		for i in range(2, N):
+		    if ((N % i == 0 ) and (isPrime(i))):
+		        dd.append(i)
+		dk = sorted(dd)
+		return dk
+```
+
+### Sieve of Eratosthenes
+
+```python 
+import math
+class Solution:
+    def sieveOfEratosthenes(self, N):
+		def isPrime(N :int)->bool :
+		    if N <= 1 :return 0 ### not zero 
+		    for i in range(2, int(math.sqrt(N))+1):
+		        if N % i == 0 :
+		            return False 
+		    return True
+		dd =  []
+		for i in range(2, N+1):
+		    if (isPrime(i)):
+		        dd.append(i)
+		return dd
+```
+
+
+### [204. Count Primes](https://leetcode.com/problems/count-primes/)
+
+Normal Prime will take more computation when compared to this. 
+
+Core logic :
+Is  marking  False if the number is a Multiple of i of the starting loop. 
+
+```python 
+class Solution:
+    def countPrimes(self, N: int) -> int:
+        List = [True] * N
+        if N < 2 :
+            return 0 
+        List[0] = List[1] = False 
+        # count =  0 
+        # for i in range(2, N): # 
+        for i in range(2,int(N**0.5) + 1): # optimized loop  use the int(math.sqrt (N)+ 1) 
+            if List[i] :
+                # count += 1 
+                for j in range(i*i, N , i): # start , end , step we have to step the value
+                    List[j] = False 
+        return sum(List)
+
+```

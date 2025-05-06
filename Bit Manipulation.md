@@ -31,6 +31,7 @@ In most CPUs:
 ```python 
 n > 0 and (n & (n - 1)) == 0
 
+
 ```
 
 
@@ -903,3 +904,312 @@ class Solution:
         return count 
 ```
 
+
+### [338. Counting Bits](https://leetcode.com/problems/counting-bits/)
+
+Followed the Number of bit counting 
+
+```python 
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        def Numer(N:int):
+            count =  0 
+            while (N>0):
+                N = N & (N-1)
+                count += 1 
+            return count 
+        res = []
+        for  i in range(n+1):
+            res.append(Numer(i))
+        return res
+
+```
+
+
+### [190. Reverse Bits](https://leetcode.com/problems/reverse-bits/)
+
+```python 
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        Bin = bin(n)[2:].zfill(32)
+        String = Bin[::-1]
+        return int((String),2)
+
+```
+
+Using the Bit Manipulation :
+
+```python 
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        res = 0 
+        temp =  0 
+        for  i in range(32):
+            Lsb = n & 1  # Last bit is a 0 or 1 finding
+            temp =  Lsb << (31-i) 
+            res = temp | res 
+            n = n >> 1 
+        return res 
+```
+
+### Set the rightmost unset bit
+
+```python 
+class Solution:
+	def setBit(self, n):
+        return n | (n+1)
+        
+```
+
+
+### [2220. Minimum Bit Flips to Convert Number](https://leetcode.com/problems/minimum-bit-flips-to-convert-number/)
+
+XOR of the start and goal , 
+Count the set bit alone. 
+```python 
+class Solution:
+    def minBitFlips(self, start: int, goal: int) -> int:
+        Ans = start  ^ goal 
+        count = 0 
+        while Ans > 0 :
+            Ans = Ans & (Ans-1)
+            count += 1 
+        return count 
+
+```
+
+### [78. Subsets](https://leetcode.com/problems/subsets/)
+
+
+Normal For Loop :  Not Efficient : 
+
+```python 
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
+        for i in nums :
+            temp = []
+            for j in res :
+                temp.append((j+[i]))
+            # res.append(temp) # use the extend 
+            res = res + temp 
+        return res 
+
+
+
+```
+
+Using the Bit Manipulation : 
+
+```python 
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        for i in range(2**len(nums)) : ## (1 << len(nums)
+            Subset = []
+            for j in range(len(nums)):
+                if i & (1 << j ):
+                    Subset.append(nums[j])
+            res.append(Subset)
+        return res 
+```
+
+
+### [260. Single Number III](https://leetcode.com/problems/single-number-iii/)
+
+MySolution  : 
+
+```python 
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        dd = {}
+        for i in range(len(nums)):
+            if nums[i] not in dd :
+                dd[nums[i]] = 1 
+            else : dd[nums[i]] += 1
+        res = []
+        for idx , val in dd.items():
+            if val == 1 :
+                res.append(idx)
+        return res 
+
+```
+
+Another Approach : 
+
+```python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        res = []
+        for i in range(len(nums)):
+            if nums[i] not in res :
+                res.append(nums[i])
+            else :
+                res.remove(nums[i])
+        # print(res)
+        return res 
+```
+
+Optimized And In Bit Manipulation : 
+
+HINT : 
+### 🧠 **Memory Trick: "XOR, Mask, Split, Solve"**
+
+Break it down into this **4-step mantra**:
+
+1. **XOR everything**:  
+    All duplicates cancel out — you’re left with `a ^ b` (two unique numbers).
+    
+2. **Mask the difference**:  
+    Use `Xor & -Xor` to isolate **one differing bit** between `a` and `b`.
+    
+3. **Split by the bit**:  
+    Group the numbers by whether that bit is **0 or 1**.
+    
+4. **Solve by XOR in each group**:  
+    XOR within each group — all duplicates cancel again — only unique number remains in each.
+    
+
+```python 
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        Xor = 0 
+        for i in range(len(nums)):
+            Xor = Xor ^ nums[i]
+        # print(Xor)
+        Mask = Xor & -Xor
+        # print(Mask)
+        Ans = 0 
+        group1 = []
+        group2 = []
+        for i in range(len(nums)):
+            if Mask & nums[i] == 0:group1.append(nums[i])
+            else :group2.append(nums[i])
+        # print(group1, group2)
+        X = 0 
+        Final = []
+        for i in range(len(group1)):
+            X = X ^ group1[i]
+        Final.append(X)
+        Y = 0 
+        for i in range(len(group2)):
+            Y = Y ^ group2[i]
+        Final.append(Y)
+        return Final
+```
+
+ OR 
+ 
+```python 
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        # Finding XOR of the two elements that appear only once
+        xor = 0
+        for num in nums:
+            xor ^= num
+        # Finding the rightmost set bit
+        mask = xor & -xor
+        num1 = 0
+        for num in nums:
+            if mask & num == 0:
+                num1 ^= num
+        return [num1, xor^num1]
+```
+### [136. Single Number](https://leetcode.com/problems/single-number/)
+
+
+Using the Bit Manipulation :  
+
+```python 
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        Ans = 0 
+        for u in range(len(nums)):
+            Ans = Ans ^ nums[u]
+            print(Ans)
+        return Ans 
+```
+
+### [137. Single Number II](https://leetcode.com/problems/single-number-ii/)
+
+Using the Sorting : 
+
+```python 
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        if len(nums) == 1 :return nums[0]
+        if nums[0] != nums[1]:return nums[0]
+        if nums[-1] != nums[-2] :return nums[-1]
+        for i in range(1,len(nums), 3):
+            if nums[i] != nums[i-1]:
+                return nums[i-1]
+```
+
+Using the Bit Manipulation : 
+
+```python 
+class Solution:
+    def singleNumber(self, nums):
+        ones, twos = 0, 0
+
+        for num in nums:
+            # Update ones and twos
+            ones = (ones ^ num) & ~twos
+            twos = (twos ^ num) & ~ones
+
+        return ones  # The single number remains in "ones"
+```
+
+
+### [50. Pow(x, n)](https://leetcode.com/problems/powx-n/)
+
+Brute Force : 
+TLE : 
+
+```python 
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        Ans= 1
+        for   i in range(abs(n)):
+            Ans = Ans * x
+        print(Ans)
+        return 1/Ans if n < 0 else float(Ans)
+```
+
+Optimal : 
+
+HINT :  Multiply the Base and reduce the base  
+
+Important : Not work for the Odd numbers Need to be handled Using the If condition 
+
+```python 
+res = 1
+n = 13 → odd → res *= x (res = 2)
+x = 2 → 4, n = 6
+
+n = 6 → even → skip res
+x = 4 → 16, n = 3
+
+n = 3 → odd → res *= x (res = 2 * 16 = 32)
+x = 16 → 256, n = 1
+
+n = 1 → odd → res *= x (res = 32 * 256 = 8192)
+
+```
+
+```python 
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        res = 1
+        if n < 0 :
+            n = -n
+            x = 1/x 
+        while n > 0 :
+            if n % 2 == 1 : ### For the Odd Numbers
+                res = res *  x 
+            x = x * x 
+            n  = n // 2
+        print(res)
+        return  res 
+```
