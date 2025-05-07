@@ -724,3 +724,60 @@ class Solution:
         return sum(List)
 
 ```
+
+
+### [2521. Distinct Prime Factors of Product of Array](https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/)
+
+TLE : 
+
+
+```python 
+class Solution:
+    def distinctPrimeFactors(self, nums: List[int]) -> int:
+        Ans = 1
+        for i in range(len(nums)):
+            Ans = Ans * nums[i]
+        # print(Ans)
+        def isprime (  N :int ) -> bool :
+            if N ==  0 : return False 
+            for i in range(2,int(math.sqrt(N))+1):
+                if N % i == 0 :
+                    return False 
+            return True 
+        count = 0 
+        for i in range(2,Ans+1):
+            dk = Ans % i 
+            if dk == 0 and isprime(i):
+                count += 1
+        print(count)
+        return count 
+```
+
+OPTIMIZED : 
+
+```python 
+class Solution:
+    def distinctPrimeFactors(self, nums: List[int]) -> int:
+        def isprime(N: int) -> bool:
+            if N <= 1:
+                return False
+            for i in range(2, int(math.sqrt(N)) + 1):
+                if N % i == 0:
+                    return False
+            return True
+
+        # Set to store distinct prime factors
+        prime_factors = set()
+
+        # Loop through each number in the list
+        for num in nums:
+            # Check each number for prime factors
+            for i in range(2, num + 1):
+                if num % i == 0 and isprime(i):
+                    prime_factors.add(i)
+        
+        # Return the number of distinct prime factors
+        return len(prime_factors) 
+
+       
+```

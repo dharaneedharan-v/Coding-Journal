@@ -4372,3 +4372,14 @@ class Solution:
 
 ```
 
+### [1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/)
+
+```python 
+class Solution:
+    def buildArray(self, nums: List[int]) -> List[int]:
+        dd = []
+        for i in range(len(nums)):
+            dd.append(nums[nums[i]])
+        return dd 
+```
+
