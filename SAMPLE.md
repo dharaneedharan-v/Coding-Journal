@@ -657,7 +657,8 @@ class Solution:
 ```
 
 
-MATH :
+MATH : 
+# PRIME 
 ### Prime Factors
 
 ```python 

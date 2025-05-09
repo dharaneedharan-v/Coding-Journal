@@ -1,3 +1,28 @@
+HINT : 
+
+For the point after the 2digit means Use the Round 
+
+```sql
+ROUND(
+
+  --  (COUNT(DISTINCT player_id) / # parameters 
+
+   -- (SELECT COUNT(DISTINCT player_id) FROM Activity) # parameters 
+
+    ), 2
+
+)
+```
+
+For the Consecutive days : 
+
+```sql
+ DATE_SUB(event_date, INTERVAL 1 DAY))
+```
+ 
+ ```sql
+ date_add(b.event_date, interval 1 day ) = a.event_date
+```
 
 ### [1068. Product Sales Analysis I](https://leetcode.com/problems/product-sales-analysis-i/)
 
@@ -139,3 +164,119 @@ GROUP BY e1.id
 HAVING COUNT(e2.id) >=5;
 ```
 
+
+
+### [620. Not Boring Movies](https://leetcode.com/problems/not-boring-movies/)
+
+```sql
+
+
+select * from Cinema
+
+ where description !=  'boring' and id % 2 = 1
+
+ order by  rating desc;
+```
+
+
+### [1075. Project Employees I](https://leetcode.com/problems/project-employees-i/)
+
+
+ 
+```Mysql
+select project_id , round(avg(experience_years * 1.0),2) as average_years 
+from Project p 
+join 
+Employee  e 
+on 
+p.employee_id = e.employee_id
+group by  project_id;
+
+```
+
+
+### [1633. Percentage of Users Attended a Contest](https://leetcode.com/problems/percentage-of-users-attended-a-contest/)
+
+```mysql 
+
+select r.contest_id , round( count(distinct u.user_id)/(select count(user_id) from Users ) * 100 ,2)   as percentage
+
+ from Users u
+
+inner join  Register r
+
+on
+
+u.user_id = r.user_id
+
+group by r.contest_id
+
+order by percentage desc, contest_id 
+
+;
+```
+
+
+### [1211. Queries Quality and Percentage](https://leetcode.com/problems/queries-quality-and-percentage/)
+
+
+```mysql
+SELECT
+
+    query_name,
+
+    ROUND(AVG(rating / position), 2) AS quality,
+
+    ROUND(AVG(rating < 3) * 100, 2) AS poor_query_percentage
+
+FROM
+
+    Queries
+
+GROUP BY
+
+    query_name ; 
+```
+
+
+### [1193. Monthly Transactions I](https://leetcode.com/problems/monthly-transactions-i/)
+
+```mysql 
+select
+
+    date_format(trans_date , '%Y-%m') as month, # captial y for the Full Year small y for the 2 digit alone.
+
+    country ,
+
+    count( distinct id) as trans_count ,
+
+    sum( case when state = 'approved' then 1 else 0 end) as  approved_count,
+
+    sum(amount) as trans_total_amount ,
+
+    sum(case when state = 'approved' then amount else 0 end ) as approved_total_amount
+
+ from Transactions
+
+ group by  date_format(trans_date , '%Y-%m') , country ;
+```
+
+### [1174. Immediate Food Delivery II](https://leetcode.com/problems/immediate-food-delivery-ii/)
+
+
+```mysql
+select round(sum(case when order_date = customer_pref_delivery_date then 1 else 0 end ) / count( distinct  customer_id) * 100 , 2 )   as  immediate_percentage
+
+from Delivery
+
+where (customer_id , order_date) in (
+
+    select customer_id , min(order_date)
+
+    from Delivery
+
+    group by customer_id
+
+)
+;
+```
