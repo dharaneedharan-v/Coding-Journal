@@ -4399,3 +4399,16 @@ class Solution:
             if i not in res : res.append(int(i))
         return res 
 ```
+
+
+###  [1550. Three Consecutive Odds](https://leetcode.com/problems/three-consecutive-odds/)
+
+```python 
+class Solution:
+    def threeConsecutiveOdds(self, arr: List[int]) -> bool:
+        for i in range(len(arr)-2):
+            if( arr[i] & 1 == 1 and arr[i+1] & 1 == 1 and arr[i+2] &1  == 1) :return True
+        return False 
+
+```
+
