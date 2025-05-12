@@ -4383,3 +4383,19 @@ class Solution:
         return dd 
 ```
 
+### [2094. Finding 3-Digit Even Numbers](https://leetcode.com/problems/finding-3-digit-even-numbers/)
+
+```python 
+class Solution:
+    def findEvenNumbers(self, digits: List[int]) -> List[int]:
+        Sample = list(set(permutations(digits, 3)))
+        String = " ".join(["".join(map(str, i)) for i in Sample])
+        String = String.split() # String to Number ["124", "126"] => [124, 126] 
+        res = [i for i in String if int(i) % 2 == 0]
+        K = sorted(res, key=lambda x: int(x))
+        KP = [i for i in K if i[0] != '0']
+        res = [] 
+        for i in KP :
+            if i not in res : res.append(int(i))
+        return res 
+```
