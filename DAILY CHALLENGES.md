@@ -4412,3 +4412,49 @@ class Solution:
 
 ```
 
+
+### [3335. Total Characters in String After Transformations I](https://leetcode.com/problems/total-characters-in-string-after-transformations-i/)
+
+Optimized : DP 
+
+```python
+class Solution:
+    def lengthAfterTransformations(self, s: str, t: int) -> int:
+        MOD = 1000000007
+        cnt = [0] * 26
+        
+        for char in s:
+            cnt[ord(char) - ord('a')] += 1
+
+        for _ in range(t):
+            tmp = [0] * 26
+            for i in range(26):
+                if i == 25:
+                    tmp[0] = (tmp[0] + cnt[i]) % MOD
+                    tmp[1] = (tmp[1] + cnt[i]) % MOD
+                else:
+                    tmp[i + 1] = (tmp[i + 1] + cnt[i]) % MOD
+            cnt = tmp
+
+        return sum(cnt) % MOD
+```
+
+TLE : 
+
+```python 
+class Solution:
+    def lengthAfterTransformations(self, s: str, t: int) -> int:
+        def check (dk : str)-> str:
+            res = ""
+            for i in range(len(dk)):
+                if dk[i] == "z":
+                    res += 'ab'
+                else :
+                    res = res+str(chr(ord(dk[i])+1))
+            return res
+        Res = s 
+        for i in range(t):
+            Res = (check(Res))
+        return len(Res) % 1000007
+
+```
