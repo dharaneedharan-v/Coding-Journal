@@ -4473,3 +4473,34 @@ class Solution:
                     return True
         return False 
 ```
+
+
+### [3024. Type of Triangle](https://leetcode.com/problems/type-of-triangle/) 
+
+
+IMPORTANT : 
+
+### Triangle Rule Reminder:
+
+Before classifying as **equilateral**, **isosceles**, or **scalene**, you **must first check** whether the three sides **can form a valid triangle**.
+
+```python
+
+a + b > c
+b + c > a
+a + c > b
+
+```
+
+```python 
+class Solution:
+    def triangleType(self, nums: List[int]) -> str:
+        nums.sort()
+        if nums[1] + nums[0] < nums[2]:
+            return "none"
+        if nums[1] == nums[2] == nums[0] :
+            return "equilateral"
+        if nums[1] == nums[2] :
+            return  "isosceles"
+        else : return "scalene"
+```
