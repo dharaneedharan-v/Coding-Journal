@@ -4504,3 +4504,19 @@ class Solution:
             return  "isosceles"
         else : return "scalene"
 ```
+
+
+### [2894. Divisible and Non-divisible Sums Difference](https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/)
+
+```python 
+class Solution:
+    def differenceOfSums(self, n: int, m: int) -> int:
+        rem = Zero = 0 
+        for i in range(1,n+1):
+            if i % m == 0 :
+                Zero += i 
+            else :
+                rem += i 
+        return rem- Zero 
+```
+
