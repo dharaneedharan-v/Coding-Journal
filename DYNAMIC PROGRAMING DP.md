@@ -167,3 +167,59 @@ class Solution:
 
         return Matrix[-1][-1]
 ```
+
+
+JUST TRY  : 
+
+### [264. Ugly Number II](https://leetcode.com/problems/ugly-number-ii/)
+
+Brute Force : Used Same logic in the Ugly number Finding.  
+
+```python 
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        if n <= 0 : return 0
+        if n == 1 : return 1 
+        def isugly(N : int ) -> bool :
+            if N <= 0 :return False 
+            while N % 2 ==  0:
+                N = N // 2
+            while N % 3 == 0 :
+                N //= 3
+            while N % 5 == 0 :
+                N //= 5  
+            return N == 1 
+        count  = 0 
+        dk = []
+        for i in range(1, 1690*1000):
+            if isugly(i) :
+                dk.append(i)
+                count += 1 
+            if count == n :
+                break 
+        print(dk)
+        return dk[count-1]
+```
+
+Optimized One : 
+
+Remember the DP Pattern for this question 
+
+```python 
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        dp  = [1]
+        i = j = k = 0 
+        for  _ in range(n-1):
+            Var = min(dp[i]* 2 , dp[j] * 3 , dp[k]* 5)
+            dp.append(Var)
+            if Var == dp[i]* 2 :
+                i+= 1 
+            if Var == dp[j]*  3 :
+                j+= 1
+            if Var == dp[k] * 5 :
+                k += 1 
+        return dp[-1]
+
+
+```
