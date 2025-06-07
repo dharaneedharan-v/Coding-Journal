@@ -249,6 +249,12 @@ Languages like Python (`heapq`), Java (`PriorityQueue`), and C++ (`priority_queu
     - C++: `priority_queue`
 
 
+### 🔚 Final Thought:
+
+- **Merge Sort** = Clean, stable, reliable full sorting
+    
+- **Heap / Heap Sort** = Efficient for **on-the-fly**, **priority-based**, or **partial** sorting problems
+
 
 
 ### 💡 Priority Queue vs. Heap
@@ -346,3 +352,188 @@ print(-heapq.heappop(max_heap))  # Output: 10
 |`heapq.heappushpop(heap, x)`|Pushes then pops in one step|
 |`heapq.nlargest(k, iterable)`|Returns k largest elements|
 |`heapq.nsmallest(k, iterable)`|Returns k smallest elements|
+
+
+
+### Convert min Heap to max Heap : 
+
+
+```python
+import heapq
+class Solution:
+    def convertMinToMaxHeap(self, N, arr):
+        def heap(n : int ):
+            left = 2* n + 1 
+            right = 2 * n +2 
+            largest = n 
+            if left < N and arr[largest] < arr[left]:
+                largest = left
+            if right < N and arr[largest] < arr[right]:
+                largest = right 
+            if largest != n :
+                arr[n] , arr[largest] = arr[largest ] , arr[n]
+                heap(largest)
+        for i in  range(len(arr)-1// 2, -1 , -1):
+            heap(i)
+        return arr 
+```
+
+For the Max to Min like the above only the sign change Only......
+Same template alone...
+
+
+### [621. Task Scheduler](https://leetcode.com/problems/task-scheduler/)
+
+```python 
+class Solution:
+
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+
+        Map = {}
+
+        for i in range(len(tasks)):
+
+            if tasks[i] not in Map :
+
+                Map[tasks[i]] = 1
+
+            else :
+
+                Map[tasks[i]] +=1
+
+        # print(Map)
+
+        count = 0
+
+        Max = (max(Map.values()))
+
+        for idx, val in Map.items():
+
+            if val == Max :
+
+                count += 1
+
+        # print(count, Max)
+
+        res = (max((Max-1)*(n+1) + count  , len(tasks)))
+
+        return res
+        
+```
+
+
+
+### [846. Hand of Straights](https://leetcode.com/problems/hand-of-straights/)
+
+
+```python 
+class Solution:
+    def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        if len(hand)%   groupSize != 0 : return False 
+        hand.sort()
+        k = collections.Counter(hand)
+        for i in hand :
+            if k[i] == 0 : 
+                continue 
+            for j in range(groupSize):
+                if k[j+i] > 0 :
+                    k[j+i] -= 1 
+                else : 
+                    return False 
+        return True
+
+```
+
+
+
+### Minimum Cost of ropes 
+BRUTE FORCE  :
+
+```python 
+class Solution:
+   def minCost(self, nums):
+    if len(nums) == 1 : return 0 
+    Sum = 0 
+    Max = 0 
+    while len(nums)>= 2 :
+        Min1   = nums.pop(nums.index(min(nums)))
+        Min2  = nums.pop(nums.index(min(nums)))
+        Sumpop = Min1+ Min2 
+        nums.append(Sumpop)
+        Sum += Sumpop
+    return Sum 
+        
+```
+
+
+Optimal  :
+
+```python 
+class Solution:
+   def minCost(self, nums):
+    if len(nums) == 1 : return 0 
+    heapq.heapify(nums) 
+    Res = 0 
+    while len(nums)>= 2 :
+        Min1 = heapq.heappop(nums) # important heappop() takes atleast single parameter
+        Min2 = heapq.heappop(nums)
+        Add = Min1+Min2 
+        heapq.heappush(nums , Add) # Takes Two parameter......
+        Res = Res+ Add
+    return Res 
+```
+
+### [703. Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)
+
+```python 
+class KthLargest:
+    def __init__(self, k: int, nums: List[int]):
+        # print(nums)
+        self.nums = nums
+        self.k  = k 
+        heapq.heapify(self.nums)
+        while len(self.nums) > k :
+            heapq.heappop(nums)
+        # print(self.nums)
+
+    def add(self, val: int) -> int:
+        # pass
+        heapq.heappush(self.nums , val)
+        # print(self.nums)
+        if len(self.nums) > self.k :
+            heapq.heappop(self.nums)
+        # print(self.nums)
+        # print(self.nums[0])
+    
+        return self.nums[0]
+
+
+# Your KthLargest object will be instantiated and called as such:
+# obj = KthLargest(k, nums)
+# param_1 = obj.add(val)
+```
+
+
+### [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
+
+
+```python 
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+
+        Map = {}
+        for i in range(len(nums)):
+            if nums[i]  not in Map :
+                Map[nums[i]] = 1 
+            else :
+                Map[nums[i]] += 1
+        print(Map)
+        Res = []
+        for idx , val in Map.items():
+            heapq.heappush(Res , (val , idx))
+            if len(Res) > k :
+                heapq.heappop(Res)
+        print(Res)
+        return [val  for idx , val in Res ]
+
+```
