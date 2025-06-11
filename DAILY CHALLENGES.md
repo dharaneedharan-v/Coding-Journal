@@ -4529,3 +4529,17 @@ class Solution:
 ```
 
 
+### [440. K-th Smallest in Lexicographical Order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/)
+
+TLE == > Memory Limit Exceeded ....
+
+```python 
+class Solution:
+    def findKthNumber(self, n: int, k: int) -> int:
+        X = [ str(i)  for i in range(1,n+1) ]
+        # print(X)
+        dk = sorted(X , reverse = False)
+        # print(dk)
+        return int(dk[k-1])
+```
+

@@ -1,5 +1,26 @@
 Template for the BFS : 
 
+
+Template for the BFS : In Simple Manner...  Or For the Simple Traversal Also...
+
+
+```python 
+
+class Solution :
+	def Tree (self, Root): 
+		if not Root : return [] or ""
+		Queue = dequeue([Root])
+		while Queue : 
+			Node  = Queue.popleft()
+			print(Node.val)
+			if Node.left : 
+				Queue.append(Node.left)
+			if Node.right : 
+				Queue.append(Node.right)
+		
+		
+```
+
 ```python 
 
 if root == None :
@@ -878,8 +899,6 @@ class Solution:
 
             stack  = deque ([root])
 
-  
-
             while stack :
 
                 sub = []
@@ -1639,4 +1658,25 @@ class Solution:
 
         return inorder(root)
 ```
+
+
+###  [965. Univalued Binary Tree](https://leetcode.com/problems/univalued-binary-tree/)
+
+
+```python 
+class Solution:
+    def isUnivalTree(self, root: Optional[TreeNode]) -> bool:
+        if not root : return False 
+        Target = root.val
+        Queue = deque([root])
+        while Queue :
+            Node = Queue.popleft()
+            if Node.val != Target : return False 
+            if Node.left :
+                Queue.append(Node.left)
+            if Node.right :
+                Queue.append(Node.right)
+        return True
+```
+
 
