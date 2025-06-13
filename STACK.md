@@ -352,3 +352,35 @@ class Solution:
 ```
 
 
+
+### [735. Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)
+
+Brute Force : 
+```python 
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        Str = asteroids
+        Res = []
+        for i in range(len(Str)):
+            if Str[i] > 0 :
+                Res.append(Str[i])
+            else :
+                # Manual Stimulation 
+                while True :
+                    if not Res or Res[-1] < 0 : # if the stack is empty or - ve val  # No collision → add
+                        Res.append(Str[i])
+                        break
+                    elif Res[-1] == -Str[i]:#both are same
+                        Res.pop()
+                        break
+                    elif Res[-1] > -Str[i]: # Stack wins → do nothing _ve Important
+                        break
+                    else : 
+                        Res.pop()     # Stack loses → pop and repeat
+        # print(Res)
+        return Res 
+
+                
+```
+
+

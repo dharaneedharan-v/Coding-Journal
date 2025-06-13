@@ -540,3 +540,87 @@ class Solution:
         return [val  for idx , val in Res ]
 
 ```
+
+
+### [767. Reorganize String](https://leetcode.com/problems/reorganize-string/)
+
+
+Without the Heap :  
+Constructing the Array or String According to the Condition. 
+
+```python 
+class Solution:
+    def reorganizeString(self, S):
+        Map = {}
+        for i in range(len(S)):
+            if S[i] not in Map:
+                Map[S[i]] = 1 
+            else:
+                Map[S[i]] += 1 
+        
+        MapMax = max(Map.items(), key=lambda x: x[1])
+        MaxChar, MaxFreq = MapMax
+        
+        # Fix the condition
+        if MaxFreq > (len(S) + 1) // 2:
+            return ""
+
+        Res = [""] * len(S)
+        idx = 0
+
+        # Place the most frequent character first
+        for i in range(Map[MaxChar]):
+            Res[idx] = MaxChar
+            idx += 2
+        Map[MaxChar] = 0
+
+        # Place the rest of the characters
+        for char in Map:
+            while Map[char] > 0:
+                if idx >= len(S):  # wrap around to the odd indices
+                    idx = 1
+                Res[idx] = char
+                idx += 2
+                Map[char] -= 1
+
+        return "".join(Res)
+```
+
+
+With Heap : 
+
+
+```python 
+class Solution:
+    def reorganizeString(self, S):
+        Map = {}
+        for i in range(len(S)):
+            if S[i] not in Map :
+                Map[S[i]] = 1 
+            else :
+                Map[S[i]] += 1 
+        # print(Map)
+        maxFreq = max(Map.values())
+        if maxFreq > (len(S) + 1) // 2:
+            return ""
+        Heap = [[-val ,idx ]   for idx , val in Map.items()]
+        # print(Heap)
+        heapq.heapify(Heap)
+        # print(Heap)
+        Res = []
+        Prev = [0, ""]
+        while Heap :
+            Val , Idx = heapq.heappop(Heap)
+            # print(Idx , Val )
+            Res.append(Idx )
+            if Prev[0]  < 0 :
+                heapq.heappush(Heap , Prev)
+            Prev = [Val + 1  , Idx ]
+        Result = "".join(Res)
+        # print(Result)
+
+        for i in range(1, len(Result)):
+            if Result[i] == Result[i-1]:
+                return ""
+        return Result
+```

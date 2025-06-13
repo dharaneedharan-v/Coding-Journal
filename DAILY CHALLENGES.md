@@ -4543,3 +4543,50 @@ class Solution:
         return int(dk[k-1])
 ```
 
+
+### [3442. Maximum Difference Between Even and Odd Frequency I](https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-i/)
+
+
+```python 
+class Solution:
+    def maxDifference(self, s: str) -> int:
+        Map = {}
+        for i in range(len(s)):
+            if s[i] not in Map:
+                Map[s[i]] = 1
+            else:
+                Map[s[i]] += 1
+
+        # print(Map)
+
+        Eval = [val for idx, val in Map.items() if val & 1 == 0]
+        Oval = [val for idx, val in Map.items() if val & 1 == 1]
+
+        if not Eval or not Oval:
+            return 0  # No valid comparison possible
+
+        MinEval = min(Eval)
+        MaxOval = max(Oval)
+
+        # print(MinEval, MaxOval)
+        # print(Eval, Oval)
+
+        return MaxOval - MinEval
+
+```
+
+
+### [3423. Maximum Difference Between Adjacent Elements in a Circular Array](https://leetcode.com/problems/maximum-difference-between-adjacent-elements-in-a-circular-array/)
+
+
+```python 
+class Solution:
+    def maxAdjacentDistance(self, nums: List[int]) -> int:
+        Max = 0 
+        Len= len(nums)
+        for i in range(len(nums)):
+            Max = max(Max , abs(nums[i] - nums[(i+1)%Len]))
+        print(Max)
+        return Max 
+
+```
