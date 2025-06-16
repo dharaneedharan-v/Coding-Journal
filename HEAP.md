@@ -608,14 +608,14 @@ class Solution:
         heapq.heapify(Heap)
         # print(Heap)
         Res = []
-        Prev = [0, ""]
+        Prev = [0, ""]  # !!!!! 
         while Heap :
             Val , Idx = heapq.heappop(Heap)
             # print(Idx , Val )
             Res.append(Idx )
-            if Prev[0]  < 0 :
+            if Prev[0]  < 0 : # !!!!!
                 heapq.heappush(Heap , Prev)
-            Prev = [Val + 1  , Idx ]
+            Prev = [Val + 1  , Idx ] # !!!! 
         Result = "".join(Res)
         # print(Result)
 

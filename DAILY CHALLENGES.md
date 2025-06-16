@@ -4590,3 +4590,25 @@ class Solution:
         return Max 
 
 ```
+
+
+### [2016. Maximum Difference Between Increasing Elements](https://leetcode.com/problems/maximum-difference-between-increasing-elements/)
+
+
+```python 
+class Solution:
+    def maximumDifference(self, nums: List[int]) -> int:
+        Max  = 0 
+        Min = nums[0]
+        Res = []
+        for i in range(len(nums)):
+            if nums[i] > Min :
+                Max = nums[i] 
+                res = Max  - Min 
+                Res.append(res)
+            else :
+                Min = nums[i]
+        # print(Res)
+        if not Res : return -1 
+        return (max(Res))
+```
