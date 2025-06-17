@@ -4612,3 +4612,37 @@ class Solution:
         if not Res : return -1 
         return (max(Res))
 ```
+
+
+
+### [2566. Maximum Difference by Remapping a Digit](https://leetcode.com/problems/maximum-difference-by-remapping-a-digit/) 
+
+
+```python 
+class Solution:
+    def minMaxDifference(self, num: int) -> int:
+        Str = str(num)
+        MaxNumber = 0 
+        for i in  range(len(Str)):
+            if Str[i] != "9":
+                MaxNumber = Str[i] 
+                break 
+        MinNumber = 0 
+        for i in range(len(Str)):
+            if Str[i] !=  0 :
+                MinNumber = Str[i] 
+                break 
+        Max = []
+        for i in range(len(Str)):
+            if Str[i] == MaxNumber :
+                Max.append("9")
+            else : Max.append(Str[i])
+        Min = []
+        for i in range(len(Str)):
+            if Str[i] == MinNumber :
+                Min.append("0")
+            else : Min.append(Str[i])
+        MaxNum = "".join(Max)
+        MinNum = "".join(Min)
+        return int(MaxNum ) -  int(MinNum)
+```

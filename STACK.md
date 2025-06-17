@@ -384,3 +384,23 @@ class Solution:
 ```
 
 
+### [496. Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)
+
+
+```python 
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        res = []
+        for i in range(len(nums1)):
+            Idx = nums2.index(nums1[i])
+            Flag = False 
+            for  j in range(Idx +1 , len(nums2)):
+                if nums1[i]  < nums2[j]:
+                    res.append(nums2[j])
+                    Flag = True 
+                    break 
+            if not Flag : res.append(-1)
+        print(res)
+        return res 
+
+```
