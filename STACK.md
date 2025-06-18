@@ -501,3 +501,21 @@ class Solution:
 ```
 
 
+### [907. Sum of Subarray Minimums](https://leetcode.com/problems/sum-of-subarray-minimums/)
+
+TLE :: 
+
+```python 
+class Solution:
+    def sumSubarrayMins(self, arr: List[int]) -> int:
+        Sum = 0 
+        Min = 0 
+        for i in range(len(arr)):
+            for j in range(i+1 , len(arr)+1):
+                Min = min(arr[i:j])
+                Sum += Min 
+        print(Sum) 
+        return Sum % (10**9 + 7)
+
+```
+
