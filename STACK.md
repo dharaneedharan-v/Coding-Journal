@@ -448,3 +448,56 @@ class Solution:
         return Res 
 
 ```
+
+
+###  Next Smaller Element
+
+BRUTE FORCE : 
+
+
+```python 
+def nextSmallerElement(arr,n):
+    pass
+    Res = []
+    for  i in range(len(arr)):
+        Flag= False
+        for  j in range(i+1 , len(arr)):
+            if arr[j] < arr[i]:
+                Res.append(arr[j])
+                Flag = True 
+                break 
+        if not Flag:
+            Res.append(-1)
+    print(" ".join([ str(i) for i in Res] ))
+    return ""
+
+```
+
+### Number of greater elements to the right
+
+
+```python 
+class Solution:
+    def count_NGEs(self, N, arr, queries, indices):
+        res = []
+        for i in range(queries):
+            count = 0 
+            for j in range(indices[i] + 1, len(arr)):
+                if arr[indices[i]] < arr[j] :
+                    count += 1
+            res.append(count)
+        return res 
+        
+        # or 
+        
+        # result=[]
+        # for i in indices:
+        #     count=0
+        #     for j in range(i+1,N):
+        #         if arr[i]<arr[j]:
+        #             count+=1
+        #     result.append(count)
+        # return result
+```
+
+
