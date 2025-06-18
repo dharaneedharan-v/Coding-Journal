@@ -404,3 +404,47 @@ class Solution:
         return res 
 
 ```
+
+
+### [503. Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/)
+
+
+IF it is a Circular Means Think of the Imaginary  of the Extra Array 
+
+Example : 
+
+Nums = [ 1, 2, 3 , 4 , 7 , 8 , 3 ] 
+
+Assume That , Nums =  [ 1, 2, 3 , 4 , 7 , 8 , 3 ] +  [ 1, 2, 3 , 4 , 7 , 8 , 3 ] 
+
+We can Take the Extra Element By the i+j % len(Nums) = index of the Element . 
+
+Same Concept Used in the String Rotation : 
+
+If the len(string) is smaller than the K value Means =>k = k % len(string)
+
+
+
+
+
+BRUTE FORCE : 
+
+```python 
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        Res = []
+        Len = len(nums)
+        for i in range(len(nums)) :
+            Flag = False 
+            for j in range(Len):
+                idx = (i+j)%Len  
+                if nums[idx] > nums[i]:
+                    Res.append(nums[idx])
+                    Flag = True 
+                    break 
+            if not Flag :
+                Res.append(-1)
+        #print(Res )
+        return Res 
+
+```
