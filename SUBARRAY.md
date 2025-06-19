@@ -283,3 +283,25 @@ class Solution:
                     count += 1 
         return count 
 ```
+
+
+### [2104. Sum of Subarray Ranges](https://leetcode.com/problems/sum-of-subarray-ranges/)
+
+BRUTE FORCE : 
+
+```python 
+class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
+        Sum  = 0 
+        for i in range(len(nums)):
+            Max = -math.inf
+            Min = math.inf 
+            for j in range(i+ 1 , len(nums)+1):
+                Max = max(Max , nums[j-1])
+                Min = min(Min , nums[j-1])
+                Ans = Max - Min 
+                # print(Ans)
+                Sum += Ans 
+        return Sum
+
+```
