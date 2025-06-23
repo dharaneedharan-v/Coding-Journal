@@ -4646,3 +4646,26 @@ class Solution:
         MinNum = "".join(Min)
         return int(MaxNum ) -  int(MinNum)
 ```
+
+
+### [2138. Divide a String Into Groups of Size k](https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/)
+
+
+
+```python 
+class Solution:
+    def divideString(self, s: str, k: int, fill: str) -> List[str]:
+        def Split(N , k  , x ):
+            dd = []
+            for i in range(0 , len(N) , k):
+                dd.append(N[i:i+k])
+            print(dd)
+            return dd 
+        if len(s) % k == 0 : 
+            return Split(s , k , X )
+        else : 
+            Pairs = abs(len(s)% k - k )
+            String = s + fill*(Pairs)
+            print(String)
+            return Split(String , k , X )
+```
