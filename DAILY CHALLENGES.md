@@ -4669,3 +4669,28 @@ class Solution:
             print(String)
             return Split(String , k , X )
 ```
+
+
+### [2200. Find All K-Distant Indices in an Array](https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/)
+
+
+```python 
+class Solution:
+    def findKDistantIndices(self, nums: List[int], key: int, k: int) -> List[int]:
+        KeyIdx = []
+        for i in range(len(nums)):
+            if nums[i] == key :
+                KeyIdx.append(i)
+        # print(KeyIdx)
+        Res = []
+        for  i in range(len(nums)):
+            for j in range(len(KeyIdx)):
+                dk = (abs(i-KeyIdx[j]))
+                if dk <= k :
+                    Res.append(i)
+                    break 
+        #print(Res)
+        return sorted(Res)
+
+
+```
