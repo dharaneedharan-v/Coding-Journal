@@ -24,6 +24,55 @@ In most CPUs:
 - Modulo `%` → takes **multiple cycles** (division is more complex than AND)
 
 
+
+# left Shift : Pow( 2 , 3 ) = 8 
+## 👉 What does `2 << 3` mean in Python?
+
+It’s a **bitwise left shift**:
+
+> Shift the number `2` left by `3` bits.
+
+
+
+
+Using the left Shift :    HINT : Left Shift is used as pow of 2 , Right shift is used for the division.... 
+
+```python 
+power_of_2 = 1 << 3
+
+print(power_of_2) 1 means 2 
+
+
+```
+
+Example : 
+
+| Expression | Meaning  | Result |
+| ---------- | -------- | ------ |
+| `1 << 3`   | `1 * 2³` | 8      |
+| `2 << 3`   | `2 * 2³` | 16     |
+| `5 << 2`   | `5 * 2²` | 20     |
+| `4 << 1`   | `4 * 2¹` | 8      |
+# Right Shift :  Integer Division 
+
+## 👉 What does `x >> n` mean?
+
+> It means: **Shift the bits of `x` to the right by `n` positions**  
+> In math: It's like doing **integer division** by `2ⁿ`
+
+```python 
+16 >> 3 == 16 // (2 ** 3) == 16 // 8 == 2
+```
+
+
+Example :
+
+| Expression | Meaning   | Result |
+| ---------- | --------- | ------ |
+| `8 >> 1`   | `8 // 2`  | 4      |
+| `16 >> 2`  | `16 // 4` | 4      |
+| `32 >> 3`  | `32 // 8` | 4      |
+| `5 >> 1`   | `5 // 2`  | 2      |
 # ***Power of 2 :*** 
 
 *🔧 Bitwise Condition:*

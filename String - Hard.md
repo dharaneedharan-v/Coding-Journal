@@ -52,3 +52,41 @@ class Solution:
 ```
 
 
+### Challenge by Nikitasha
+
+TLE : 
+
+```python 
+
+#User function Template for python3
+class Solution:
+    MOD = 1e9+7
+    def MaxLength(self ,  String):
+        Sum = 0 
+        j = 0 
+        for i in range(len(String)):
+            Sum += ( ord(String[i])* (k**j ))%int(self.MOD)
+            j += 1 
+        return Sum % int(self.MOD)
+        
+    def Substrings(self , Str , Z):
+        Len = len(Str)
+        List = []
+        for i in range(Len-Z+1):
+            List.append(Str[i:i+Z])
+        return List
+        
+        
+    def findMaximum (self, N, Z, K,S):
+        SubString = list(self.Substrings(S , Z))
+        # print(SubString)
+        
+        Max = []
+        for i in SubString :
+            Max.append(self.MaxLength(i) ) 
+        Ans = (max(Max))
+
+        return Ans
+            
+                
+```

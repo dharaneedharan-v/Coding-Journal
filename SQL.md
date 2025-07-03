@@ -24,6 +24,49 @@ For the Consecutive days :
  date_add(b.event_date, interval 1 day ) = a.event_date
 ```
 
+
+
+## Finding the Date In the particular Range  :
+
+
+## The SQL BETWEEN Operator
+
+The `BETWEEN` operator selects values within a given range. The values can be numbers, text, or dates.
+
+The `BETWEEN` operator is inclusive: begin and end values are included. 
+
+
+Selects all products with a price between 10 and 20:
+
+```mysql
+
+SELECT * FROM Products  
+WHERE Price BETWEEN 10 AND 20;
+```
+
+===============================================================
+## Having VS Where : 
+====================
+
+## ****Having vs WHERE****
+
+| Having                                                              | Where                                                                   |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| In the HAVING clause it will check the condition in group of a row. | In the WHERE condition it will check or execute at each row individual. |
+| HAVING clause can only be used with aggregate function.             | The WHERE Clause cannot be used with aggregate function like Having     |
+| Priority Wise HAVING Clause is executed after Group By.             | Priority Wise WHERE is executed before  Group By.                       |
+
+
+- Cannot be used without `GROUP BY` unless an aggregate function is present.
+- Must be placed after the `GROUP BY` clause and before the [`ORDER BY`](https://www.geeksforgeeks.org/sql-order-by/)clause (if used).
+
+===============================================================
+
+--------------
+------------
+--------
+
+
 ### [1068. Product Sales Analysis I](https://leetcode.com/problems/product-sales-analysis-i/)
 
 ```mysql
@@ -297,4 +340,117 @@ order by transaction_date
 ;
 
 
+```
+
+
+
+### [2356. Number of Unique Subjects Taught by Each Teacher](https://leetcode.com/problems/number-of-unique-subjects-taught-by-each-teacher/)
+
+
+```mysql
+# Write your MySQL query statement below
+
+select teacher_id   , count(distinct(subject_id)) as cnt from  Teacher
+
+group by teacher_id
+
+;
+```
+
+
+### [1141. User Activity for the Past 30 Days I](https://leetcode.com/problems/user-activity-for-the-past-30-days-i/) 
+
+
+```mysql
+# Write your MySQL query statement below
+
+select activity_date as day  ,  count(distinct (user_id ))  as  active_users
+
+from Activity where  activity_date between '2019-06-28' and '2019-07-27'
+
+group by  activity_date ;
+```
+### [1070. Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii/)
+
+```mysql
+# Write your MySQL query statement below
+
+select (product_id) , year as first_year , quantity  , price  
+
+from Sales where(product_id , year  ) in (select product_id  , min(year) from Sales group by product_id )
+
+;
+```
+
+
+### [596. Classes With at Least 5 Students](https://leetcode.com/problems/classes-with-at-least-5-students/)
+
+
+Think , The operation is to be performed Over all the group of rows, Not on the Single Row....
+So We can use the Having ....
+```mysql 
+# Write your MySQL query statement below
+select class  from Courses  group by class having count(*)>= 5  ; 
+```
+
+
+### [1729. Find Followers Count](https://leetcode.com/problems/find-followers-count/)
+
+```mysql
+# Write your MySQL query statement below
+
+select user_id ,count(follower_id) as followers_count
+
+from Followers
+
+group by user_id  
+
+order by user_id asc ;
+```
+
+
+
+### [619. Biggest Single Number](https://leetcode.com/problems/biggest-single-number/)
+
+
+### 📌 Think of it like this:
+
+Imagine you made a list of unique numbers on a piece of paper — if someone asks, _“What is this paper called?”_ you have to give it a name so you both know what you’re talking about.
+
+
+Hint : After performing the It Subquery , The Temp  Results are Left  As Unused One We Want to Tell It or Give the Name for That operation... 
+
+Because the database treats the subquery like a temporary table. Every table in SQL must have a name, and the subquery result is no exception — `unique_nums` is just that name 
+
+
+```mysql
+# Write your MySQL query statement below
+
+    select max(num) as num  from
+
+    (
+
+        select num from MyNumbers
+
+        group by num
+
+        having count(num) = 1
+
+    ) as dd
+
+     ;
+```
+
+
+
+### [1045. Customers Who Bought All Products](https://leetcode.com/problems/customers-who-bought-all-products/)
+
+
+
+```mysql 
+select customer_id from Customer
+
+group by customer_id
+
+having (count(distinct (product_key))) = (select count(distinct(product_key)) from Product )
 ```

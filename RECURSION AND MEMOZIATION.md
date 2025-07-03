@@ -1,4 +1,75 @@
+### Get a Strong Hold
 
+
+### Sort a stack: 
+
+```python 
+class Solution:
+    def Insert( self, S , N):
+        if not S or S[-1] <= N : # S[-1] <= N is important..... 
+            S.append(N)
+        else :
+            Temp = S.pop()
+            self.Insert(S, N)
+            S.append(Temp)
+    def Sorted(self, s):
+        if not s :
+            return 
+        else :
+            temp = s.pop()
+            self.Sorted(s)
+            self.Insert(s , temp)
+```
+
+
+### Reverse a Stack
+
+```python 
+
+class Solution:
+    def Insert(self , S , N):
+        if not S :
+            S.append(N)
+        else :
+            Temp = S.pop()
+            self.Insert(S , N)
+            S.append(Temp)
+            
+    def reverse(self,Stack):
+        if not Stack :
+            return 
+        else :
+            Temp = Stack.pop()
+            self.reverse(Stack)
+            self.Insert(Stack , Temp)
+```
+
+
+
+### [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/) 
+
+
+
+```python 
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def helper(Ans , Str , left , right ):
+            if left == n and right == n :
+                Ans.append(Str)
+            if left <  n :
+                helper(Ans , Str+"(" , left+1 , right)
+            if right < n and right <  left  :
+                helper(Ans , Str+")" , left , right + 1 ) 
+        Ans = []
+        Str = ""
+        left = 0 
+        right  = 0 
+        helper(Ans , Str , left , right)
+        return Ans 
+```
+
+-----
+-----
 
 ### [62. Unique Paths](https://leetcode.com/problems/unique-paths/)
 
