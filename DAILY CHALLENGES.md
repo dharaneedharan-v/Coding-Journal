@@ -4694,3 +4694,25 @@ class Solution:
 
 
 ```
+
+
+### [3304. Find the K-th Character in String Game I](https://leetcode.com/problems/find-the-k-th-character-in-string-game-i/)
+
+```python 
+class Solution:
+    def kthCharacter(self, k: int) -> str:
+        Stack = ["a"]
+        while Stack :
+            Pop = Stack.pop()
+            if len(Pop) >=  k : return Pop[k-1]
+            Temp =""
+            for i in range(len(Pop)):
+                New = chr((ord(Pop[i]) -  ord("a") +1 ) % 26 +  ord("a") )
+                Temp += New 
+            Neword = Pop + Temp 
+            print(Neword)
+            Stack.append(Neword)
+    
+        
+
+```
