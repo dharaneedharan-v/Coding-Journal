@@ -346,4 +346,28 @@ class Solution:
         S = Longestpalindrom(s)
         dk = REC(0,0)
         return len(s) - dk  
+
+```
+
+### [583. Delete Operation for Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/)
+
+Using the LCS Template.. 
+
+```python 
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        @lru_cache(None)
+        def LCS(N , M ):
+            if  N == len(word1) or M == len(word2):
+                return  0 
+            if word1[N] == word2[M]:
+                return 1 + LCS(N+1  , M +1 )
+            else :
+                return max(LCS(N+1 , M) , LCS(N , M+1))
+        LongestSub = LCS(0 , 0 )
+        deletion = len(word1) - LongestSub
+        Insertion = len(word2) - LongestSub
+
+        return deletion + Insertion
+
 ```
