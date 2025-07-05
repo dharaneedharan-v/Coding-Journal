@@ -223,3 +223,106 @@ class Solution:
 
 
 ```
+
+
+
+### DP ON STRING : 
+
+
+### [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) 
+
+Using the Normal Recusion : ==> TLE 
+
+LCS : 
+```python 
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+
+        def REC ( N  ,  M , count  ):
+            if N == len(text1) or M == len(text2):
+                return count 
+            if text1[N] == text2[M]:
+                return REC(N+1  , M+1 , count+1 )
+            else :
+                return max( REC(N+1  , M , count ) , REC( N,M+1,count ) )
+
+
+        return REC (0 , 0 , 0 )
+```
+
+Using the Memo :
+
+```python 
+
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        Mem = {}
+
+        def REC ( N  ,  M   ):
+            if N == len(text1) or M == len(text2):
+                return 0
+
+            if ( N  , M  ) in Mem :
+                return Mem[(N , M)]
+
+            if text1[N] == text2[M]:
+                Mem[N , M] =  1+  REC(N+1  , M+1 )
+                return Mem[N , M ]
+            
+            else :
+                Mem[N , M ] = max(REC(N+1   , M ) , REC(N , M+1))
+                return Mem[N , M ]
+        return REC (0 , 0  )
+
+```
+
+
+### [516. Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/)
+
+
+Using the Recursion ==> TLE :
+
+```python 
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        S = s[::-1]
+        # Memo = {}
+        def Rec (N  , M ):
+            if N ==len(s) or M == len(S):
+                return 0 
+            
+            if s[N] == S[M]:
+                return 1+ Rec(N+1  , M +1 )
+            else :
+                return max(Rec(N+1 , M ) , Rec(N , M+1))
+        return Rec(0 , 0)
+```
+
+
+Using  The  Memo  : 
+
+```python 
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        S = s[::-1]
+        Memo = {}
+        # @lru_cache(None)
+        def Rec (N  , M ):
+            if N == len(s) or M == len(S):
+                return 0 
+            if (N , M ) in Memo :
+                return Memo[N , M]
+
+            if s[N] == S[M]:
+                Memo[N , M ] = 1+ Rec(N+1 , M +1)
+                return Memo[N , M]
+                # return 1+ Rec(N+1  , M +1 )
+            else :
+                Memo[N , M ] = max(Rec(N+1 , M ) , Rec(N , M+1))
+                return Memo[N , M ]
+                # return max(Rec(N+1 , M ) , Rec(N , M+1))
+        return Rec(0 , 0)
+```
+
+
+
