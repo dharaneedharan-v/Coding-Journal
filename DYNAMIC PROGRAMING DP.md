@@ -326,3 +326,24 @@ class Solution:
 
 
 
+### [1312. Minimum Insertion Steps to Make a String Palindrome](https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/)
+
+```python 
+class Solution:
+    def minInsertions(self, s: str) -> int:
+        @lru_cache(None)
+        def REC ( N  , M ):
+            if N == len(s) or M == len(S):
+                return 0 
+            if s[N] == S[M]:
+                return  1+ REC(N+1  , M+1 )
+            else :
+                return max( REC(N+1  , M   ) , REC( N,M+1 ) )
+
+        def Longestpalindrom(s):
+            S = s[::-1]
+            return S
+        S = Longestpalindrom(s)
+        dk = REC(0,0)
+        return len(s) - dk  
+```
