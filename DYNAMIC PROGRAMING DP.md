@@ -1,4 +1,50 @@
 
+TEMPLATE FOR THE LCS : 
+
+For the both Print and Max length 
+
+```python 
+class Solution
+		def LCS(N , M ):
+		    if (N)  == len(s1) or (M) == len(s2):
+		        return ""
+		    if s1[N] == s2[M]:
+		      #  return 1 + LCS(N+1 , M+1  )
+		      return s1[N] + LCS(N+1,M+1)
+		    else :
+		      #  return max(LCS(N+1 , M) , LCS(N, M+1 ))
+		      First = LCS(N+1 , M)
+		      Second = LCS(N , M+1)
+		      return First if len(First)>len(Second) else Second
+		        
+		dk = LCS(0 , 0)
+		print(dk )
+		return ""
+```
+
+To print The longest Substring Using the DP : 
+
+```python 
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        N = len(text1)
+        M = len(text2)
+        dp = [ [ "" for _ in range(M+1)] for _ in range((N+1))]
+        # print(dp)
+        for i in range(N-1 , -1 , -1):
+            for j in range(M-1 , -1 , -1):
+                if text1[i] == text2[j] :
+                    dp[i][j] = text1[i]+dp[i+1][j+1]
+                else :
+                    if len(dp[i+1][j]) > len(dp[i][j+1]):
+                        dp[i][j] = dp[i+1][j]
+                    else :
+                        dp[i][j] = dp[i][j+1]
+        print(dp[0][0])
+        return dp[0][0]
+```
+
+===============================================================
 ### [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
 
 ```PYTHON 
@@ -233,6 +279,8 @@ class Solution:
 
 Using the Normal Recusion : ==> TLE 
 
+
+
 LCS : 
 ```python 
 class Solution:
@@ -371,3 +419,39 @@ class Solution:
         return deletion + Insertion
 
 ```
+
+
+
+### Longest Common Substring
+
+Using the LCS Tabulation Template.... 
+
+To print and To get the Length also.. 
+
+```python 
+class Solution:
+    def longestCommonSubstr(self, s1, s2):
+        N = len(s1)
+        M = len(s2)
+        # dp = [ [ "" for _ in range(M+1)] for _ in range(N+1)] To print the String
+        dp = [ [ 0 for _ in range(M+1)] for _ in range(N+1)]
+        # print(dp)
+        # Res = ""
+        Max = 0 
+        for i in range(N-1 , -1 , -1):
+            for j in range(M-1 , -1 , -1):
+                if s1[i] == s2[j]:
+                    dp[i][j] = 1 + dp[i+1][j+1]
+                    Max = max(Max , dp[i][j])
+                    # if len(dp[i][j])> len(Res):
+                    #     Res  = dp[i][j]
+                else :
+                    dp[i][j] = 0 
+                    # dp[i][j] = ""
+        # print(Res)
+        # return len(Res)
+        return Max 
+                
+```
+
+

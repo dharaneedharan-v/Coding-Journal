@@ -4716,3 +4716,24 @@ class Solution:
         
 
 ```
+
+
+### [1394. Find Lucky Integer in an Array](https://leetcode.com/problems/find-lucky-integer-in-an-array/)
+
+```python 
+class Solution:
+    def findLucky(self, arr: List[int]) -> int:
+        Map = {}
+        for i in range(len(arr)):
+            if arr[i] not in Map :
+                Map[arr[i]] = 1 
+            else :
+                Map[arr[i]] += 1 
+        print(Map)
+        Res = [-1]
+        for idx  , val in Map.items():
+            if idx == val :
+                Res.append(idx)
+        return max(Res)
+
+```
