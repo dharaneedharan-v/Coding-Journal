@@ -1,3 +1,17 @@
+TEMPLATE : 
+
+Traversing : 
+
+```python 
+		def REC (N , M): 
+            if M == len(N)  :
+                return 
+            else :
+                print(N[M])
+                REC(N , M+1)
+        (REC(nums,0))
+        
+```
 ### Get a Strong Hold
 
 
