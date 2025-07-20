@@ -306,6 +306,90 @@ sol = Solution()
 sol.generateSubsequences(a)
 ```
 
+===============================================================
+
+
+### Check if there exists a subsequence with sum K
+
+
+```python 
+class Solution:
+    def checkSubsequenceSum(self, N, arr, K):
+
+        def REC(index, curr_sum):
+            if index == N:
+                return curr_sum == K #######
+
+            if curr_sum > K:  ########
+                return False  #########
+
+            if REC(index + 1, curr_sum + arr[index]):
+                return True
+
+            if REC(index + 1, curr_sum):
+                return True
+
+            return False
+
+        return REC(0, 0)
+```
+
+
+
+### Sum Subsequences that Are Equal to the  K :
+
+```python 
+class Solution:
+    # Count = 0 
+    def numSubseq(self, nums: List[int], target: int) -> int:
+        self.Count = 0 
+        def REC( idx , Total):
+            if idx == len(nums):
+                if Total == target :
+                    self.Count +=1 
+                    # print(self.Count)
+                # print(Total)
+                return 
+            REC(idx+1,Total)
+            REC(idx+1,Total+nums[idx])
+        # COUNT = 0 
+        REC(0,0)
+        return self.Count 
+
+```
+
+
+
+### Print All Subsequences Containing a Given Character
+
+Use the If condition in the Function call to check the char is present or not , Instead of printing... 
+
+```python 
+a = input("Enter the String : ")
+b = input("Enter the Char to Check : ")
+RES = []
+def REC(idx , lists):
+    if idx == len(a):
+        if b  in lists:
+            RES.append(lists)
+            # return True 
+        # else:
+            # return False 
+        return 
+    REC(idx + 1 , lists) 
+        # return True 
+    REC(idx + 1 , lists+[a[idx]]) 
+        # return True 
+    # return False 
+Arr = []
+Res =  REC(0,Arr)
+if not RES :
+    print("No char found")
+else :
+    print(RES)
+```
+
+
 
 ### *[334. Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/)*
 
