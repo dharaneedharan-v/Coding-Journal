@@ -86,6 +86,31 @@ class Solution:
         return Ans 
 ```
 
+
+
+### [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+
+
+```python 
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        Map = ["","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+        Result = []
+        def REC(idx  , lists):
+            if idx == len(digits):
+                Result.append(lists)
+                return 
+            dk = Map[int(digits[idx])]  # first take the Idx = 0 , 1 (2 , 3 ) the digit of the idx = "2" and Map it to the dictionary or list 
+            # print(dk)
+            for i in range(len(dk)):
+                REC(idx+1 , lists + dk[i])
+        Arr = ""
+        REC(0 , Arr)
+        return Result if len(digits) > 0 else []
+```
+
+
 -----
 -----
 
@@ -186,3 +211,4 @@ class Solution:
             # return Memo   TypeError: unsupported operand type(s) for +: 'int' and 'dict
         return DFS (0, 0)
 ```
+
