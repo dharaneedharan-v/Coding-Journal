@@ -1,6 +1,6 @@
-# *definition* : 
+# *definition :* 
 
-## *A **subarray** is a **contiguous** part of an array.*
+## *A *subarray* is a *contiguous* part of an array.*
 
 # *HINT :* 
 
@@ -226,49 +226,10 @@ class Solution:
 
 ```
 
-# *SUBSEQUENCE* 
 
+### *[2444. Count Subarrays With Fixed Bounds](https://leetcode.com/problems/count-subarrays-with-fixed-bounds/)*
 
-### *[334. Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/)*
-
-
-
-*Brute Force :* 
-
-```python 
-class Solution:
-    def increasingTriplet(self, nums: List[int]) -> bool:
-        for i in range(len(nums)):
-            for j in range(i , len(nums)):
-                for k in range(j, len(nums)):
-                    if nums[i]<nums[j]<nums[k]:
-                        return True 
-        return False 
-
-```
-
-*Optimized One :* 
-
-```python 
-class Solution:
-    def increasingTriplet(self, nums: List[int]) -> bool:
-        First = math.inf
-        Second = math.inf
-                     # or  first, second = inf, inf
-        for i in range(len(nums)):
-            if nums[i] <= First:
-                First = nums[i]
-            elif nums[i] <= Second :
-                Second = nums[i]
-            else :
-                return True
-        return False 
-```
-
-
-### [2444. Count Subarrays With Fixed Bounds](https://leetcode.com/problems/count-subarrays-with-fixed-bounds/)
-
- Brute Force : 
+ *Brute Force :* 
  
 ```python 
 class Solution:
@@ -285,9 +246,9 @@ class Solution:
 ```
 
 
-### [2104. Sum of Subarray Ranges](https://leetcode.com/problems/sum-of-subarray-ranges/)
+### *[2104. Sum of Subarray Ranges](https://leetcode.com/problems/sum-of-subarray-ranges/)*
 
-BRUTE FORCE : 
+*BRUTE FORCE :* 
 
 ```python 
 class Solution:
@@ -305,3 +266,4 @@ class Solution:
         return Sum
 
 ```
+
