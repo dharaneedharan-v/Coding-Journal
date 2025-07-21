@@ -111,6 +111,33 @@ class Solution:
 ```
 
 
+### [39. Combination Sum](https://leetcode.com/problems/combination-sum/)
+
+
+```python 
+class Solution:
+    def combinationSum(self, nums: List[int], Target: int) -> List[List[int]]:
+        Result = []
+        def REC(Nidx , Mlist , Sum):
+            if Sum == Target:
+                # Result.append(Mlist) Output :  [[],[],[]]
+                Result.append(Mlist[:])
+                return 
+            if Sum > Target : # Another Base case for the Recusrion Tree to Stop it ...
+                return 
+            for i in range(Nidx , len(nums)):
+                Mlist.append(nums[i]) #Include  ... 
+                # REC(Nidx, Mlist , Sum+nums[i]) Output : [[2,2,3],[2,3,2],[3,2,2],[7]]
+                REC(i, Mlist , Sum+nums[i])
+                Mlist.pop() # Exclude or Remove or Dont pick it up... 
+        Arr = []
+        REC(0,Arr , 0 )
+        return Result   
+```
+
+
+
+
 -----
 -----
 
