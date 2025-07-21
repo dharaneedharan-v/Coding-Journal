@@ -4737,3 +4737,27 @@ class Solution:
         return max(Res)
 
 ```
+
+
+### [1957. Delete Characters to Make Fancy String](https://leetcode.com/problems/delete-characters-to-make-fancy-string/)
+
+```python 
+class Solution:
+    def makeFancyString(self, s: str) -> str:
+        Stack = []
+        Count =  1 
+        for i in range(len(s)):
+            if not Stack :
+                Stack.append(s[i])
+            elif Stack[-1] == s[i]:
+                if Count < 2 :
+                    Count +=1  
+                    Stack.append(s[i])
+            else :
+                Count = 1 
+                Stack.append(s[i])
+        print(Stack)
+        return "".join(Stack)
+        
+        
+```
