@@ -134,9 +134,144 @@ class Solution:
         REC(0,Arr , 0 )
         return Result   
 ```
+### [40. Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)
+
+```python 
+class Solution:
+    def combinationSum2(self, nums: List[int], Target: int) -> List[List[int]]:
+        Result = []
+        nums.sort()   # To eliminate the Duplicate.... 
+        def REC(Nidx ,Mlist , Total):
+            if Total == Target:
+                dk = (Mlist[:])
+                if dk not in Result :
+                    Result.append(dk)
+                return  
+            if Total > Target :
+                return 
+            for i in range(Nidx  , len(nums)):
+                if i > Nidx and nums[i] == nums[i-1]: # To eliminate the Same Element and Avoid the Duplicate of the elements
+                    continue 
+                Mlist.append(nums[i])
+                REC(i+1  , Mlist , Total+nums[i])  # i+1 to avoid the current Element
+                Mlist.pop()
+
+        Arr = []
+        REC(0,Arr,Total = 0 )
+        return Result
+```
+### [216. Combination Sum III](https://leetcode.com/problems/combination-sum-iii/)
+
+```python 
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        Result = []
+        def REC(Idx , Mlist , Total):
+            if len(Mlist) == k and Total == n :
+                Result.append(Mlist[:])
+                return 
+            if Total > n :
+                return 
+            for i in range(Idx , 10):
+                Mlist.append(i)
+                REC(i+1 , Mlist , Total+i)
+                Mlist.pop()
+        Arr = []
+        REC(1, Arr , Total = 0 )
+        return Result
+        
+```
 
 
+### [78. Subsets](https://leetcode.com/problems/subsets/)
 
+```python 
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        Result = []
+        def REC(idx , Mlist ):
+            if idx == len(nums):
+                Result.append(Mlist)
+                return 
+            REC(idx+1 , Mlist)
+            REC(idx+1 ,Mlist+ [nums[idx]])
+        Arr = []
+        REC(0 , Arr )
+        return Result 
+```
+
+
+### [90. Subsets II](https://leetcode.com/problems/subsets-ii/)
+
+
+```python 
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        Result = []
+        def REC(idx , Mlist):
+            if idx == len(nums):
+                dk = Mlist[:]
+                if dk not in Result :
+                    Result.append(dk)
+                # Result.append(Mlist[:])
+                return 
+            REC(idx + 1 , Mlist)
+            REC(idx +1 , Mlist+[nums[idx]])
+        Arr = []
+        REC(0, Arr)
+        return Result 
+
+```
+
+
+```python 
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        Result = []
+        def REC(idx , Mlist):
+            Result.append(Mlist[:]) 
+            for i in range(idx , len(nums)):
+                if i > idx and nums[i] == nums[i-1]:
+                    continue 
+                Mlist.append(nums[i])
+                REC(i+1 , Mlist )
+                Mlist .pop()
+        Arr = []
+        REC(0, Arr)
+        return Result 
+
+```
+
+
+### [131. Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/)
+
+
+```python 
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        Result = []
+        def Reversed(SubStr):
+            if SubStr == SubStr[::-1]:
+                return True 
+            return False 
+
+        def REC(idx , Mlist):
+            if idx == len(s):
+                Result.append(Mlist[:])
+                return 
+            for i in  range(idx , len(s)):
+                Str = s[idx : i+1 ] ####
+                if Reversed(Str): ####
+                    Mlist.append(Str) ####
+                    REC(i+1 , Mlist)
+                    Mlist.pop()
+            
+
+        REC(0, [])
+        return Result
+```
 
 -----
 -----
