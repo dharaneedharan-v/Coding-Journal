@@ -692,6 +692,28 @@ class Solution:
 ```
 ### [700. Search in a Binary Search Tree](https://leetcode.com/problems/search-in-a-binary-search-tree/)
 
+Using the BFS: 
+```python 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        Stack = deque([root])
+        while Stack :
+            Node = Stack.popleft()
+            if Node.val == val :
+                return Node 
+            if Node.left :
+                Stack.append(Node.left)
+            if Node.right :
+                Stack.append(Node.right)
+        return None 
+```
+
 Using the iterative method 
 ```python 
 # Definition for a binary tree node.
@@ -825,6 +847,41 @@ class Solution:
                 root = root.right  
         return temp 
            
+```
+
+BFS : 
+
+Here  we are only checking the ceil of the element , if Not keep a var and track the element 
+
+```python 
+''' class Node:
+    def __init__(self, val):
+        self.right = None
+        self.key = val
+        self.left = None '''
+import math   
+class Solution:
+    def findCeil(self,root, X):
+        # code here
+        if not root :
+            return None 
+        Stack = deque([root])
+        Min = math.inf  #### IMPORTANT 
+        while Stack :
+            Node = Stack.popleft()
+            if math.ceil( Node.key ) == X :
+                return Node.key  
+            elif Node.key > X: ##### IMPORTANT 
+                # Candidate for ceil
+                Min = min(Min, Node.key) ######## IMPORTANT
+            if Node.left :
+                Stack.append(Node.left)
+            if Node.right:
+                Stack.append(Node.right)
+        # return None
+        return Min if Min !=  math.inf else -1 
+                
+            
 ```
 
 ### Floor in BST
@@ -1679,4 +1736,73 @@ class Solution:
         return True
 ```
 
+----
 
+
+### BINARY SEARCH TREE : 
+
+### Floor in BST:
+
+```python 
+#User function Template for python3
+from collections import deque 
+import math 
+class Node:
+    def __init__(self,val):
+        self.right  = None 
+        self.left = None 
+        self.data =  val 
+        
+class Solution:
+    def floor(self, root, x):
+        # Code here
+        Floor = -math.inf 
+        Stack = deque([root])
+        while Stack:
+            Node = Stack.popleft()
+            if Node.data == x :
+                return Node.data 
+            if Node.data < x :
+                Floor = max(Floor , Node.data)
+            if Node.left :
+                Stack.append(Node.left)
+            if Node.right :
+                Stack.append(Node.right)
+        return Floor if Floor != -math.inf else -1 
+            
+```
+
+###  [701. Insert into a Binary Search Tree](https://leetcode.com/problems/insert-into-a-binary-search-tree/)
+
+```python 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def insertIntoBST(self, root: Optional[TreeNode], x: int) -> Optional[TreeNode]:
+        if root is None :
+            return TreeNode(x)
+
+        Stack = deque([root])
+        while Stack :
+            Node = Stack.popleft()
+            if Node.val > x :
+                if not Node.left :
+                    Node.left = TreeNode(x)
+                    return root 
+                else :
+                    Stack.append(Node.left)
+            
+            else :
+                if not Node.right :
+                    Node.right = TreeNode(x)
+                    return root
+                else :
+                    Stack.append(Node.right)
+                
+            
+
+```
