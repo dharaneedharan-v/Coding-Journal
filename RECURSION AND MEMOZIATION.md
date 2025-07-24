@@ -273,6 +273,89 @@ class Solution:
         return Result
 ```
 
+
+
+### [79. Word Search](https://leetcode.com/problems/word-search/)
+
+```python 
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def REC(i , j , idx):
+            #base case 
+            if idx == len(word):
+                return True 
+            #boundary check 
+            if (
+                i <  0 or i >= Row or 
+                j <  0 or j >= Col  or 
+                board[i][j] != word[idx]
+            ):return False 
+            # Mark as Vistied Temporay 
+            Temp = board[i][j]
+            board[i][j] = "#"
+            Found = (
+                REC(i+1, j, idx+1) or 
+                REC(i, j+1, idx+1) or 
+                REC(i, j-1, idx+1) or 
+                REC(i-1, j, idx+1)
+            )
+            # change the Temp state 
+            board[i][j] = Temp 
+            return Found
+        Row = len(board)
+        Col = len(board[0])
+        for i in range(Row):
+            for j in range(Col):
+                # Finds and Match the First Word in the Matrix  
+                if board[i][j] == word[0]:
+                    if REC(i , j , 0 ):
+                        return True 
+        return False 
+```
+
+
+### [51. N-Queens](https://leetcode.com/problems/n-queens/)
+
+```PYTHON 
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        Result = []
+        board= [["." for i in range(n)] for i in range(n)]
+        def IsSafe(row , col):
+            for i in range(n):
+                if board[i][col]=="Q": # IMPORTANT ... I , COL 
+                    return False
+            i = row -1 
+            j = col -1
+            while i  >= 0 and j >= 0 : # CHECK FOR THE POSSITIVE ELEMENT 
+                if board[i][j] == "Q":
+                    return False 
+                i = i-1
+                j = j-1
+            i = row-1 
+            j = col +1 
+            while i >=   0 and j < n : # ONLY  THE ROW ALONE NOT THE COLUMN TO CHECK 
+                if board[i][j] == "Q":
+                    return False 
+                i = i-1
+                j = j+ 1
+            return True 
+# BACKTRACK TEMPLATE : 
+        def backtrack(row):
+            if row == n :
+                solution = ["".join(i) for i in board ]
+                Result.append(solution)
+            for col in range(n):
+                if IsSafe(row , col):
+                    board[row][col]="Q"
+                    backtrack(row+1)
+                    board[row][col] = "."
+        backtrack(0)
+        return Result 
+
+```
+
+
 -----
 -----
 
