@@ -4761,3 +4761,37 @@ class Solution:
         
         
 ```
+
+
+### [898. Bitwise ORs of Subarrays](https://leetcode.com/problems/bitwise-ors-of-subarrays/)
+
+
+
+BRUTE :  ===>TLE
+
+```python 
+class Solution:
+    def subarrayBitwiseORs(self, arr: List[int]) -> int:
+        dd = set()
+        count = 0 
+        for i in range(len(arr)):
+            Sum = 0 
+            for j  in  range(i+1 , len(arr)+1):
+                Sum = Sum | arr[j-1]
+                dd.add(Sum) 
+        return len(dd)
+        
+```
+
+Optimal :
+
+```python 
+class Solution:
+    def subarrayBitwiseORs(self, arr):
+        res = set()
+        cur = set()
+        for num in arr:
+            cur = {num | x for x in cur} | {num}
+            res |= cur
+        return len(res)
+```

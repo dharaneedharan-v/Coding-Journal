@@ -138,3 +138,195 @@ class Solution:
                 End = Start 
         return Count 
 ```
+
+
+
+### [56. Merge Intervals](https://leetcode.com/problems/merge-intervals/) 
+
+```python 
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        if len(intervals)== 1 :
+            return intervals
+        intervals.sort(key=lambda x : x[0]) #####
+        # print(intervals)
+        dk = [intervals[0]]
+        for i in range(len(intervals)):
+            Start , End  = dk[-1]
+            # print(Start , End )
+            if End  >= intervals[i][0] :
+                dk[-1][1] = max(End , intervals[i][1] )
+            else :
+                dk.append(intervals[i])
+        # print(dk)
+        return dk 
+```
+
+
+### [57. Insert Interval](https://leetcode.com/problems/insert-interval/)
+
+
+```python 
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        intervals.append(newInterval)
+        if len(intervals)== 1 :
+            return intervals
+        intervals.sort(key=lambda x : x[0])
+        # print(intervals)
+        dk = [intervals[0]]
+        for i in range(len(intervals)):
+            Start , End  = dk[-1]
+            # print(Start , End )
+            if End  >= intervals[i][0] :
+                dk[-1][1] = max(End , intervals[i][1] )
+            else :
+                dk.append(intervals[i])
+        # print(dk)
+        
+        return dk  
+        
+```
+
+
+### [435. Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/)
+
+
+```python 
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort(key  = lambda x : x[0])
+        count = 0 
+        Min_End_Track = intervals[0][1] # To Track the Overlapping Intervals or Preview Intervals
+        for i in range(len(intervals)):
+            Start , End = intervals[i]
+            if Min_End_Track > Start :
+                count += 1 
+                Min_End_Track = min(Min_End_Track, End) # To keep Track of the Overlapping Intervals
+            else :
+                Min_End_Track = End  # If No Overlapping Itervals Found Then Update the Min_End_Track as End.....
+        return count -1 
+    
+```
+
+
+
+#  Job Sequencing Problem
+
+```PYTHON 
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def jobScheduling(jobs):
+    Jobs = TotalAmount = 0 
+    # print(jobs)
+    jobs.sort(key=lambda x: x[2], reverse=True)    
+    Max = max( i[1] for i in jobs)
+    # print(Max)
+    HashArr = [-1] *( Max+1 ) 
+    # print(HashArr)
+    for i in range(len(jobs)):
+        idx , deadline , Amount = jobs[i]
+        for j in range(deadline ,  0 , -1):
+            if HashArr[j] == -1:
+                HashArr[j] = idx 
+                TotalAmount+= Amount
+                Jobs+= 1
+                break 
+    return [Jobs , TotalAmount ]
+
+```
+
+
+### Page Faults in LRU
+
+```python 
+#User function Template for python3
+from collections import deque
+class Solution:
+    def pageFaults(self, N, C, pages):
+        count = 0 
+        dk  = [-1]*C
+        Stack = deque(dk)
+        for i in range(len(pages)):
+            if pages[i] not in Stack :
+                count +=1 
+                if len(Stack) == C :
+                    Stack.popleft()
+                Stack.append(pages[i])
+            else : # If the Elelment ALready present in the Stack Means We want to take the elelment and Add it to the first.. 
+                Stack.remove(pages[i])
+                Stack.append(pages[i])
+        return count 
+        
+        
+```
+
+
+
+### Minimum Platforms
+
+TLE : 
+
+```python 
+class Solution:
+    def minimumPlatform(self, arr, dep):
+        max_platforms = 0
+        for time in range(0, 2360):  # total 2360 iterations
+            count = 0
+            for i in range(len(arr)):
+                if arr[i] <= time <= dep[i]:
+                    count += 1
+            max_platforms = max(max_platforms, count)
+        return max_platforms
+```
+
+Optimal : 
+
+
+```python 
+Minimum Platforms
+#User function Template for python3
+
+class Solution:    
+    #Function to find the minimum number of platforms required at the
+    #railway station such that no train waits.
+    def minimumPlatform(self,arr,dep):
+        # code here
+        arr.sort()
+        dep.sort()
+        ln  = len(arr)
+        i = j = 0 
+        count =  0 
+        MaxPlatform = 0 
+        while  i < ln and j < ln :
+            if arr[i] <= dep[j]:
+                count += 1 
+                i+= 1
+            else :
+                count -=  1 
+                j += 1
+            MaxPlatform = max(MaxPlatform , count )
+        return MaxPlatform 
+            
+```
+
+
+### [455. Assign Cookies](https://leetcode.com/problems/assign-cookies/)
+
+```python 
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort() 
+        count = 0
+        i = j = 0 
+        while i  < len(g) and j < len(s) :
+            if s[j] >= g[i]:
+                count += 1
+                i += 1 # condtoion satisified , Next Move the Child 
+            j+= 1 ## if not Next cookie 
+        return count 
+```
