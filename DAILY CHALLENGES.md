@@ -4795,3 +4795,44 @@ class Solution:
             res |= cur
         return len(res)
 ```
+
+
+
+### [119. Pascal's Triangle II](https://leetcode.com/problems/pascals-triangle-ii/)
+
+ Using the DP: 
+ 
+```python 
+class Solution:
+    def generate(self, nums: int) -> List[List[int]]:
+        if nums ==0 :
+            return []
+        if nums == 1 :
+            return [[1]]
+        Res = [[1]]
+        for i in range(1 , nums ):
+            pre = Res[-1]
+            New = [1] ################ As the pascal Triangle Follows the First Strats Witht the 1 Alaways
+            for j in range(1 , i ):
+                New.append(pre[j-1] + pre[j])
+            New.append(1) ###################As the pascal Triangle ALways Ends Witht the 1 
+            Res.append(New)
+        print(Res)
+        return Res 
+```
+
+
+Using the BuildIn Functions : Combiantions: 
+
+```python 
+class Solution:
+    def getRow(self, nums: int) -> List[int]:
+        Res = []
+        for i in range(nums+1):
+            Row = []
+            for j in range(i+1):
+                Row.append(math.comb(i , j ))
+            Res.append(Row)
+        print(Res)
+        return Res
+```
