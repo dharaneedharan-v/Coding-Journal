@@ -321,3 +321,142 @@ class Solution:
 ```
 
 
+### Count Inversions
+
+Navie Solution....  and TLE  : 
+
+```python 
+class Solution:
+    def inversionCount(self, arr):
+        # Code Here
+        count = 0 
+        for i in range(len(arr)):
+            for j in range(i+1 , len(arr)):
+                if arr[i] > arr[j]:
+                    count += 1 
+        # print(count)
+        return count 
+```
+
+Optimal Using the Merge sort : 
+
+```python 
+class Solution:
+    def inversionCount(self, arr):
+        # Code Here
+        def Merger( Mylist):
+            count = 0
+            if len(Mylist) > 1:
+                Mid = len(Mylist) // 2
+    
+                left = Mylist[:Mid]
+                right = Mylist[Mid:]
+    
+                count += Merger(left)  #############
+                count += Merger(right) #############
+    
+                i = j = k = 0
+    
+                while i < len(left) and j < len(right):
+                    if left[i] <= right[j]:
+                        Mylist[k] = left[i]
+                        i += 1
+                    else:
+                        Mylist[k] = right[j]
+                        j += 1
+                        count += (len(left) - i)   # inversion count step As per the question condtions and the careful in the count  
+                    k += 1
+    
+                while i < len(left):
+                    Mylist[k] = left[i]
+                    i += 1
+                    k += 1
+    
+                while j < len(right):
+                    Mylist[k] = right[j]
+                    j += 1
+                    k += 1
+    
+            return count  # returns inversion count
+        return Merger(arr)
+        
+```
+
+### [493. Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)
+
+Brute Force => TLE : 
+
+```python 
+class Solution:
+    def reversePairs(self, nums: List[int]) -> int:
+        count =  0
+        for i in range(len(nums)):
+            for j in range(i+1 , len(nums)):
+                if nums[i] > 2*nums[j]:
+                    count +=1 
+        # print(count)
+        return count 
+```
+
+
+### [13. Roman to Integer](https://leetcode.com/problems/roman-to-integer/)
+
+```python 
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        Map = {
+            "I":1,
+            "V":5,
+            "X":10,
+            "L":50,
+            "C":100,
+            "D":500,
+            "M":1000
+
+        }
+        Ans =  0 
+        for i in range(len(s)-1):
+            if Map[s[i]] < Map[s[i+1]]:
+                # print(Map[s[i]])
+                Ans -= Map[s[i]]
+            else :
+                Ans+= Map[s[i]]
+        Ans+= Map[s[-1]]
+        print(Ans)
+        return Ans 
+
+                
+```
+
+
+### [12. Integer to Roman](https://leetcode.com/problems/integer-to-roman/)
+
+
+```python 
+class Solution:
+    def intToRoman(self, nums: int) -> str:
+        Map = {
+            "I":1,
+          "IV":4,
+            "V":5,
+            "IX":9,
+            "X":10,
+            "XL":40,
+            "L":50,
+            "XC":90,
+            "C":100,
+            "CD":400,
+            "D":500,
+            "CM":900,
+            "M":1000
+        }
+        Ans = ""
+        item = list(Map.items())
+        for i in range(len(item)-1 , -1 , -1):
+            idx , val = item[i]
+            while nums >= val :
+                nums = nums- val 
+                Ans += idx 
+        print(Ans)
+        return Ans
+```

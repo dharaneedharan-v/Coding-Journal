@@ -347,14 +347,15 @@ print(-heapq.heappop(max_heap))  # Output: 10
 
 ## 🧠 Summary of Built-in Heap Functions
 
-|Function|Purpose|
-|---|---|
-|`heapq.heappush(heap, x)`|Pushes `x` into heap|
-|`heapq.heappop(heap)`|Pops and returns smallest item|
-|`heapq.heapify(list)`|Converts list into a heap|
-|`heapq.heappushpop(heap, x)`|Pushes then pops in one step|
-|`heapq.nlargest(k, iterable)`|Returns k largest elements|
-|`heapq.nsmallest(k, iterable)`|Returns k smallest elements|
+| Function                                  | Purpose                                                                                                 |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `heapq.heappush(heap, x)`                 | Pushes `x` into heap                                                                                    |
+| `heapq.heappop(heap)`                     | Pops and returns smallest item                                                                          |
+| `heapq.heapify(list)`                     | Converts list into a heap                                                                               |
+| `heapq.heappushpop(heap, x)`              | Pushes then pops in one step                                                                            |
+| `heapq.nlargest(k, iterable)`             | Returns k largest elements                                                                              |
+| `heapq.nsmallest(k, iterable)`            | Returns k smallest elements                                                                             |
+| heapq.heapreplace( list or (heap) , val ) | Pops and returns smallest item, then pushes val into the heap (faster than separate pop + push)<br><br> |
 
 
 
@@ -623,4 +624,40 @@ class Solution:
             if Result[i] == Result[i-1]:
                 return ""
         return Result
+```
+
+
+### k largest elements : 
+
+Brute Force : 
+
+```python 
+class Solution:
+	def kLargest(self, arr, k):
+		# Your code here
+		
+		arr.sort(reverse = True)
+		return arr[:k]
+		
+```
+
+
+Optimized One ... 
+
+```python 
+import heapq
+class Solution:
+	def kLargest(self, arr, k):
+		# Your code here
+		HeapSize = arr[:k]
+		heapq.heapify(HeapSize)
+		for i in arr[k:]:
+		    if i > HeapSize[0]:
+		        heapq.heapreplace(HeapSize , i)
+# 		res = []
+# 		while HeapSize :
+# 		    res.append(heapq.heappop(HeapSize))
+# 		print(res)
+		return sorted(HeapSize , reverse =True )
+		
 ```

@@ -940,6 +940,16 @@ class Solution:
 ```
 
 
+```python 
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        for i in range(31):
+            ans = 2** i 
+            if ans ==  n :
+                return True 
+        return False         
+```
+
 ### [191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)
 
 
