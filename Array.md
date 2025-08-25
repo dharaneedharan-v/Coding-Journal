@@ -1,4 +1,23 @@
+### Second Largest
 
+
+```python 
+import math 
+class Solution:
+    def getSecondLargest(self, arr):
+        First = Second = -math.inf
+        for i in range(len(arr)):
+            if arr[i]> First :
+                Second = First  #### DO IT FIRST..............
+                First = arr[i]
+                # Second = First 
+            elif Second < arr[i] < First :
+                Second = arr[i]
+        # print(Second)
+    
+        return Second
+        
+```
 # MEDIUM
 
 ###  Print Maximum Sub Array

@@ -1,3 +1,20 @@
+
+## Syntax : 
+
+
+#### Substring Syntax : 
+
+```mysql 
+SUBSTRING(string, start, How_Many_Characters_To_Take)
+
+```
+
+#### Negative Index is possible , Here Index Start from the 1... 
+
+
+
+===============================================================
+
 HINT : 
 
 For the point after the 2digit means Use the Round 
@@ -453,4 +470,58 @@ select customer_id from Customer
 group by customer_id
 
 having (count(distinct (product_key))) = (select count(distinct(product_key)) from Product )
+```
+
+### [610. Triangle Judgement](https://leetcode.com/problems/triangle-judgement/)
+
+
+```mysql 
+# Write your MySQL query statement below
+select x ,  y , z  ,  
+case
+when 
+(x+y > z and y+ z > x and z + x > y ) then 'Yes'
+else 'No'
+end  as triangle
+from Triangle ;
+
+```
+
+
+### [180. Consecutive Numbers](https://leetcode.com/problems/consecutive-numbers/) 
+
+```mysql 
+# Write your MySQL query statement below
+-- select * , 
+-- lead(num , 1) over(order by id)  as Lead1,
+-- lead(num , 2 ) over(order by id)  as Lead2 
+-- from Logs;
+
+with cte as(
+    select *  , 
+lead(num , 1) over(order by id)  as Lead1,
+lead(num , 2 ) over(order by id)  as Lead2 
+from Logs
+) 
+
+Select distinct  num   as ConsecutiveNums
+from cte where num  = lead1  and num = lead2 
+ ;
+
+
+
+```
+
+
+### [1204. Last Person to Fit in the Bus](https://leetcode.com/problems/last-person-to-fit-in-the-bus/)
+
+
+```mysql
+# Write your MySQL query statement below
+
+with CTE as(select turn , person_id , person_name , weight  , sum(weight) over(order by turn  ) as RunningSum
+from Queue order by turn) 
+
+select person_name from CTE  where RunningSum <= 1000 order by  RunningSum  desc limit 1   ;
+
 ```

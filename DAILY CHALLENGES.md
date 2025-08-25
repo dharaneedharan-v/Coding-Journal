@@ -4836,3 +4836,62 @@ class Solution:
         print(Res)
         return Res
 ```
+
+### [2348. Number of Zero-Filled Subarrays](https://leetcode.com/problems/number-of-zero-filled-subarrays/)
+
+TLE : 
+
+```python 
+class Solution:
+    def zeroFilledSubarray(self, nums: List[int]) -> int:
+        count = 0 
+        for i in range(len(nums)):
+            for j in range(i+1 , len(nums)+1):
+                if nums[j-1] == 0 :
+                    count  +=  1
+                else :
+                    break 
+        return count 
+```
+
+Running Sum : 
+
+And Optimized : 
+
+```python 
+class Solution:
+    def zeroFilledSubarray(self, nums: List[int]) -> int:
+        count = 0 
+        Count = 0 
+        for i in range(len(nums)):
+            if nums[i] == 0 :
+                count += 1 
+                Count += count 
+            else :
+                count = 0 
+        return Count  
+
+```
+
+
+### [1323. Maximum 69 Number](https://leetcode.com/problems/maximum-69-number/)
+
+
+HINT :  NUMBER CANT BE CONVERT TO LIST 
+
+NUM  ==> STR ==> LIST 
+
+```python 
+class Solution:
+    def maximum69Number (self, num: int) -> int:
+        Str = list(str(num))
+        for i in range(len(Str)):
+            if Str[i] == "6":
+                Str[i] = "9"
+                break
+        print(Str)
+        dk = "".join(Str)
+        return int(dk)
+    
+
+```
