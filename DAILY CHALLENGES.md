@@ -4895,3 +4895,117 @@ class Solution:
     
 
 ```
+
+
+
+### [342. Power of Four](https://leetcode.com/problems/power-of-four/)
+
+
+
+BRUTE : 
+
+```python 
+class Solution:
+    def isPowerOfFour(self, n: int) -> bool:
+        power = 1 
+        if n <=  0 : return False 
+        if  n == 1 : return True 
+        while power <= n :
+            if n == power :
+                return True 
+            power  *=  4  ### Mistake part not n only base value.. 4,5,6 etc....
+        return False 
+
+```
+MATH SOLUTION : 
+
+THOUGHT PROCESS is by using the Formula .... 
+
+
+FORMULA : 
+
+$$ Logrithm = log(N)/ log(base) 
+$$
+
+
+
+```python 
+class Solution:
+    def isPowerOfFour(self, n: int) -> bool:
+        if n <= 0 :
+            return False 
+        if n == 1 :
+            return True 
+        Log = math.log(n)/ math.log(4)
+        return Log == int(Log)   #### This will fails in the conner case Safe use the epsilon  
+        return abs(Log - round(Log)) < 1e-10 ### This will compare it is  really close to an integer
+        
+```
+
+
+
+HINT  AND MISTAKE :
+
+In Python, ints and floats can be compared directly.
+
+If the float has no fractional part (like 2.0), Python considers 2.0 == 2 as True ✅
+
+If the float has a fractional part (like 1.792), then 1.792 == 1 is False ❌
+
+
+Example : 
+$$
+log4​(16)=ln(4)ln(16)​=1.38632.7726​=2.0
+$$
+
+
+Log  = 2.0 
+Int(Log) = 2 
+
+In python it will return True  ....
+
+
+MISTAKE AND CONCEPT :
+
+
+### Why `==` fails with floats
+
+- Computers don’t store numbers like we write them.
+    
+- They use **binary fractions** (like base-2 decimals).
+    
+- Many values that look simple to us can’t be stored exactly.
+
+In python :
+
+```python 
+print(0.1 + 0.2)   # expected 0.3 As we study 
+
+### Output : 0.30000000000000004
+
+
+### 0.1 + 0.2 == 0.3   # False 
+### Instead of checking if two floats are **exactly equal**, we check if they are **“close enough”**:
+
+abs(a - b) < ε
+
+
+Log = math.log(243) / math.log(3)
+print(Log)  # 4.999999999999999
+
+Log == int(Log)   # False (because 4.999999999999999 != 5)
+abs(Log - round(Log)) < 1e-10  # True (they're extremely close)
+
+
+```
+
+👉 Think of it like this:
+
+- `==` is **strict equality** (rarely safe for floats).
+    
+- `abs(a - b) < ε` is **practical equality** (the standard way to compare floats in real-world coding).
+
+
+
+
+
