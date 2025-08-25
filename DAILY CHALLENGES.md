@@ -5009,3 +5009,44 @@ abs(Log - round(Log)) < 1e-10  # True (they're extremely close)
 
 
 
+
+
+### [2264. Largest 3-Same-Digit Number in String](https://leetcode.com/problems/largest-3-same-digit-number-in-string/)
+
+
+TLE : 
+
+```python 
+class Solution:
+    def largestGoodInteger(self, nums: str) -> str:
+        Res = ""
+        Max = ""
+        for i in range(len(nums)):
+            for j in range(i+1 , len(nums)):
+                for k in range(j+1  , len(nums)):
+                    # if j = i+1 and k  = j+1 and nums[i-1] == nums[j-1] == nums[k-1]   :
+                    if j == i + 1 and k == j + 1 and nums[i] == nums[j] == nums[k]:
+                        Res = nums[i]*3 
+                        Max = max(Res , Max )
+                    else :
+                        pass
+        print(Res)
+        return Max 
+            
+```
+
+
+Optimal Using the Sliding Window : 
+
+	
+```python 
+class Solution:
+    def largestGoodInteger(self, nums: str) -> str:
+        Max = ""
+        for i in range(len(nums)-2):
+            if nums[i] == nums[i+1] == nums[i+2]:
+                Ans = nums[i]*3
+                Max = max(Ans , Max )
+        return Max 
+```
+
