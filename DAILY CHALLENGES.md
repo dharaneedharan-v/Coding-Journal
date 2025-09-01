@@ -5050,3 +5050,14 @@ class Solution:
         return Max 
 ```
 
+
+
+
+### [3021. Alice and Bob Playing Flower Game](https://leetcode.com/problems/alice-and-bob-playing-flower-game/)
+
+```python 
+class Solution:
+    def flowerGame(self, n: int, m: int) -> int:
+        return  n * m // 2 
+        
+```
