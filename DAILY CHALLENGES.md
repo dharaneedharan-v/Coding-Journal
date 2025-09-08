@@ -5061,3 +5061,17 @@ class Solution:
         return  n * m // 2 
         
 ```
+
+### [1317. Convert Integer to the Sum of Two No-Zero Integers](https://leetcode.com/problems/convert-integer-to-the-sum-of-two-no-zero-integers/)
+
+```python 
+class Solution:
+    def getNoZeroIntegers(self, n: int) -> List[int]:
+        for i in range(1, (n)+1):
+            Str =str(i)
+            Revstr = str(n-i) 
+            if "0" in Str or "0" in  Revstr :
+                continue 
+            elif i  +  n-i == n : return (i,n-i)
+
+```
