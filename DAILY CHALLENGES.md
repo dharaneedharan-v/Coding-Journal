@@ -5091,3 +5091,17 @@ class Solution:
         return Res 
             
 ```
+
+
+### [3516. Find Closest Person](https://leetcode.com/problems/find-closest-person/)
+
+```python 
+class Solution:
+    def findClosest(self, x: int, y: int, z: int) -> int:
+        Pos1 = abs(x-z)
+        Pos2 = abs(y-z)
+        if Pos1 > Pos2 :
+            return  2 
+        elif Pos1 == Pos2: return 0 
+        return 1 
+```
