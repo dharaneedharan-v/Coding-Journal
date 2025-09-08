@@ -5075,3 +5075,19 @@ class Solution:
             elif i  +  n-i == n : return (i,n-i)
 
 ```
+
+
+
+### [1304. Find N Unique Integers Sum up to Zero](https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/)
+```python 
+class Solution:
+    def sumZero(self, n: int) -> List[int]:
+        Res = [0]* n 
+        print(Res)
+        Res[0] = -n*(n-1)// 2
+        for i in range(1 , len(Res)):
+            Res[i] = i
+        print(Res)
+        return Res 
+            
+```
