@@ -5105,3 +5105,33 @@ class Solution:
         elif Pos1 == Pos2: return 0 
         return 1 
 ```
+
+
+### [3025. Find the Number of Ways to Place People I](https://leetcode.com/problems/find-the-number-of-ways-to-place-people-i/)
+
+Brute Force : 
+The Logic is Simple ==> Check  The 2 points that are forming a rectangle . 
+Then check for the Any other points that are laying one the Perimeter and the Area [ inside the block ] Put the Logic for This 2 also.. 
+
+```python 
+class Solution:
+    def numberOfPairs(self, points: List[List[int]]) -> int:
+        count = 0
+        n = len(points)
+        
+        for i in range(n):
+            for j in range(n):
+                if i != j:
+                    if points[i][0] <= points[j][0] and points[i][1] >= points[j][1]:
+                        valid = True
+                        for k in range(n):
+                            if k != i and k != j:
+                                if (points[i][0] <= points[k][0] <= points[j][0] and 
+                                    points[j][1] <= points[k][1] <= points[i][1]):
+                                    valid = False
+                                    break
+                        if valid:
+                            count += 1
+        return count
+
+```
