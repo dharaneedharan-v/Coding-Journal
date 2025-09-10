@@ -347,15 +347,15 @@ print(-heapq.heappop(max_heap))  # Output: 10
 
 ## 🧠 Summary of Built-in Heap Functions
 
-| Function                                  | Purpose                                                                                                 |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `heapq.heappush(heap, x)`                 | Pushes `x` into heap                                                                                    |
-| `heapq.heappop(heap)`                     | Pops and returns smallest item                                                                          |
-| `heapq.heapify(list)`                     | Converts list into a heap                                                                               |
-| `heapq.heappushpop(heap, x)`              | Pushes then pops in one step                                                                            |
-| `heapq.nlargest(k, iterable)`             | Returns k largest elements                                                                              |
-| `heapq.nsmallest(k, iterable)`            | Returns k smallest elements                                                                             |
-| heapq.heapreplace( list or (heap) , val ) | Pops and returns smallest item, then pushes val into the heap (faster than separate pop + push)<br><br> |
+| Function                                  | Purpose                                                                                                 |     |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------- | --- |
+| `heapq.heappush(heap, x)`                 | Pushes `x` into heap                                                                                    |     |
+| `heapq.heappop(heap)`                     | Pops and returns smallest item                                                                          |     |
+| `heapq.heapify(list)`                     | Converts list into a heap                                                                               |     |
+| `heapq.heappushpop(heap, x)`              | Pushes then pops in one step                                                                            |     |
+| `heapq.nlargest(k, iterable)`             | Returns k largest elements                                                                              |     |
+| `heapq.nsmallest(k, iterable)`            | Returns k smallest elements                                                                             |     |
+| heapq.heapreplace( list or (heap) , val ) | Pops and returns smallest item, then pushes val into the heap (faster than separate pop + push)<br><br> |     |
 
 
 

@@ -123,40 +123,6 @@ class Solution:
         
 ```
 
-
-### [48. Rotate Image](https://leetcode.com/problems/rotate-image/)
-
-```python 
-class Solution:
-    def rotate(self, matrix: List[List[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
-        Transpose =[]
-        Row =  len(matrix)
-        Col =  len(matrix[0])
-       
-        for i in range(Col):
-            New = []
-            for j in range((Row)):
-                New.append(matrix[j][i])
-            Transpose.append(New)
-        # print(Transpose)
-
-        def Rev(Nums):
-            Res = []
-            for i in range(len(Nums)-1, -1, -1):
-                Res.append(Nums[i])
-            return Res
-                 
-        for i in range(len(Transpose)):
-            Transpose[i] = Rev(Transpose[i])
-        # print(Transpose)
-        matrix [:] = Transpose
-
-```
-
-
 # HARD :
 
 
@@ -479,3 +445,135 @@ class Solution:
         print(Ans)
         return Ans
 ```
+
+
+---
+
+
+### MATRIX : 
+
+
+TO PRINT THE LEFT LOWER TRIANGLE OF THE MATRIX : 
+
+```PYTHON
+for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i >= j :
+                    print(grid[i][j] , end = " ")
+                else :
+                    print("" , end = " ")
+            print()
+        
+```
+
+TO PRINT THE UPPER TRIANGLE  OF THE MATRIX : 
+
+```PYTHON 
+for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if J >= i :
+                    print(grid[i][j] , end = " ")
+                else :
+                    print("" , end = " ")
+            print()
+        
+```
+
+
+
+
+==================== PROBLEMS ON THE MATRIX ======================
+
+### [48. Rotate Image](https://leetcode.com/problems/rotate-image/)
+
+```python 
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        Transpose =[]
+        Row =  len(matrix)
+        Col =  len(matrix[0])
+       
+        for i in range(Col):
+            New = []
+            for j in range((Row)):
+                New.append(matrix[j][i])
+            Transpose.append(New)
+        # print(Transpose)
+
+        def Rev(Nums):
+            Res = []
+            for i in range(len(Nums)-1, -1, -1):
+                Res.append(Nums[i])
+            return Res
+                 
+        for i in range(len(Transpose)):
+            Transpose[i] = Rev(Transpose[i])
+        # print(Transpose)
+        matrix [:] = Transpose
+
+```
+
+
+
+
+### [1329. Sort the Matrix Diagonally](https://leetcode.com/problems/sort-the-matrix-diagonally/)
+
+
+HINT : To access the diagonal elements i - j we get the diagonal elements..
+
+Why we use the reverse this is because of the  list the elements are stored. by pop it will pop the last element. 
+
+```python 
+class Solution:
+    def diagonalSort(self, mat: List[List[int]]) -> List[List[int]]:
+        Map = defaultdict(list)
+        Row = len(mat)
+        Col = len(mat[0])
+        for i in range(Row):
+            for j in range(Col):
+                Map[i-j].append(mat[i][j])
+        # print(Map)
+        for idx , val in Map.items():
+            # print(idx , val)
+            val.sort(reverse = True )
+            # print(idx , val)
+        for i in range(Row):
+            for j in range(Col):
+                mat[i][j] = Map[i-j].pop()
+        # print(mat)
+        return mat
+        
+```
+
+
+### [3446. Sort Matrix by Diagonals](https://leetcode.com/problems/sort-matrix-by-diagonals/)
+
+
+```python 
+class Solution:
+    def sortMatrix(self, grid: List[List[int]]) -> List[List[int]]:
+        Map = defaultdict(list)
+        Row = len(grid)
+        Col = len(grid[0])
+        for i in range(Row):
+            for j in range(Col):
+                Map[i-j].append(grid[i][j])
+        print(Map)
+        for idx , val in Map.items():
+            if idx >= 0 :
+                val.sort()
+            else :
+                val.sort(reverse= True)
+        print(Map.items())
+        for i in range(Row):
+            for j in range(Col):
+                grid[i][j] = Map[i-j].pop()
+        print(grid)
+        
+        return grid
+
+```
+
