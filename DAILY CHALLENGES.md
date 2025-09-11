@@ -5135,3 +5135,34 @@ class Solution:
         return count
 
 ```
+
+
+### [2785. Sort Vowels in a String](https://leetcode.com/problems/sort-vowels-in-a-string/)
+
+```python 
+class Solution:
+    def sortVowels(self, s: str) -> str:
+        dk = "aeiouAEIOU"
+        Hash = ""
+        Vowel = []
+        for i in range(len(s)):
+            if s[i] in dk :
+                Vowel.append(s[i])
+                Hash += "1"
+            else :
+                Hash+= s[i]
+        print(Vowel)
+
+        Vowel = (sorted(Vowel))
+        print(Hash)
+        Ans = ""
+        for i in range(len(Hash)):
+            if Hash[i] == "1":
+                Ans += Vowel.pop(0)
+            else:
+                Ans  += Hash[i]
+        # print(Ans)
+        return Ans 
+
+
+```
