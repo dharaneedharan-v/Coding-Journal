@@ -10,6 +10,12 @@
 
 ## *You can  also use the Set to eliminate the Time Complexity also Depends on the problems also....*
 
+
+## *Kadane’s Algorithm*
+## *Buy using the Kaden's Algo also we can reduce the Time Limit From the N ^ 2 to N* 
+
+## *Kaden's Algo :  Calculate the running Sum , and update the  Max  ,  When we encounter the negative value.. Immediatly Update the Sum to 0* 
+
 *================================================================*
 
 

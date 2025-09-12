@@ -577,3 +577,28 @@ class Solution:
 
 ```
 
+###  [498. Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/)
+
+```python 
+class Solution:
+    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        Row = len(mat)
+        Col = len(mat[0])
+        Map = defaultdict(list)
+        for i in range(Row):
+            for j in range(Col):
+                Map[i+j].append(mat[i][j])
+        print(Map.items())
+
+        Ans = []
+
+        for idx , val in Map.items():
+            if idx & 1 == 0 : 
+                Ans.extend(val[::-1])
+            else:
+                Ans.extend(val)
+        return Ans 
+
+
+
+```
