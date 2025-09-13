@@ -5166,3 +5166,37 @@ class Solution:
 
 
 ```
+
+### [3541. Find Most Frequent Vowel and Consonant](https://leetcode.com/problems/find-most-frequent-vowel-and-consonant/)
+
+```python class Solution:
+    def maxFreqSum(self, s: str) -> int:
+        def check(Num :list)-> int:
+            Map = {}
+            for i in range(len(Num)):
+                if Num[i] not in Map:
+                    Map[Num[i]] = 1 
+                else :
+                    Map [Num[i]] += 1
+            return Map 
+
+        Vowel = "AEIOUaeiou"
+        co= []
+        vo = []
+        Map = {}
+        for i in range(len(s)):
+            if s[i] in Vowel :
+                vo.append(s[i])
+            else:
+                co.append(s[i])
+        dk = check(vo)
+        dd = check(co)
+        Vo = (max(dk.values() , default = 0 ))
+        Co =  (max(dd.values() , default = 0 ))
+         
+        return Vo  + Co  
+
+
+
+
+```
