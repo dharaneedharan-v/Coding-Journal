@@ -5200,3 +5200,51 @@ class Solution:
 
 
 ```
+
+
+### [1935. Maximum Number of Words You Can Type](https://leetcode.com/problems/maximum-number-of-words-you-can-type/)
+
+
+```python 
+class Solution:
+    def canBeTypedWords(self, text: str, bro: str) -> int:
+        List = list(text.split(" "))
+        print(List)
+        count = 0
+        for i in range(len(List)):
+            Flag = False 
+            for j in range(len(List[i])):
+                if List[i][j]  in bro:
+                    Flag = True
+            if not Flag :
+                count +=1 
+
+        return count 
+
+```
+
+
+### [3005. Count Elements With Maximum Frequency](https://leetcode.com/problems/count-elements-with-maximum-frequency/)
+
+
+```python 
+class Solution:
+    def maxFrequencyElements(self, nums: List[int]) -> int:
+        Map = {}
+
+        for i in range(len(nums)):
+            if nums[i] not in Map :
+                Map[nums[i]] = 1 
+            else :
+                Map[nums[i]] += 1 
+        print(Map)
+        Max = max(Map.values())
+        print(Max)
+        Ans = 0
+        for index , val in Map.items():
+            if val == Max :
+                Ans += val
+        print(Ans)
+        return Ans 
+
+```
