@@ -5248,3 +5248,30 @@ class Solution:
         return Ans 
 
 ```
+
+
+### [165. Compare Version Numbers](https://leetcode.com/problems/compare-version-numbers/)
+
+
+```python  
+class Solution:
+    def compareVersion(self, v1: str,v2: str) -> int:
+        V1 = v1.split(".")
+        V2 = v2.split(".")
+
+        Max = max(len(V1) , len(V2))
+
+        while len(V1) < len(V2):
+            V1.append("0")
+        while len(V1) > len(V2):
+            V2.append("0")
+
+        for i in range(Max):
+            Val1  , Val2   = int(V1[i]) , int(V2[i])
+
+            if Val1 > Val2 :
+                return 1 
+            elif Val1 < Val2 :
+                return -1 
+        return 0 
+```
