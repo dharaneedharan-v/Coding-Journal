@@ -5275,3 +5275,21 @@ class Solution:
                 return -1 
         return 0 
 ```
+
+
+### [120. Triangle](https://leetcode.com/problems/triangle/)
+
+BRUTE Force : 
+
+```python 
+class Solution:
+    def minimumTotal(self, t: List[List[int]]) -> int:
+        @lru_cache(None)
+        def REC(N , M ):
+            if N == len(t)-1:
+                return t[N][M]
+            left = REC(N+1, M)
+            right = REC(N+1,M+1) 
+            return t[N][M] + min(left,right)
+        return REC(0, 0)
+```
