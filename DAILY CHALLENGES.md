@@ -5312,3 +5312,30 @@ class Solution:
                         Max = Area
         return Max 
 ```
+
+
+### [976. Largest Perimeter Triangle](https://leetcode.com/problems/largest-perimeter-triangle/)
+
+
+```python 
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        Max = 0
+        nums.sort()
+        Ans =  0 
+        for i in range(len(nums)-2):
+        #     for j in range(i+1 , len(nums)-1):
+        #         for k in range(j+1 ,len(nums)):
+        #             # print(nums[i] , nums[j] , nums[k])
+        #             if nums[i] +  nums[j] > nums[k]:
+        #                 Sum  = nums[i] + nums[j] + nums[k]
+        #                 Max =  max(Max , Sum)
+        # return Max 
+
+            First , Second , Third  = nums [i] , nums[i+1] , nums[i+2]
+            print(First , Second , Third)
+            if First + Second > Third :
+                Ans = First + Second + Third 
+            Max = max(Ans  , Max )
+        return Max 
+```
