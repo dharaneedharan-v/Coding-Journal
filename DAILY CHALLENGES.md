@@ -5401,3 +5401,19 @@ class Solution:
         return bot+ (bot-1)// (ex-1)
 
 ```
+
+
+### [2221. Find Triangular Sum of an Array](https://leetcode.com/problems/find-triangular-sum-of-an-array/)
+
+```python 
+class Solution:
+    def triangularSum(self, nums: List[int]) -> int:
+        while True :
+            if len(nums) == 1 :
+                return nums[0]
+            for i in range(len(nums)-1):
+                nums[i]  = (nums[i] + nums[i+1]) % 10
+            if nums :
+                nums.pop()
+
+```
