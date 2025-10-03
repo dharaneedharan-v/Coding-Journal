@@ -5377,3 +5377,27 @@ class Solution:
                     left += 1
         return count
 ```
+
+
+### [1518. Water Bottles](https://leetcode.com/problems/water-bottles/)
+
+
+```python 
+class Solution:
+    def numWaterBottles(self, bot: int, ex: int) -> int:
+        Res = bot
+        while bot >= ex :
+            new = bot // ex # remainder , umber of new bottles you can get
+            Res += new obs
+            
+            bot = new  + (bot % ex)
+        return Res # carry over remaining empty bottles
+
+```
+
+```python 
+class Solution:
+    def numWaterBottles(self, bot: int, ex: int) -> int:
+        return bot+ (bot-1)// (ex-1)
+
+```
