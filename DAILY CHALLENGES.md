@@ -5417,3 +5417,49 @@ class Solution:
                 nums.pop()
 
 ```
+
+
+
+###  [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+
+
+Brute Force : 
+
+```python 
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        Max =  0 
+        for i in range(len(height)):
+            for j in range(i , len(height)):
+                breath = abs(i - j )
+                Min_height  = min(height[i] ,height[j])
+                Area = breath * Min_height 
+                Max  = max(Area , Max)
+        return Max 
+
+```
+
+Two pointer : 
+
+```python 
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        Max = 0 
+        left = 0 
+        right = len(height)-1
+        while left < right :
+            wid = abs(left - right)
+            Min_height = min(height[left] , height[right])
+            Max = max( Max , wid*Min_height)
+            if height[left] < height[right]:
+                left += 1
+            elif height[left]>height[right]:
+                right -=1 
+            elif height[left]== height[right]:
+                left +=  1 
+                right -= 1 
+            else:
+                break 
+        return Max 
+        
+```
