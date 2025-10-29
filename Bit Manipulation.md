@@ -1,4 +1,19 @@
 
+### 🔹 _Inbuild Function_ :
+
+👉 **`bit_length()`** is an **inbuilt method** in Python that belongs to the **`int` class**.
+
+Example : 
+
+```python 
+print(n.bit_length())   # Output: 3  (because 5 = 101 in binary)
+
+n = 10
+print(n.bit_length())   # Output: 4  (because 10 = 1010)
+```
+
+-----------
+
 # Hint : 
 
 ### ***For the division :*** 

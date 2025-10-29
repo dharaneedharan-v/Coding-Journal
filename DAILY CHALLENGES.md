@@ -5463,3 +5463,43 @@ class Solution:
         return Max 
         
 ```
+
+### [2273. Find Resultant Array After Removing Anagrams](https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/)
+
+
+```python 
+class Solution:
+    def removeAnagrams(self, words: List[str]) -> List[str]:
+        def Mapped(Str : str)->dict:
+            Map = {}
+            for i in range(len(Str)):
+                if Str[i] not in Map :
+                    Map[Str[i]] = 1 
+                else :
+                    Map[Str[i]] +=1 
+            return Map
+        pre = cur = None
+        List = []
+        for i in range(len(words)):
+            cur = Mapped(words[i])
+            if cur != pre:
+                List.append(words[i])
+            pre = cur
+        return List   
+
+```
+
+
+### [3370. Smallest Number With All Set Bits](https://leetcode.com/problems/smallest-number-with-all-set-bits/)
+
+
+Hint :   Analyse the pattern they  are repeating After Some Interval of time..  
+```python 
+class Solution:
+    def smallestNumber(self, n: int) -> int:
+        Num = 1 
+        while Num < n :
+            Num =Num * 2 + 1 
+        return Num 
+        
+```
