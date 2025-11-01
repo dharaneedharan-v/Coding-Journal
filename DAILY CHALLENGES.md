@@ -5531,3 +5531,29 @@ class Solution:
 ```
 
 
+### [3217. Delete Nodes From Linked List Present in Array](https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/)
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
+        nums = set(nums)
+        Temp = head
+        List = []
+        while Temp :
+            if Temp.val not in nums:
+                List.append(Temp.val)
+            Temp = Temp.next
+        # print(List)
+        head = ListNode(List[0])
+        temp = head 
+        for i in range(1,len(List)):
+            temp.next = ListNode(List[i])
+            temp = temp.next
+        return head 
+        
+```
