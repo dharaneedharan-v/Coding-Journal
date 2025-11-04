@@ -5557,3 +5557,22 @@ class Solution:
         return head 
         
 ```
+
+
+### [1578. Minimum Time to Make Rope Colorful](https://leetcode.com/problems/minimum-time-to-make-rope-colorful/)
+
+
+```python 
+class Solution:
+    def minCost(self, col: str, Time: List[int]) -> int:
+        Res = 0 
+        MaxTime = Time[0]
+        for i in range(1,len(col)):
+            if col[i] == col[i-1]:
+                Res += min(Time[i], MaxTime)
+                MaxTime = max(MaxTime , Time[i])
+            else :
+                MaxTime = Time[i]
+        print(Res)
+        return Res 
+```
