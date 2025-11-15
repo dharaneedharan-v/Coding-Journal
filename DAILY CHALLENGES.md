@@ -5595,3 +5595,27 @@ class Solution:
         return count 
 
 ```
+
+### [3234. Count the Number of Substrings With Dominant Ones](https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/) 
+
+
+BRUTE FORCE : 
+
+```python 
+class Solution:
+    def numberOfSubstrings(self, s: str) -> int:
+        Res = 0 
+        for i in range(len(s)):
+            Zero  =  0 
+            One = 0 
+            for j in range(i , len(s)):
+                if s[j] == "0":
+                    Zero  += 1
+                else :
+                    One  += 1
+                if One >= Zero *Zero :
+                    Res += 1  
+        return Res 
+```
+
+
