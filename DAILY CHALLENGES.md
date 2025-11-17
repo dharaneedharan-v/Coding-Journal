@@ -5663,3 +5663,21 @@ class Solution:
                     count = 0                
         return True 
 ```
+
+
+### [1513. Number of Substrings With Only 1s](https://leetcode.com/problems/number-of-substrings-with-only-1s/)
+
+```python 
+class Solution:
+    def numSub(self, s: str) -> int:
+        Res = 0
+        Count = 0
+        
+        for i in range(len(s)):
+            if s[i] == '1':
+                Count += 1
+                Res += Count
+            else:
+                Count = 0
+        return Res % (10**9+7)  
+```
