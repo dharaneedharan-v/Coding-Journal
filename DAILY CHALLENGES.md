@@ -5641,3 +5641,25 @@ class Solution:
         
 ```
 
+
+
+### [1437. Check If All 1's Are at Least Length K Places Away](https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/)
+
+```python 
+class Solution:
+    def kLengthApart(self, nums: List[int], k: int) -> bool:
+        count = 0 
+        Flag = False
+        for i in range(len(nums)):
+            if nums[i] == 0 :
+                count += 1
+            elif nums[i] == 1 :
+                if Flag == False :
+                    Flag = True 
+                    count = 0 
+                else :
+                    if count < k :
+                        return False
+                    count = 0                
+        return True 
+```
