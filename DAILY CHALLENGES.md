@@ -5619,3 +5619,25 @@ class Solution:
 ```
 
 
+### [2154. Keep Multiplying Found Values by Two](https://leetcode.com/problems/keep-multiplying-found-values-by-two/)
+
+```python 
+class Solution:
+    def findFinalValue(self, nums: List[int], org: int) -> int:
+        for i in range(len(nums)):
+            if org in nums:
+                org  = org * 2 
+        return org 
+            
+```
+
+```python 
+class Solution:
+    def findFinalValue(self, nums: List[int], original: int) -> int:
+        Set = set(nums)
+        while original in Set :
+            original = 2 * original
+        return original 
+        
+```
+
