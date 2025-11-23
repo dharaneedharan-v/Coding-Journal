@@ -5681,3 +5681,18 @@ class Solution:
                 Count = 0
         return Res % (10**9+7)  
 ```
+
+
+### [3190. Find Minimum Operations to Make All Elements Divisible by Three](https://leetcode.com/problems/find-minimum-operations-to-make-all-elements-divisible-by-three/)
+
+
+```python 
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        Res = 0 
+        for i in range(len(nums)):
+            if nums[i]%3 != 0 :
+                Res += 1 
+        return Res 
+```
+
