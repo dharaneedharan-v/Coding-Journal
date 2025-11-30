@@ -5503,3 +5503,31 @@ class Solution:
         return Num 
         
 ```
+
+
+
+
+### [3289. The Two Sneaky Numbers of Digitville](https://leetcode.com/problems/the-two-sneaky-numbers-of-digitville/)
+
+
+```python 
+class Solution:
+    def getSneakyNumbers(self, nums: List[int]) -> List[int]:
+        Map  = {}
+        for i in range(len(nums)):
+            if nums[i] not in Map :
+                Map[nums[i]] = 1 
+            else :
+                Map[nums[i]] += 1 
+        # print(Map)
+        Ans = []
+        for idx , val in Map.items():
+            if val >=  2:
+                Ans.append(idx)
+        # print(Ans)
+        return Ans 
+                
+
+```
+
+
