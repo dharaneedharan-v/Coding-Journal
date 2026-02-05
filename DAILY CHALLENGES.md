@@ -5696,3 +5696,46 @@ class Solution:
         return Res 
 ```
 
+
+#### [3379. Transformed Array](https://leetcode.com/problems/transformed-array/)
+
+Both Are brute Force  logic 
+
+```python 
+class Solution:
+    def constructTransformedArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = [] 
+        for i in range(len(nums)):
+            if nums[i] > 0 :
+                idx = i + nums[i]
+                while idx >= n : ### To handel the Rotation in positive 
+                    idx -= n 
+                res.append(nums[idx])
+            elif nums[i] < 0 :
+                idx = i -  abs(nums[i])
+                while  idx <= -n :### To handel the Rotation in negative
+                    idx += n 
+                res.append(nums[idx])
+            else :
+                res.append(0)
+        return res
+        
+```
+
+```python 
+class Solution:
+    def constructTransformedArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = []
+
+        for i in range(n):
+            if nums[i] != 0:
+                idx = (i + nums[i]) % n
+                res.append(nums[idx])
+            else:
+                res.append(0)
+
+        return res
+
+```
