@@ -5739,3 +5739,29 @@ class Solution:
         return res
 
 ```
+### 3838. Weighted Word Mapping
+
+Brute Force 
+
+```python 
+class Solution:
+    def mapWordWeights(self, words: List[str], weights: List[int]) -> str:
+        Alpa =  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+        Map = { chr(ord('a') + idx )  : val    for idx, val in enumerate(weights)}
+        Alp = { (25 - idx ): val  for idx , val in enumerate(Alpa)}
+        # print (Map) 
+        Res = ""
+        for i in range(len(words)):
+            # print(words[i])
+            Sum = 0
+            for j in range(len(words[i])):
+                # print(words[i][j])
+                if words[i][j] in Map :
+                    Sum += Map[words[i][j]]
+            SumMod = Sum % 26 
+            Res+= Alp[SumMod]
+        # print("+++" , Res)
+        return Res
+```
+ 
