@@ -1,5 +1,5 @@
 
-## [1508. Range Sum of Sorted Subarray Sums](https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/)
+### [1508. Range Sum of Sorted Subarray Sums](https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/)
 
 ```python
 
@@ -5697,7 +5697,7 @@ class Solution:
 ```
 
 
-#### [3379. Transformed Array](https://leetcode.com/problems/transformed-array/)
+### [3379. Transformed Array](https://leetcode.com/problems/transformed-array/)
 
 Both Are brute Force  logic 
 
@@ -5765,3 +5765,30 @@ class Solution:
         return Res
 ```
  
+### [2130. Maximum Twin Sum of a Linked List](https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/)
+
+- Not a Efficient Solution it must solved in the SLOW AND FAST POINTER CONCEPT 
+```python 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        temp = head 
+        data = []
+        while temp :
+            data.append(temp.val) ## Important Use the Val Not Next if you use the .Next  it will return the head of the next node. 
+            temp  = temp.next 
+        # print (data)
+        Res = 0 
+        left = 0
+        right = len(data)-1
+        while left < right :
+            print(data[left] , data[right])
+            Res  = max( Res ,  data[left] + data[right]) 
+            left += 1 
+            right -= 1 
+        return (Res)
+```
