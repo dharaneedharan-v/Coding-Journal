@@ -5792,3 +5792,41 @@ class Solution:
             right -= 1 
         return (Res)
 ```
+
+
+
+
+### [2095. Delete the Middle Node of a Linked List](https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/)
+
+BRUTE FORCE 
+FOR THE OPTIMIZE ONE GO FOR THE SLOW AND FAST POINTER.
+```python 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next :
+            return None
+        dk = []
+        temp  = head 
+        while temp :
+            dk.append(temp.val)
+            temp = temp.next
+        # print(dk)
+
+        Mid = int(len(dk) / 2)
+        # print(Mid) 
+        count = 0 
+        temp = head 
+        while temp :
+            if count == Mid -1  :
+                temp.next = temp.next.next 
+            count += 1 
+            temp = temp.next 
+        return head  
+
+
+```
