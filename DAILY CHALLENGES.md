@@ -5830,3 +5830,42 @@ class Solution:
 
 
 ```
+
+[3754. Concatenate Non-Zero Digits and Multiply by Sum I](https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-i/)
+
+```python 
+class Solution:
+    def sumAndMultiply(self, n: int) -> int:
+        a = str(n)
+        if n == 0 :
+            return 0 
+        res =""
+        Sum = 0 
+        for i in range (len(a)):
+            if a[i] != "0": 
+                res += a[i]
+                Sum += int(a[i])
+        return Sum * int(res) 
+
+
+
+```
+
+
+### [1464. Maximum Product of Two Elements in an Array](https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/)
+
+
+BRUTE FORCE 
+
+```python
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        Max = 0 
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                if i != j : # Avoid the Same index 
+                    Max = max( Max , ((nums[i]-1) *( nums[j]-1)) ) # Avoids the Mutiple Compute 
+                    # print(Max)
+        return Max  
+
+```
